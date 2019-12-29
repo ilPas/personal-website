@@ -2,7 +2,7 @@
 
 A personal web site based on a [Bruno Imbrizi Codrops demo](https://tympanus.net/codrops/2019/01/17/interactive-particles-with-three-js/)
 
-![cover](https://user-images.githubusercontent.com/880280/51060802-de702c00-15e8-11e9-9bff-58b02dc284a3.jpg)
+![cover](https://raw.githubusercontent.com/ilPas/personal-website/master/static/images/ilPas.png)
 
 ## Run
 
