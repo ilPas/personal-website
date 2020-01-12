@@ -35,9 +35,11 @@ export default class WebGLView {
       10000
     );
     this.camera.position.z = 300;
-
     // renderer
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true
+    });
 
     // clock
     this.clock = new THREE.Clock(true);
@@ -93,8 +95,9 @@ export default class WebGLView {
   // ---------------------------------------------------------------------------------------------
 
   resize() {
+    var container = document.getElementById("particles");
     if (!this.renderer) return;
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.aspect = container.clientWidth / container.clientHeight;
     this.camera.updateProjectionMatrix();
 
     this.fovHeight =
@@ -102,7 +105,7 @@ export default class WebGLView {
       Math.tan((this.camera.fov * Math.PI) / 180 / 2) *
       this.camera.position.z;
 
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(container.clientWidth, container.clientHeight, true);
 
     if (this.interactive) this.interactive.resize();
     if (this.particles) this.particles.resize();

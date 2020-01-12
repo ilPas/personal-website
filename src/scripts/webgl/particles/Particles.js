@@ -47,6 +47,7 @@ export default class Particles {
       const div = document.getElementById("container");
       const ctx = canvas.getContext("2d");
 
+      console.log(this);
       canvas.width = this.width;
       canvas.height = this.height;
       //canvas.id = "canvGameStage";

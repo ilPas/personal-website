@@ -15,7 +15,7 @@ export default class App {
   initWebGL() {
     this.webgl = new WebGLView(this);
     document
-      .querySelector(".container")
+      .querySelector(".js-particles")
       .appendChild(this.webgl.renderer.domElement);
   }
 
