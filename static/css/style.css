@@ -202,8 +202,10 @@ a:focus {
   outline: none;
 }
 
-.container {
-  width: 720px;
-  height: 960px;
-  position: relative;
+main {
+  min-height: 100vh;
+}
+
+.vh-100 {
+  min-height: 100vh;
 }
