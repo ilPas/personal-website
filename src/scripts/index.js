@@ -1,6 +1,6 @@
 import ready from "domready";
 import App from "./App";
-import "../css/style.scss";
+import "../css/theme.scss";
 
 ready(() => {
   window.app = new App();

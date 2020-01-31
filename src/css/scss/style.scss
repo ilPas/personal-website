@@ -208,7 +208,7 @@ main {
 
 .vh-100 {
   min-height: 100vh;
-  max-height: 100vh;
+  //max-height: 100vh;
 }
 
 .c-content {
@@ -221,6 +221,9 @@ main {
   right: 0;
   left: 0;
   bottom: 0;
+  @media (max-width: 599px) {
+    position: relative;
+  }
 }
 
 
