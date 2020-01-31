@@ -26,11 +26,11 @@ export default class App {
       localStorage: true,
       stories: [
         Zuck.buildTimelineItem(
-          "ramon",
-          "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
-          "Ramon",
-          "https://ramon.codes",
-          "2015",
+          "indigo",
+          "/images/works/indigo/1.jpg",
+          "Indigo",
+          "https://indigo.ai",
+          "2019",
           [
             [
               "ramon-1",
@@ -65,11 +65,11 @@ export default class App {
           ]
         ),
         Zuck.buildTimelineItem(
-          "gorillaz",
-          "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/2.jpg",
-          "Gorillaz",
+          "lanificio marilina",
+          "/images/works/marilina/1.jpg",
+          "Lanificio Marilina",
           "",
-          "2014",
+          "2018",
           [
             [
               "gorillaz-1",
@@ -94,9 +94,9 @@ export default class App {
           ]
         ),
         Zuck.buildTimelineItem(
-          "ladygaga",
-          "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/3.jpg",
-          "Lady Gaga",
+          "vari",
+          "/images/works/vari/1.jpg",
+          "Vari",
           "",
           "2016",
           [
@@ -117,44 +117,6 @@ export default class App {
               "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/7.jpg",
               "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/7.jpg",
               "http://ladygaga.com",
-              false,
-              false
-            ]
-          ]
-        ),
-        Zuck.buildTimelineItem(
-          "starboy",
-          "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/4.jpg",
-          "The Weeknd",
-          "",
-          "2017",
-          [
-            [
-              "starboy-1",
-              "photo",
-              5,
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/8.jpg",
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/8.jpg",
-              "",
-              false,
-              false
-            ]
-          ]
-        ),
-        Zuck.buildTimelineItem(
-          "riversquomo",
-          "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/5.jpg",
-          "Rivers Cuomo",
-          "",
-          "2018",
-          [
-            [
-              "riverscuomo",
-              "photo",
-              10,
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/9.jpg",
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/9.jpg",
-              "",
               false,
               false
             ]
