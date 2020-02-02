@@ -17,7 +17,7 @@ export default class App {
   }
 
   initGlide() {
-    new Glide(".glide", 
+    new Glide(".glide", {
       perView: 2,
       gap: 24
     }).mount();
