@@ -1,5 +1,5 @@
 /* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Barlow:400,600,800&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,600|Barlow:600,800&display=swap");
 
 /* Import Grid / Style */
 @import "scss/bootstrap-grid.min";
@@ -8,6 +8,10 @@
 /* Import Zuck */
 @import "scss/zuck";
 @import "scss/snapgram";
-@import "scss/facesnap";
-@import "scss/snapssenger";
-@import "scss/vemdezap";
+//@import "scss/facesnap";
+//@import "scss/snapssenger";
+//@import "scss/vemdezap";
+
+/* Import Glide */
+@import "scss/glide.core";
+@import "scss/glide.theme";

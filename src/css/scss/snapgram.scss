@@ -16,7 +16,7 @@
   opacity: 0.75;
 }
 .stories.snapgram .story.seen > a > .item-preview {
-  background: #999;
+  background: rgba(var(--color-link-hover), 0.4);
 }
 .stories.snapgram .story.seen > a {
   color: #999 !important;
