@@ -1,16 +1,19 @@
 {
-  "name": "webpack-threejs",
+  "name": "erricopasquale-website",
   "version": "1.0.1",
-  "description": "A simple boilerplate to start projects with Three.js using webpack.",
+  "description": "Il sito personale di Pasquale Errico",
   "keywords": [
-    "three.js",
-    "webpack",
-    "glsl",
-    "glslify"
+    "web designer",
+    "Biella",
+    "Pasquale Errico",
+    "graphic designer",
+    "UI designer",
+    "UX Engineer",
+    "web"
   ],
   "author": {
-    "name": "Bruno Imbrizi",
-    "url": "http://brunoimbrizi.com"
+    "name": "Pasquale Errico",
+    "url": "http://erricopasquale.me"
   },
   "license": "MIT",
   "sideEffects": false,
@@ -20,6 +23,7 @@
   },
   "dependencies": {
     "@brunoimbrizi/controlkit": "^0.1.93",
+    "@glidejs/glide": "^3.4.1",
     "browser-detect": "^0.2.28",
     "domready": "^1.0.8",
     "glsl-noise": "0.0.0",
