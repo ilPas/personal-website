@@ -1,6 +1,7 @@
 import WebGLView from "./webgl/WebGLView";
 import GUIView from "./gui/GUIView";
-import "zuck.js";
+import Glide from "@glidejs/glide";
+import Zuck from "zuck.js";
 
 export default class App {
   constructor() {}
@@ -12,6 +13,13 @@ export default class App {
     this.animate();
     this.resize();
     this.initZuck();
+    this.initGlide();
+  }
+
+  initGlide() {
+    new Glide(".glide", {
+      perView: 1
+    }).mount();
   }
 
   initZuck() {
@@ -33,33 +41,23 @@ export default class App {
           "2019",
           [
             [
-              "ramon-1",
+              "indigo-1",
               "photo",
-              3,
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-              "",
-              false,
+              5,
+              "/images/works/indigo/2.jpg",
+              "/images/works/indigo/2.jpg",
+              "https://fullstackish.io",
+              "Scopri Fullstackish",
               false
             ],
             [
-              "ramon-2",
-              "video",
-              0,
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.mp4",
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.jpg",
-              "",
-              false,
-              false
-            ],
-            [
-              "ramon-3",
+              "indigo-2",
               "photo",
-              3,
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/3.png",
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/3.png",
-              "https://ramon.codes",
-              "Visit my Portfolio",
+              5,
+              "/images/works/indigo/3.jpg",
+              "/images/works/indigo/3.jpg",
+              "https://indigo.ai",
+              "Scopri Indigo",
               false
             ]
           ]
