@@ -18,8 +18,9 @@ export default class App {
 
   initGlide() {
     new Glide(".glide", {
+      type: "slider",
       perView: 1,
-      gap: 24
+      gap: 16
     }).mount();
   }
 
@@ -39,7 +40,7 @@ export default class App {
           "/images/works/indigo/1.jpg",
           "Indigo",
           "https://indigo.ai",
-          "2019",
+          "1569888000",
           [
             [
               "indigo-1",

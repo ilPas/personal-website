@@ -212,7 +212,7 @@ main {
 }
 
 .c-content {
-  padding-top: 80px;
+  padding: 80px 16px 0;
 }
 .js-particles {
   width: 100%;
@@ -221,6 +221,7 @@ main {
   right: 0;
   left: 0;
   bottom: 0;
+  max-height: 100vh;
   @media (max-width: 599px) {
     position: relative;
   }
@@ -260,7 +261,18 @@ h3,
   font-size: 48px;
   font-weight: 700;
   line-height: 63px;
-  color: #fff;
+  color: transparent;
+  -webkit-text-stroke: 1px #ffffff;
+  text-stroke: 1px #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+}
+h4,
+.h4 {
+  letter-spacing: 2px;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-link-hover);
+  text-stroke: 1px var(--color-link-hover);
 }
 p,
 .p {
@@ -1278,7 +1290,6 @@ form .small .status > *:nth-child(2),
   &:hover {
     text-decoration: none;
     font-weight: 900;
-    letter-spacing: 1px;
 
     rect {
       stroke-width: 5;
@@ -1301,7 +1312,7 @@ form .small .status > *:nth-child(2),
   width: 100%;
   max-width: 90%;
   height: auto;
-  margin: 48px 32px 48px;
+  margin: 16px 0;
 
   transform-style: preserve-3d;
   transition: transform 0.3s cubic-bezier(0, 1.06, 0.75, 1.31);
@@ -1314,7 +1325,8 @@ form .small .status > *:nth-child(2),
 
 .card-front {
   background: var(--color-bg);
-  //box-shadow: 0px 0px 10px 10px #070707;
+  position: relative;
+  z-index: 2;
 }
 
 .card-front span {
@@ -1325,10 +1337,9 @@ form .small .status > *:nth-child(2),
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #0a0a0a;
-  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.9);
+  box-shadow: 0px 0px 10px 10px #070707;
   transform: translateZ(0);
-  z-index: -1;
+  z-index: 11;
 }
 
 .card-links {
@@ -1349,6 +1360,12 @@ form .small .status > *:nth-child(2),
   padding: 32px;
   transform-style: preserve-3d;
   transition: all 700ms cubic-bezier(0, 1.06, 0.75, 1.31);
+  a {
+    color: rgba(#e8e7e4, 0.2);
+  }
+  a:hover {
+    color: var(--color-link-hover);
+  }
 }
 
 .card-user img {

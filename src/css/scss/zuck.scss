@@ -484,6 +484,7 @@
   text-overflow: ellipsis;
 }
 .stories.carousel .story > .item-link > .info .name {
+  display: none;
   font-weight: 300;
 }
 .stories.carousel .story > .item-link > .info .time {
