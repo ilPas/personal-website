@@ -51,7 +51,8 @@ abbr[title] {
 }
 b,
 strong {
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--color-link-hover);
 }
 dfn {
   font-style: italic;
@@ -216,7 +217,7 @@ main {
 }
 .js-particles {
   width: 100%;
-  position: absolute;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
@@ -1258,11 +1259,10 @@ form .small .status > *:nth-child(2),
 .btn {
   color: #fff;
   cursor: pointer;
-  display: inline-block;
+  display: block;
   font-size: 16px;
   font-weight: 400;
   line-height: 45px;
-  max-width: 160px;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
@@ -1324,7 +1324,7 @@ form .small .status > *:nth-child(2),
 }
 
 .card-front {
-  background: var(--color-bg);
+  background: lighten(#0a0a0a, 2%);
   position: relative;
   z-index: 2;
 }
@@ -1394,6 +1394,7 @@ form .small .status > *:nth-child(2),
   display: flex;
   flex-wrap: nowrap;
   padding: 10px 5px;
+  font-size: 14px;
 }
 
 .user-info span {
