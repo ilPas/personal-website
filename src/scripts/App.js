@@ -37,7 +37,7 @@ export default class App {
 
       for (let i = 0; i < len; i++) {
         if (Math.random() < 0.5) {
-          buffer32[i] = 0xff111111;
+          buffer32[i] = 0xff222222;
         }
       }
 

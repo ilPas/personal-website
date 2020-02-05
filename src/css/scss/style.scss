@@ -61,7 +61,7 @@ hr {
   height: 0;
 }
 mark {
-  background: #ff0;
+  background: rgb(255, 255, 71);
   color: #000;
 }
 code,
@@ -132,11 +132,11 @@ html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
-  cursor: pointer;
+  cursor: none;
 }
 button[disabled],
 html input[disabled] {
-  cursor: default;
+  cursor: none;
 }
 input[type="checkbox"],
 input[type="radio"] {
@@ -194,6 +194,7 @@ a {
   color: var(--color-link);
   outline: none;
   cursor: none;
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0s;
 }
 
 a:hover,
@@ -262,8 +263,8 @@ h3,
   font-weight: 800;
   line-height: 63px;
   color: transparent;
-  -webkit-text-stroke: 1px #ffffff;
-  text-stroke: 1px #ffffff;
+  -webkit-text-stroke: 1px var(--color-link-hover);
+  text-stroke: 1px var(--color-link-hover);
   text-transform: uppercase;
   letter-spacing: 7px;
 }
@@ -289,23 +290,7 @@ small.alt,
 .small.alt {
   font-size: 11px;
 }
-a {
-  cursor: pointer;
-  color: inherit;
-  -webkit-transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0s;
-  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0s;
-}
-a,
-a:hover {
-  outline: 1px dashed transparent;
-}
-a:not(:hover):focus {
-  outline: 1px dashed transparent;
-}
-a,
-a:hover {
-  text-decoration: none;
-}
+
 a.link:not(.small) {
   font-weight: 700;
   display: inline-block;
@@ -1464,11 +1449,11 @@ form .small .status > *:nth-child(2),
 }
 .noise {
   z-index: 0;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.25;
+  opacity: 0.1;
 }
