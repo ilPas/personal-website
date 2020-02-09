@@ -50,7 +50,7 @@ abbr[title] {
 b,
 strong {
   font-weight: 700;
-  color: var(--color-link-hover);
+  color: var(--color-link);
 }
 dfn {
   font-style: italic;
@@ -179,8 +179,8 @@ table {
 body {
   --color-text: #e8e8e3;
   --color-bg: #0a0a0a;
-  --color-link: #ee9a00;
-  --color-link-hover: #00afa6;
+  --color-link: #00afa6;
+  --color-link-hover: #04948d;
   color: var(--color-text);
   background-color: var(--color-bg);
   font-family: "Roboto", Arial, sans-serif;
@@ -222,9 +222,12 @@ main {
   right: 0;
   left: 0;
   bottom: 0;
+  min-height: 100vh;
   max-height: 100vh;
   @media (max-width: 599px) {
     position: relative;
+    min-height: 35vh;
+    max-height: 35vh;
   }
 }
 
@@ -240,7 +243,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Kanit", Arial, sans-serif;
+  font-family: "Roboto Mono", Arial, sans-serif;
 }
 
 h1,
@@ -260,11 +263,11 @@ h3,
   margin: 0;
   margin-bottom: 28px;
   font-size: 64px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 63px;
   color: transparent;
-  -webkit-text-stroke: 1px var(--color-link-hover);
-  text-stroke: 1px var(--color-link-hover);
+  -webkit-text-stroke: 1px var(--color-link);
+  text-stroke: 1px var(--color-link);
   text-transform: uppercase;
   letter-spacing: 7px;
 }
@@ -273,8 +276,8 @@ h4,
   letter-spacing: 2px;
   color: transparent;
   font-weight: 600;
-  -webkit-text-stroke: 1px var(--color-link-hover);
-  text-stroke: 1px var(--color-link-hover);
+  -webkit-text-stroke: 1px var(--color-link);
+  text-stroke: 1px var(--color-link);
 }
 p,
 .p {
@@ -1243,7 +1246,7 @@ form .small .status > *:nth-child(2),
 
 .btn {
   color: #fff;
-  cursor: pointer;
+  cursor: none;
   display: block;
   font-size: 16px;
   font-weight: 400;
@@ -1434,8 +1437,8 @@ form .small .status > *:nth-child(2),
   &--outer {
     width: 30px;
     height: 30px;
-    border: 1px solid var(--color-link-hover);
-    z-index: 12000;
+    border: 1px solid var(--color-link);
+    z-index: 120000;
     opacity: 0.2;
   }
   &--inner {
@@ -1443,8 +1446,8 @@ form .small .status > *:nth-child(2),
     height: 7px;
     left: -3.5px;
     top: -3.5px;
-    z-index: 11000;
-    background: var(--color-link-hover);
+    z-index: 110000;
+    background: var(--color-link);
   }
 }
 .noise {
