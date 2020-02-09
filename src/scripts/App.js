@@ -14,8 +14,8 @@ export default class App {
     this.animate();
     this.resize();
     this.initZuck();
-    this.initGlide();
-    this.initNoise();
+    //this.initGlide();
+    //this.initNoise();
     new Cursor();
   }
 
@@ -126,7 +126,7 @@ export default class App {
       stories: [
         Zuck.buildTimelineItem(
           "indigo",
-          "/images/works/indigo/1.jpg",
+          "images/works/indigo/1.jpg",
           "Indigo",
           "https://indigo.ai",
           "1569888000",
@@ -135,8 +135,8 @@ export default class App {
               "indigo-1",
               "photo",
               5,
-              "/images/works/indigo/2.jpg",
-              "/images/works/indigo/2.jpg",
+              "images/works/indigo/2.jpg",
+              "images/works/indigo/2.jpg",
               "https://fullstackish.io",
               "Scopri Fullstackish",
               false
@@ -145,8 +145,8 @@ export default class App {
               "indigo-2",
               "photo",
               5,
-              "/images/works/indigo/3.jpg",
-              "/images/works/indigo/3.jpg",
+              "images/works/indigo/3.jpg",
+              "images/works/indigo/3.jpg",
               "https://indigo.ai",
               "Scopri Indigo",
               false
@@ -155,36 +155,36 @@ export default class App {
         ),
         Zuck.buildTimelineItem(
           "lanificio marilina",
-          "/images/works/marilina/1.jpg",
+          "images/works/marilina/1.jpg",
           "Lanificio Marilina",
           "",
           "2018",
           [
             [
-              "gorillaz-1",
-              "video",
-              0,
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.mp4",
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.jpg",
-              "",
-              false,
+              "marilina-1",
+              "photo",
+              5,
+              "images/works/marilina/2.jpg",
+              "images/works/marilina/2.jpg",
+              "https://www.instagram.com/corsdesign/",
+              "Scopri Cors Design",
               false
             ],
             [
-              "gorillaz-2",
+              "marilina-2",
               "photo",
-              3,
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/5.jpg",
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/5.jpg",
-              "",
-              false,
+              5,
+              "images/works/marilina/3.jpg",
+              "images/works/marilina/3.jpg",
+              "https://maglificiomarilina.com/it/",
+              "Scopri Maglificio Marilina",
               false
             ]
           ]
         ),
         Zuck.buildTimelineItem(
           "vari",
-          "/images/works/vari/1.jpg",
+          "images/works/vari/1.jpg",
           "Vari",
           "",
           "2016",

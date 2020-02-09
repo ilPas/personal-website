@@ -1,0 +1,17 @@
+/* TEAM */
+                            
+Your title: Pasquale Errico                       
+Site: email, link to a contact form, etc.                         
+Twitter: ilPas_                          
+Location: Biella, Italy
+												
+/* THANKS */
+						
+Name: https://github.com/brunoimbrizi/interactive-particles
+                                          
+/* SITE */
+                    
+Last update: 2020/02/09                         
+Standards: HTML5, CSS3, Javascript                     
+Components: Webpack, Three.js, Zuck.js                      
+Software: VS Code, Figma
