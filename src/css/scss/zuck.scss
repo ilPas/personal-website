@@ -275,6 +275,7 @@
 }
 #zuck-modal-content .story-viewer .head .right {
   float: right;
+  margin-right: 16px;
 }
 #zuck-modal-content .story-viewer .head .right .close,
 #zuck-modal-content .story-viewer .head .back {
@@ -346,7 +347,7 @@
   text-decoration: none;
   display: none;
   border-radius: 24px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(#0a0a0a, 0.7);
   font-size: 16px;
   position: absolute;
   bottom: 24px;

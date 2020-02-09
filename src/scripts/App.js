@@ -134,12 +134,12 @@ export default class App {
             [
               "indigo-1",
               "photo",
-              5,
+              55,
               "images/works/indigo/2.jpg",
               "images/works/indigo/2.jpg",
               "https://fullstackish.io",
               "Scopri Fullstackish",
-              false
+              "2019"
             ],
             [
               "indigo-2",
@@ -149,7 +149,7 @@ export default class App {
               "images/works/indigo/3.jpg",
               "https://indigo.ai",
               "Scopri Indigo",
-              false
+              "2019"
             ]
           ]
         ),
@@ -168,7 +168,7 @@ export default class App {
               "images/works/marilina/2.jpg",
               "https://www.instagram.com/corsdesign/",
               "Scopri Cors Design",
-              false
+              "2018"
             ],
             [
               "marilina-2",
@@ -178,7 +178,7 @@ export default class App {
               "images/works/marilina/3.jpg",
               "https://maglificiomarilina.com/it/",
               "Scopri Maglificio Marilina",
-              false
+              "2018"
             ]
           ]
         ),
@@ -190,24 +190,14 @@ export default class App {
           "2016",
           [
             [
-              "ladygaga-1",
+              "pas-1",
               "photo",
               5,
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/6.jpg",
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/6.jpg",
+              "images/works/vari/2.jpg",
+              "images/works/vari/2.jpg",
               "",
               false,
-              false
-            ],
-            [
-              "ladygaga-2",
-              "photo",
-              3,
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/7.jpg",
-              "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/7.jpg",
-              "http://ladygaga.com",
-              false,
-              false
+              "2012"
             ]
           ]
         )

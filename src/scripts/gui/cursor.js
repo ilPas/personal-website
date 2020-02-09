@@ -112,7 +112,7 @@ class Cursor {
       mainNavHoverTween.reverse();
     };
 
-    const mainNavLinks = document.querySelectorAll(".cursorLinkEffect");
+    const mainNavLinks = document.querySelectorAll(".js-cursor");
     mainNavLinks.forEach(item => {
       item.addEventListener("mouseenter", mainNavMouseEnter);
       item.addEventListener("mouseleave", mainNavMouseLeave);

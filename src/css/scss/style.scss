@@ -50,6 +50,8 @@ abbr[title] {
 b,
 strong {
   font-weight: 700;
+}
+.color-accent {
   color: var(--color-link);
 }
 dfn {
@@ -213,9 +215,9 @@ main {
 }
 
 .c-content {
-  padding: 80px 16px 0;
+  padding: 64px 16px 0;
   @media (max-width: 599px) {
-    padding-top: 48px;
+    padding-top: 32px;
   }
 }
 .js-particles {
@@ -276,9 +278,9 @@ h3,
 }
 h4,
 .h4 {
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   color: transparent;
-  font-weight: 600;
+  font-weight: 700;
   -webkit-text-stroke: 1px var(--color-link);
   text-stroke: 1px var(--color-link);
 }
@@ -297,28 +299,6 @@ small.alt,
   font-size: 11px;
 }
 
-a.link:not(.small) {
-  font-weight: 700;
-  display: inline-block;
-  position: relative;
-}
-a.link:not(.small):before {
-  content: "";
-  z-index: -1;
-  display: block;
-  -webkit-transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0s;
-  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0s;
-}
-a.link:not(.small):before {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 21px;
-  height: 2px;
-}
-a.link:not(.small):hover:before {
-  width: 100%;
-}
 a.link.small {
   color: #aaa;
   display: inline-block;
@@ -1451,6 +1431,9 @@ form .small .status > *:nth-child(2),
     top: -3.5px;
     z-index: 110000;
     background: var(--color-link);
+  }
+  @media (max-width: 599px) {
+    display: none;
   }
 }
 .noise {
