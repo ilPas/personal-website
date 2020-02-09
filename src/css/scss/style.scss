@@ -214,6 +214,9 @@ main {
 
 .c-content {
   padding: 80px 16px 0;
+  @media (max-width: 599px) {
+    padding-top: 48px;
+  }
 }
 .js-particles {
   width: 100%;
