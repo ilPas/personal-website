@@ -3,6 +3,7 @@ import GUIView from "./gui/GUIView";
 import Glide from "@glidejs/glide";
 import Zuck from "zuck.js";
 import Cursor from "./gui/cursor";
+import CookieBox from "cookie-consent-box";
 
 export default class App {
   constructor() {}
@@ -17,6 +18,17 @@ export default class App {
     //this.initGlide();
     //this.initNoise();
     new Cursor();
+    new CookieBox({
+      backgroundColor: "#00afa6",
+      url: "https://www.iubenda.com/privacy-policy/623736/",
+      content: {
+        title: "Cookie Policy",
+        content:
+          "Il mio sito utilizza cookie per analizzare in forma anonima la tua esperienza di navigazione e migliorarla. Cliccando sul pulsante “Accetto” accetti l’utilizzo della mia Privacy Policy.",
+        accept: "Accetto",
+        learnMore: "Altre informazioni"
+      }
+    }).init();
   }
 
   initNoise() {
