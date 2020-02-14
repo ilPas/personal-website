@@ -94,6 +94,12 @@ class Cursor {
       item.addEventListener("mouseleave", handleMouseLeave);
     });
 
+    const linkItems2 = document.querySelectorAll(".cookieConsentToggle");
+    linkItems2.forEach(item => {
+      item.addEventListener("mouseenter", handleMouseEnter);
+      item.addEventListener("mouseleave", handleMouseLeave);
+    });
+
     const mainNavHoverTween = TweenMax.to(this.outerCursor, 0.3, {
       backgroundColor: "#ffffff",
       ease: this.easing,
@@ -114,6 +120,11 @@ class Cursor {
 
     const mainNavLinks = document.querySelectorAll(".js-cursor");
     mainNavLinks.forEach(item => {
+      item.addEventListener("mouseenter", mainNavMouseEnter);
+      item.addEventListener("mouseleave", mainNavMouseLeave);
+    });
+    const mainNavLinks2 = document.querySelectorAll(".cookieConsent__Button");
+    mainNavLinks2.forEach(item => {
       item.addEventListener("mouseenter", mainNavMouseEnter);
       item.addEventListener("mouseleave", mainNavMouseLeave);
     });

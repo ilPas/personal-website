@@ -22,6 +22,7 @@
     "start": "webpack-dev-server --config config/dev.js"
   },
   "dependencies": {
+    "@beyonk/gdpr-cookie-consent-banner": "^6.3.0",
     "@brunoimbrizi/controlkit": "^0.1.93",
     "@glidejs/glide": "^3.4.1",
     "browser-detect": "^0.2.28",

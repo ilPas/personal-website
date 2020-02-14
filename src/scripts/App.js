@@ -3,7 +3,7 @@ import GUIView from "./gui/GUIView";
 import Glide from "@glidejs/glide";
 import Zuck from "zuck.js";
 import Cursor from "./gui/cursor";
-import CookieBox from "cookie-consent-box";
+import attachBanner from "@beyonk/gdpr-cookie-consent-banner";
 
 export default class App {
   constructor() {}
@@ -15,20 +15,105 @@ export default class App {
     this.animate();
     this.resize();
     this.initZuck();
+    this.initCookie();
     //this.initGlide();
     //this.initNoise();
     new Cursor();
-    new CookieBox({
-      backgroundColor: "#00afa6",
-      url: "https://www.iubenda.com/privacy-policy/623736/",
-      content: {
-        title: "Cookie Policy",
-        content:
-          "Il mio sito utilizza cookie per analizzare in forma anonima la tua esperienza di navigazione e migliorarla. Cliccando sul pulsante “Accetto” accetti l’utilizzo della mia Privacy Policy.",
-        accept: "Accetto",
-        learnMore: "Altre informazioni"
+  }
+
+  initCookie() {
+    const options = {
+      /**
+       * You must set the cookie name.
+       **/
+      cookieName: "ilpas_gdpr",
+
+      /**
+       * The cookie configuration, such as domain and path.
+       **/
+      cookieConfig: {
+        domain: "erricopasquale.me",
+        path: "/"
+      },
+
+      /**
+       * These are the top two lines of text on the banner
+       * The 'description' field can include html such as links
+       **/
+      heading: "GDPR Notice",
+      description:
+        'Sul mio sito utilizzo i cookie per offrire una migliore esperienza di navigazione e analizzare il traffico del sito. Consulta la nostra <a href="/privacy-policy"> privacy & cookie policy </a>.<br />Facendo clic su Accetta, acconsenti alla nostra politica privacy & cookie policy.',
+
+      /**
+       * All the button labels
+       **/
+      acceptLabel: "Conferma tutti",
+      settingsLabel: "Preferenze",
+      closeLabel: "Chiudi",
+
+      /**
+       * These are the default opt-ins and their descriptions.
+       * When value is set to true, the option will automatically be checked on load.
+       *
+       * If you don't want to show a category, simply remove the specified key from this object.
+       **/
+      choices: {
+        necessary: {
+          label: "Cookie necessari",
+          description:
+            "Questi cookie non possono essere disattivati perché vengono utilizzati per controllare tutti gli altri.",
+          value: true
+        },
+        analytics: {
+          label: "Analytics",
+          description:
+            "Utilizzo Google Analytics anonimo per per analizzare le visite al mio sito.",
+          value: true
+        },
+        tracking: false,
+        marketing: false
+      },
+
+      /**
+       * Show an icon to edit cookies later, when banner is closed.
+       **/
+      showEditIcon: true,
+
+      /**
+       * These are the functions which are run if a user opts-in to that category.
+       * You should drop your cookies here (or set a variable to control the later dropping of cookies.
+       *
+       * If you are using svelte, you can use events instead - see the Svelte section below.
+       **/
+      categories: {
+        analytics: function(w, d, s, l, i) {
+          console.log("Google Tag Manager");
+          (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+              "gtm.start": new Date().getTime(),
+              event: "gtm.js"
+            });
+            var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != "dataLayer" ? "&l=" + l : "";
+            j.async = true;
+            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, "script", "dataLayer", "GTM-KXQLJ68");
+        },
+        tracking: function() {
+          console.log("No tracking cookies specified");
+        },
+        marketing: function() {
+          console.log("No marketing cookies specified");
+        },
+        necessary: function() {
+          console.log("No necessary cookies specified");
+        }
       }
-    }).init();
+    };
+    GdprConsent.attachBanner(document.body, options);
   }
 
   initNoise() {
