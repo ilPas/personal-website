@@ -77,3 +77,20 @@ Glide
 								
 							</div>
 							</section>
+
+
+
+
+							<p>
+                                La tua privacy è molto importante, per te e per me.<br />
+                                Come Pasquale Errico rispetto la tua privacy in merito a qualsiasi
+                                informazione che passa su di te sul mio sito http://erricopasquale.me.<br />
+                                Non chiedo informazioni personali, se vuoi contattarmi trovi il mio numero di telefono e puoi farlo tramite WhatsApp senza che io ti chieda dati. Gli unici dati sono quelli di navigazione e li recupero solo quando ne ho veramente bisogno per analizzare le visite al mio sito. I dati vengono raccolti con la tua conoscenza e il tuo consenso, tramite cookie di cui troverai informazioni nella pagina.<br />
+                                Il mio sito Web può essere collegato a siti esterni che non sono gestiti direttamente da me. Su questi siti io non ho alcun controllo sul contenuto e sulle loro pratiche e non posso
+                                accettare responsabilità per le rispettive politiche sulla privacy.<br />
+                                Sei libero di bloccare i cookie che tracciano la tua navigazione. L'uso continuato del mio sito web sarà considerato come accettazione della mia privacy policy. In caso di domande su come trattiamo i dati degli utenti, contattami pure.<br/><br />
+                                <strong>Pasquale Errico</strong><br />
+                                via Q.Sella 35/A, Quaregna Cerreto (BI)<br />
+                                Indirizzo E-Mail: <a href="mailto:errico.pasquale@gmail.com">errico.pasquale@gmail.com</a>
+
+                            </p>

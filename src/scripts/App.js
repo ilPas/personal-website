@@ -9,12 +9,18 @@ export default class App {
   constructor() {}
 
   init() {
-    this.initWebGL();
-    this.initGUI();
-    this.addListeners();
-    this.animate();
-    this.resize();
-    this.initZuck();
+    var particelle = document.getElementById("particles");
+    if (typeof particelle != "undefined" && particelle != null) {
+      this.initWebGL();
+      this.initGUI();
+      this.addListeners();
+      this.animate();
+      this.resize();
+    }
+    var storie = document.getElementById("stories");
+    if (typeof storie != "undefined" && storie != null) {
+      this.initZuck();
+    }
     this.initCookie();
     //this.initGlide();
     //this.initNoise();
@@ -42,7 +48,7 @@ export default class App {
        **/
       heading: "GDPR Notice",
       description:
-        'Sul mio sito utilizzo i cookie per offrire una migliore esperienza di navigazione e analizzare il traffico del sito. Consulta la nostra <a href="/privacy-policy"> privacy & cookie policy </a>.<br />Facendo clic su Accetta, acconsenti alla nostra politica privacy & cookie policy.',
+        'Sul mio sito utilizzo i cookie per offrire una migliore esperienza di navigazione e analizzare il traffico del sito. Consulta la nostra <a href="/privacy-cookie"> privacy & cookie policy </a>.<br />Facendo clic su Accetta, acconsenti alla nostra politica privacy & cookie policy.',
 
       /**
        * All the button labels
@@ -304,6 +310,7 @@ export default class App {
 
   initWebGL() {
     this.webgl = new WebGLView(this);
+
     document
       .querySelector(".js-particles")
       .appendChild(this.webgl.renderer.domElement);
