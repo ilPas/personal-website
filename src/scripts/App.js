@@ -48,7 +48,7 @@ export default class App {
        **/
       heading: "GDPR Notice",
       description:
-        'Sul mio sito utilizzo i cookie per offrire una migliore esperienza di navigazione e analizzare il traffico del sito. Consulta la nostra <a href="/privacy-cookie"> privacy & cookie policy </a>.<br />Facendo clic su Accetta, acconsenti alla nostra politica privacy & cookie policy.',
+        'Sul mio sito utilizzo i cookie per offrire una migliore esperienza di navigazione e analizzare il traffico del sito. Consulta la nostra <a href="/privacy-cookie.html"> privacy & cookie policy </a>.<br />Facendo clic su Accetta, acconsenti alla nostra politica privacy & cookie policy.',
 
       /**
        * All the button labels

@@ -69,7 +69,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       // Also generate a test.html
-      filename: "privacy-cookie",
+      filename: "privacy-cookie.html",
       template: "./src/privacy-cookie.html"
     }),
     new webpack.ProvidePlugin({
