@@ -175,7 +175,7 @@ table {
 }
 
 :root {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 body {
@@ -185,7 +185,7 @@ body {
   --color-link-hover: #04948d;
   color: var(--color-text);
   background-color: var(--color-bg);
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto Mono", Arial, sans-serif;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -282,13 +282,16 @@ h3,
   margin: 0;
   margin-bottom: 28px;
   font-size: 40px;
-  font-weight: 900;
+  font-weight: 700;
   color: transparent;
   -webkit-text-stroke: 1px var(--color-link);
   text-stroke: 1px var(--color-link);
   text-transform: uppercase;
   letter-spacing: 7px;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Syncopate", Arial, sans-serif;
+  @media (max-width: 599px) {
+    font-size: 28px;
+  }
 }
 h4,
 .h4 {
@@ -297,6 +300,8 @@ h4,
   font-weight: 700;
   -webkit-text-stroke: 1px var(--color-link);
   text-stroke: 1px var(--color-link);
+  font-family: "Syncopate", Arial, sans-serif;
+  font-size: 14px;
 }
 p,
 .p {
@@ -307,6 +312,9 @@ small,
   font-size: 12px;
   line-height: 21px;
   color: #666;
+  @media (max-width: 599px) {
+    font-size: 10px;
+  }
 }
 small.alt,
 .small.alt {
@@ -353,7 +361,7 @@ a.link.small:hover:before {
   }
 }
 .links a.link.small:not(:last-child) {
-  margin-right: 21px;
+  margin-right: 12px;
 }
 a.link:not(.small),
 a.link.small:hover {
