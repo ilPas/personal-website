@@ -53,7 +53,7 @@ export default class App {
       /**
        * All the button labels
        **/
-      acceptLabel: "Conferma tutti",
+      acceptLabel: "Conferma",
       settingsLabel: "Preferenze",
       closeLabel: "Chiudi",
 
@@ -237,22 +237,20 @@ export default class App {
             [
               "indigo-1",
               "photo",
-              55,
+              60,
               "images/works/indigo/2.jpg",
               "images/works/indigo/2.jpg",
               "https://fullstackish.io",
-              "Scopri Fullstackish",
-              "2019"
+              "Scopri Fullstackish"
             ],
             [
               "indigo-2",
               "photo",
-              5,
+              10,
               "images/works/indigo/3.jpg",
               "images/works/indigo/3.jpg",
               "https://indigo.ai",
-              "Scopri Indigo",
-              "2019"
+              "Scopri Indigo"
             ]
           ]
         ),
@@ -260,28 +258,26 @@ export default class App {
           "lanificio marilina",
           "images/works/marilina/1.jpg",
           "Lanificio Marilina",
-          "",
-          "2018",
+          "https://maglificiomarilina.com/it/",
+          "1530403200",
           [
             [
               "marilina-1",
               "photo",
-              5,
+              10,
               "images/works/marilina/2.jpg",
               "images/works/marilina/2.jpg",
               "https://www.instagram.com/corsdesign/",
-              "Scopri Cors Design",
-              "2018"
+              "Scopri Cors Design"
             ],
             [
               "marilina-2",
               "photo",
-              5,
+              10,
               "images/works/marilina/3.jpg",
               "images/works/marilina/3.jpg",
               "https://maglificiomarilina.com/it/",
-              "Scopri Maglificio Marilina",
-              "2018"
+              "Scopri Maglificio Marilina"
             ]
           ]
         ),
@@ -290,17 +286,16 @@ export default class App {
           "images/works/vari/1.jpg",
           "Vari",
           "",
-          "2016",
+          "1451606400",
           [
             [
               "pas-1",
               "photo",
-              5,
+              10,
               "images/works/vari/2.jpg",
               "images/works/vari/2.jpg",
               "",
-              false,
-              "2012"
+              false
             ]
           ]
         )

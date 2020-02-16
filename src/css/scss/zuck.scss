@@ -227,6 +227,9 @@
   font-size: 14px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.35), 1px 0 1px rgba(0, 0, 0, 0.35);
   padding: 6px 12px;
+  -webkit-box-shadow: inset 0px 69px 39px -50px rgba(0, 0, 0, 0.43);
+  -moz-box-shadow: inset 0px 69px 39px -50px rgba(0, 0, 0, 0.43);
+  box-shadow: inset 0px 69px 39px -50px rgba(0, 0, 0, 0.43);
 }
 #zuck-modal-content .story-viewer .head .item-preview {
   overflow: hidden;
@@ -363,7 +366,7 @@
 
 @media (max-width: 1024px) {
   #zuck-modal-content .story-viewer .head {
-    top: 3px;
+    //top: 3px;
   }
   #zuck-modal-content .story-viewer .head .loading {
     width: 24px;
