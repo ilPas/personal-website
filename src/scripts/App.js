@@ -25,6 +25,10 @@ export default class App {
     //this.initGlide();
     //this.initNoise();
     new Cursor();
+
+    var d = new Date();
+    var n = d.getFullYear();
+    document.getElementById("fullYear").innerHTML = n;
   }
 
   initCookie() {
@@ -237,7 +241,7 @@ export default class App {
             [
               "indigo-1",
               "photo",
-              60,
+              10,
               "images/works/indigo/2.jpg",
               "images/works/indigo/2.jpg",
               "https://fullstackish.io",
