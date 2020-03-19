@@ -1,6 +1,6 @@
 import WebGLView from "./webgl/WebGLView";
 import GUIView from "./gui/GUIView";
-import Glide from "@glidejs/glide";
+//import Glide from "@glidejs/glide";
 import Zuck from "zuck.js";
 import Cursor from "./gui/cursor";
 import attachBanner from "@beyonk/gdpr-cookie-consent-banner";
