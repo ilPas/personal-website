@@ -2,13 +2,14 @@ const merge = require("webpack-merge");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
+const CompressionPlugin = require("compression-webpack-plugin");
 const common = require("./common.js");
 
 module.exports = merge(common, {
   mode: "production",
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "theme.css"
+      filename: "theme.css",
     }),
     new WebpackPwaManifest({
       name: "Pasquale Errico PWA",
@@ -19,14 +20,23 @@ module.exports = merge(common, {
       icons: [
         {
           src: path.resolve("static/images/icon/icon.png"),
-          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
         },
         {
           src: path.resolve("static/images/icon/large-icon.png"),
-          size: "1024x1024" // you can also use the specifications pattern
-        }
-      ]
-    })
+          size: "1024x1024", // you can also use the specifications pattern
+        },
+      ],
+    }),
+    new CompressionPlugin({
+      filename: "[path].br[query]",
+      algorithm: "brotliCompress",
+      test: /\.(js|css|html|svg)$/,
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8,
+      deleteOriginalAssets: false,
+    }),
   ],
   module: {
     rules: [
@@ -36,16 +46,16 @@ module.exports = merge(common, {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: "/dist/css/"
-            }
+              publicPath: "/dist/css/",
+            },
           },
 
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS
-          "sass-loader"
-        ]
-      }
-    ]
-  }
+          "sass-loader",
+        ],
+      },
+    ],
+  },
 });
