@@ -16,9 +16,6 @@ export default class App {
       this.addListeners();
       this.animate();
       this.resize();
-      document
-        .getElementsByClassName("cookieConsentToggle")[0]
-        .setAttribute("aria-label", "Cookie consent");
     }
     var storie = document.getElementById("stories");
     if (typeof storie != "undefined" && storie != null) {
@@ -32,6 +29,9 @@ export default class App {
     var d = new Date();
     var n = d.getFullYear();
     document.getElementById("fullYear").innerHTML = n;
+    document
+      .getElementsByClassName("cookieConsentToggle")[0]
+      .setAttribute("aria-label", "Cookie consent");
   }
 
   initCookie() {
