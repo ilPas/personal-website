@@ -32,6 +32,18 @@ export default class App {
     document
       .getElementsByClassName("cookieConsentToggle")[0]
       .setAttribute("aria-label", "Cookie consent");
+    document
+      .querySelectorAll(".item-link")
+      .forEach((element) =>
+        element.setAttribute("alt", "Guarda i miei lavori")
+      );
+    document
+      .querySelectorAll(".item-link")
+      .forEach((element) =>
+        element
+          .getElementsByTagName("img")[0]
+          .setAttribute("alt", "Guarda i miei lavori")
+      );
   }
 
   initCookie() {
