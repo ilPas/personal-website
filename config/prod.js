@@ -13,14 +13,21 @@ module.exports = merge(common, {
     }),
     new WebpackPwaManifest({
       name: "Pasquale Errico PWA",
-      short_name: "MyPWA",
+      short_name: "ilPasPWA",
       description: "Pasquale Errico Progressive Web App!",
       background_color: "#0a0a0a",
+      theme_color: "#0a0a0a",
       crossorigin: "use-credentials", //can be null, use-credentials or anonymous
       icons: [
         {
           src: path.resolve("static/images/icon/icon.png"),
           sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+        },
+        {
+          src: path.resolve("static/images/icon/icon.png"),
+          sizes: [120, 152, 167, 180, 1024], // multiple sizes
+          ios: true,
+          destination: path.join("icon", "ios"),
         },
         {
           src: path.resolve("static/images/icon/large-icon.png"),
