@@ -16,6 +16,9 @@ export default class App {
       this.addListeners();
       this.animate();
       this.resize();
+      document
+        .getElementsByClassName("cookieConsentToggle")[0]
+        .setAttribute("aria-label", "Cookie consent");
     }
     var storie = document.getElementById("stories");
     if (typeof storie != "undefined" && storie != null) {
@@ -42,8 +45,8 @@ export default class App {
        * The cookie configuration, such as domain and path.
        **/
       cookieConfig: {
-        domain: "erricopasquale.me",
-        path: "/"
+        domain: "erricopasquale.it",
+        path: "/",
       },
 
       /**
@@ -72,16 +75,16 @@ export default class App {
           label: "Cookie necessari",
           description:
             "Questi cookie non possono essere disattivati perché vengono utilizzati per controllare tutti gli altri.",
-          value: true
+          value: true,
         },
         analytics: {
           label: "Analytics",
           description:
             "Utilizzo Google Analytics anonimo per per analizzare le visite al mio sito.",
-          value: true
+          value: true,
         },
         tracking: false,
-        marketing: false
+        marketing: false,
       },
 
       /**
@@ -96,13 +99,13 @@ export default class App {
        * If you are using svelte, you can use events instead - see the Svelte section below.
        **/
       categories: {
-        analytics: function(w, d, s, l, i) {
+        analytics: function (w, d, s, l, i) {
           console.log("Google Tag Manager");
-          (function(w, d, s, l, i) {
+          (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
               "gtm.start": new Date().getTime(),
-              event: "gtm.js"
+              event: "gtm.js",
             });
             var f = d.getElementsByTagName(s)[0],
               j = d.createElement(s),
@@ -112,16 +115,16 @@ export default class App {
             f.parentNode.insertBefore(j, f);
           })(window, document, "script", "dataLayer", "GTM-KXQLJ68");
         },
-        tracking: function() {
+        tracking: function () {
           console.log("No tracking cookies specified");
         },
-        marketing: function() {
+        marketing: function () {
           console.log("No marketing cookies specified");
         },
-        necessary: function() {
+        necessary: function () {
           console.log("No necessary cookies specified");
-        }
-      }
+        },
+      },
     };
     GdprConsent.attachBanner(document.body, options);
   }
@@ -216,7 +219,7 @@ export default class App {
     new Glide(".glide", {
       type: "slider",
       perView: 1,
-      gap: 16
+      gap: 16,
     }).mount();
   }
 
@@ -245,7 +248,7 @@ export default class App {
               "images/works/indigo/2.jpg",
               "images/works/indigo/2.jpg",
               "https://fullstackish.io",
-              "Scopri Fullstackish"
+              "Scopri Fullstackish",
             ],
             [
               "indigo-2",
@@ -254,8 +257,8 @@ export default class App {
               "images/works/indigo/3.jpg",
               "images/works/indigo/3.jpg",
               "https://indigo.ai",
-              "Scopri Indigo"
-            ]
+              "Scopri Indigo",
+            ],
           ]
         ),
         Zuck.buildTimelineItem(
@@ -272,7 +275,7 @@ export default class App {
               "images/works/marilina/2.jpg",
               "images/works/marilina/2.jpg",
               "https://www.instagram.com/corsdesign/",
-              "Scopri Cors Design"
+              "Scopri Cors Design",
             ],
             [
               "marilina-2",
@@ -281,8 +284,8 @@ export default class App {
               "images/works/marilina/3.jpg",
               "images/works/marilina/3.jpg",
               "https://maglificiomarilina.com/it/",
-              "Scopri Maglificio Marilina"
-            ]
+              "Scopri Maglificio Marilina",
+            ],
           ]
         ),
         Zuck.buildTimelineItem(
@@ -299,11 +302,11 @@ export default class App {
               "images/works/vari/2.jpg",
               "images/works/vari/2.jpg",
               "",
-              false
-            ]
+              false,
+            ],
           ]
-        )
-      ]
+        ),
+      ],
     });
   }
 
