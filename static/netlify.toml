@@ -1,36 +1,36 @@
 [[headers]]
   for = "*.js" # js files should be set this way
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=2592000"
 [[headers]]
   for = "*.css" # css files too
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=31536000"
 [[headers]]
   for = "*.html" # html files too
   [headers.values]
-    Cache-Control = "public, max-age=0"
+    Cache-Control = "public, max-age=604800"
 [[headers]]
   for = "*.jpg" # jpg files too
   [headers.values]
-    Cache-Control = "public, max-age=2592000"
+    Cache-Control = "public, max-age=31536000 "
 [[headers]]
   for = "*.png" # png files too
   [headers.values]
-    Cache-Control = "public, max-age=2592000"
+    Cache-Control = "public, max-age=31536000 "
 [[headers]]
   for = "*.woff" # woff files too
-  [headers.values]
-    Cache-Control = "public, max-age=2592000"
+  [headers.values]31536000 
+    Cache-Control = "public, max-age=31536000 "
 [[headers]]
   for = "*.ttf" # ttf files too
   [headers.values]
-    Cache-Control = "public, max-age=2592000"
+    Cache-Control = "public, max-age=31536000 "
 [[headers]]
   for = "*.otf" # otf files too
   [headers.values]
-    Cache-Control = "public, max-age=2592000"
+    Cache-Control = "public, max-age=31536000 "
 [[headers]]
   for = "*.svg" # svg files too
   [headers.values]
-    Cache-Control = "public, max-age=2592000"
+    Cache-Control = "public, max-age=31536000 "
