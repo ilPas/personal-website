@@ -546,23 +546,10 @@ FileETag None
 </IfModule>
 
 RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^http://erricopasquale.me/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^http://erricopasquale.me$      [NC]
-RewriteCond %{HTTP_REFERER} !^http://ilpas.me/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^http://ilpas.me$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.erricopasquale.it/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.erricopasquale.it$      [NC]
 RewriteCond %{HTTP_REFERER} !^http://www.erricopasquale.me/.*$      [NC]
 RewriteCond %{HTTP_REFERER} !^http://www.erricopasquale.me$      [NC]
 RewriteCond %{HTTP_REFERER} !^http://www.ilpas.me/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^http://www.ilpas.me$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://erricopasquale.me/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://erricopasquale.me$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://ilpas.me/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://ilpas.me$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://www.erricopasquale.me/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://www.erricopasquale.me$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://www.ilpas.me/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://www.ilpas.me$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://codepen.io/.*$      [NC]
-RewriteCond %{HTTP_REFERER} !^https://codepen.io$      [NC]
 RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
 
