@@ -48,20 +48,18 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.scss$/i,
+        test: /\.scss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
+            loader: 'file-loader',
             options: {
-              publicPath: "/dist/css/",
-            },
+              name: 'css/[name].css',
+            }
           },
-
-          // Translates CSS into CommonJS
-          "css-loader",
-          // Compiles Sass to CSS
-          "sass-loader",
-        ],
+          {
+            loader: 'sass-loader'
+          }
+        ]
       },
     ],
   },
