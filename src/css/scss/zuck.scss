@@ -435,6 +435,11 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch;
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg);
+  padding: 16px 0;
+  z-index: 99;
 }
 .stories.carousel::-webkit-scrollbar {
   width: 0px;
@@ -486,6 +491,7 @@
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: none;
 }
 .stories.carousel .story > .item-link > .info .name {
   display: none;
