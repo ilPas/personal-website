@@ -8,7 +8,10 @@ const __root = path.resolve(__dirname, "../");
 
 module.exports = {
   entry: {
-    index: ["@babel/polyfill", "./src/scripts/index.js"]
+    index: [
+      "@babel/polyfill",
+      "./src/scripts/index.js"
+    ]
   },
   output: {
     path: path.resolve(__root, "dist"),
