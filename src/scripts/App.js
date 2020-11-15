@@ -152,6 +152,31 @@ export default class App {
       localStorage: true,
       stories: [
         Zuck.buildTimelineItem(
+          "elettronica scarpa",
+          "images/works/scarpa/1.jpg",
+          "Elettronica Scarpa",
+          "https://elettronicascarpa.it/",
+          "1530403200",
+          [
+            [
+              "scarpa-1",
+              "photo",
+              10,
+              "images/works/scarpa/2.jpg",
+              "images/works/scarpa/2.jpg",
+            ],
+            [
+              "scarpa-2",
+              "photo",
+              10,
+              "images/works/scarpa/3.jpg",
+              "images/works/scarpa/3.jpg",
+              "https://elettronicascarpa.it/",
+              "Scopri il progetto",
+            ],
+          ]
+        ),
+        Zuck.buildTimelineItem(
           "indigo",
           "images/works/indigo/1.jpg",
           "Indigo",
@@ -174,7 +199,7 @@ export default class App {
               "images/works/indigo/3.jpg",
               "images/works/indigo/3.jpg",
               "https://indigo.ai",
-              "Scopri Indigo",
+              "Scopri il sito",
             ],
           ]
         ),
@@ -201,7 +226,7 @@ export default class App {
               "images/works/marilina/3.jpg",
               "images/works/marilina/3.jpg",
               "https://maglificiomarilina.com/it/",
-              "Scopri Maglificio Marilina",
+              "Scopri il sito",
             ],
           ]
         ),
