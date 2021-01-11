@@ -1,4 +1,4 @@
-# Personal Website erricopasquale.me
+# Personal Website erricopasquale.it
 
 A personal web site based on a [Bruno Imbrizi Codrops demo](https://tympanus.net/codrops/2019/01/17/interactive-particles-with-three-js/)
 
