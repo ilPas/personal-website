@@ -227,9 +227,9 @@
   font-size: 14px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.35), 1px 0 1px rgba(0, 0, 0, 0.35);
   padding: 6px 12px;
-  -webkit-box-shadow: inset 0px 69px 39px -50px rgba(0, 0, 0, 0.43);
-  -moz-box-shadow: inset 0px 69px 39px -50px rgba(0, 0, 0, 0.43);
-  box-shadow: inset 0px 69px 39px -50px rgba(0, 0, 0, 0.43);
+  -webkit-box-shadow: inset 0px 69px 39px -50px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: inset 0px 69px 39px -50px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0px 69px 39px -50px rgba(0, 0, 0, 0.7);
 }
 #zuck-modal-content .story-viewer .head .item-preview {
   overflow: hidden;
@@ -265,7 +265,7 @@
 }
 #zuck-modal-content .story-viewer .head .left .info {
   display: inline-block;
-  max-width: 30vw;
+  max-width: 70vw;
   vertical-align: middle;
 }
 #zuck-modal-content .story-viewer .head .left .info > * {
@@ -282,7 +282,7 @@
 }
 #zuck-modal-content .story-viewer .head .right .close,
 #zuck-modal-content .story-viewer .head .back {
-  font-size: 42px;
+  font-size: 32px;
   width: 48px;
   height: 48px;
   line-height: 48px;
@@ -292,7 +292,7 @@
 #zuck-modal-content .story-viewer .head .left .back {
   display: none;
   width: 24px;
-  margin: -9px -6px 0 -6px;
+  margin: -8px -6px 0 -6px;
 }
 #zuck-modal-content .story-viewer .head .right .time {
   display: none;
@@ -374,12 +374,12 @@
     margin: 6px 0;
   }
   #zuck-modal-content .story-viewer .head .item-preview {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     margin-right: 9px;
   }
   #zuck-modal-content .story-viewer .head .left {
-    font-size: 15px;
+    font-size: 12px;
     margin: 15px 0;
   }
   #zuck-modal-content .story-viewer .head .left > div {
