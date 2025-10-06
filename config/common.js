@@ -77,7 +77,7 @@ module.exports = {
     }),
 new HtmlWebpackPlugin({
 	  filename: "trip-portogallo.html",
-      template: "./src/scripts/trip-portogallo.js"
+      template: "./src/trip-portogallo.html"
     }),
     new webpack.ProvidePlugin({
       THREE: "three"
