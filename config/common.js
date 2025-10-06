@@ -77,7 +77,7 @@ module.exports = {
     }),
 	  new HtmlWebpackPlugin({
       // Also generate a test.html
-      filename: "trip-portogallo",
+      filename: "trip-portogallo.html",
       template: "./src/trip-portogallo.html"
     }),
     new webpack.ProvidePlugin({
