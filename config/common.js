@@ -76,7 +76,7 @@ module.exports = {
       template: "./src/privacy-cookie.html"
     }),
 new HtmlWebpackPlugin({
-	  filename: "privacy-cookie.html",
+	  filename: "trip-portogallo.html",
       template: "./src/scripts/trip-portogallo.js"
     }),
     new webpack.ProvidePlugin({
