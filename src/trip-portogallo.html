@@ -64,7 +64,7 @@
     <!-- Application Structure Plan: La struttura è una timeline verticale con sezioni "accordion" espandibili per ogni giorno. Questo design è ottimale per la consultazione da smartphone. L'itinerario segue fedelmente il documento fornito, con tappe e pernottamenti corretti (Sagres, Sines, Ericeira, Nazaré, Coimbra, Porto, Lisbona) e l'arrivo a Lisbona fissato per il 23 ottobre. -->
     <!-- Visualization & Content Choices: L'interfaccia minimalista, ispirata al sito di riferimento, elimina ogni distrazione. Le icone Unicode (emoji) servono come rapidi indicatori visivi per le diverse attività. L'interazione è volutamente semplice (apri/chiudi) per massimizzare la funzionalità in un contesto di viaggio. I link esterni si aprono in nuove schede per preservare la sessione di navigazione sulla guida. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <style>
+   <style>
         body {
             font-family: 'Roboto Mono', monospace;
             background-color: #111111;
@@ -96,7 +96,7 @@
             max-height: 5000px;
             padding: 1.5rem 1.5rem;
         }
-        .btn-link {
+        .btn-link, .map-link {
             background-color: transparent;
             color: #43b3f0;
             padding: 0.25rem 0.5rem;
@@ -108,7 +108,7 @@
             margin-left: 0.5rem;
             border: 1px solid #43b3f0;
         }
-        .btn-link:hover {
+        .btn-link:hover, .map-link:hover {
             background-color: #43b3f0;
             color: #111111;
         }
@@ -129,8 +129,7 @@
     </style>
 </head>
 <body class="antialiased">
-<div class="circle-cursor circle-cursor--inner"></div>
-			<canvas class="circle-cursor circle-cursor--outer" resize></canvas>
+
     <div class="a5-container p-4 md:p-8">
 
         <header class="text-center my-12">
@@ -138,12 +137,18 @@
             <p class="text-lg text-gray-400 mt-2 font-light tracking-wider">ON THE ROAD 2025</p>
         </header>
 
+        <div class="w-full aspect-video rounded-none shadow-sm border border-gray-700 mb-8">
+             <iframe src="https://www.google.com/maps/d/embed?mid=1_fQPWj2yXy0-wZQ-032qj8k_jL2-tGU&ehbc=2E312F" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
         <nav class="sticky top-0 bg-[#111111]/80 backdrop-blur-sm z-10 py-4 mb-8 border-b border-gray-700">
             <div class="text-center">
                 <label for="day-select" class="nav-label text-sm mr-2 tracking-widest">GIORNO:</label>
                 <select id="day-select" class="nav-select border rounded-md p-1 text-sm font-mono">
                     <option value="day-1">11 OTT</option>
-                    <option value="day-2">12-14 OTT</option>
+                    <option value="day-2">12 OTT</option>
+                    <option value="day-3">13 OTT</option>
+                    <option value="day-4">14 OTT</option>
                     <option value="day-5">15 OTT</option>
                     <option value="day-6">16 OTT</option>
                     <option value="day-7">17 OTT</option>
@@ -177,30 +182,64 @@
                         <p>✈️ <span class="font-semibold">19:00</span> - Atterraggio a Faro (FAO).</p>
                         <p>🚗 <span class="font-semibold">Sera</span> - Ritiro auto a noleggio in aeroporto (previsto per le 19:00).</p>
                         <p>🏨 <span class="font-semibold">Sera</span> - Check-in a Faro. <span class="italic text-gray-400">Opzioni: Hotel Faro & Beach Club o Pousada Palácio de Estoi.</span></p>
-                        <p>🍽️ <span class="font-semibold">21:00</span> - Cena. <span class="italic text-gray-400">Consigliato: Restaurante Faz Gostos.</span></p>
+                        <p>🍽️ <span class="font-semibold">21:00</span> - Cena da <span class="italic text-gray-400">Restaurante Faz Gostos</span>.<a href="https://maps.app.goo.gl/3wA2yv8Yn8pM8dvaA" target="_blank" class="map-link">MAPS</a></p>
                     </div>
                 </div>
             </div>
-            <!-- Giorno 2-4 -->
+            <!-- Giorno 2 -->
             <div id="day-2" class="day-section mb-4 rounded-none shadow-sm border">
                 <div class="day-header flex justify-between items-center p-4 md:p-6">
                     <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorni 2-4 // 12-14 Ottobre</h2>
+                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 2 // Dom 12 Ottobre</h2>
                         <p class="text-gray-400 text-sm font-light">Relax a Carvoeiro</p>
                     </div>
                     <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
                 </div>
                 <div class="day-content">
                     <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Soggiorno al Tivoli Carvoeiro</h3>
-                        <p>🏨 <span class="font-semibold">12 Ott, 11:00</span> - Partenza per Carvoeiro e check-in.</p>
-                        <p>🌊 <span class="font-semibold">12-14 Ott</span> - Giornate di relax e attività come da programma:</p>
-                        <ul class="list-disc list-inside mt-2 text-sm text-gray-400">
-                            <li><span class="font-semibold">13 Ott:</span> Trekking Sete Vales Suspensos (3-4h) & Spa.</li>
-                            <li><span class="font-semibold">14 Ott:</span> Escursione Grotte di Benagil & Degustazione Quinta dos Vales.</li>
-                        </ul>
-                        <p class="mt-2">🚤 Escursione Benagil (9:00): <a href="https://benagilexpress.com/en/benagil-cave-boat-tour/" target="_blank" class="btn-link">PRENOTA</a></p>
-                        <p class="mt-2">🍷 Degustazione (12:00): <a href="https://quintadosvales.pt/en/experiences/" target="_blank" class="btn-link">INFO</a></p>
+                        <h3 class="font-bold text-lg text-white">Inizio Soggiorno al Tivoli</h3>
+                        <p>🚗 <span class="font-semibold">11:00</span> - Partenza da Faro per Carvoeiro (60 km, 1h).</p>
+                        <p>🏨 <span class="font-semibold">12:00</span> - Check-in al <span class="italic text-gray-400">Tivoli Carvoeiro</span>.</p>
+                        <p>🌊 <span class="font-semibold">14:00</span> - Relax in piscina.</p>
+                        <p>🏖️ <span class="font-semibold">16:00</span> - Discesa alla spiaggia di Vale Covo.</p>
+                        <p>🌅 <span class="font-semibold">18:30</span> - Aperitivo al sunset bar del resort.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Giorno 3 -->
+             <div id="day-3" class="day-section mb-4 rounded-none shadow-sm border">
+                <div class="day-header flex justify-between items-center p-4 md:p-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 3 // Lun 13 Ottobre</h2>
+                        <p class="text-gray-400 text-sm font-light">Trekking e Benessere</p>
+                    </div>
+                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <h3 class="font-bold text-lg text-white">Natura e Relax</h3>
+                        <p>🥐 <span class="font-semibold">Colazione:</span> Provate la <span class="italic text-gray-400">Pastelaria Le Doce</span> a Carvoeiro.<a href="https://maps.app.goo.gl/zWfGfQx4u6m5L5eN6" target="_blank" class="map-link">MAPS</a></p>
+                        <p>🥾 <span class="font-semibold">09:30</span> - Trekking sul sentiero dei <span class="font-semibold">Sete Vales Suspensos</span> (3-4 ore).</p>
+                        <p class="mt-2">ℹ️ Info e mappa del percorso: <a href="https://www.alltrails.com/it/sentiero/portugal/faro/seven-hanging-valleys-trail" target="_blank" class="btn-link">INFO</a><a href="https://maps.app.goo.gl/9wJ2qX5b5H8y5Z4T8" target="_blank" class="map-link">MAPPA</a></p>
+                        <p>💆‍♀️ <span class="font-semibold">15:00</span> - Relax alla Spa del resort.</p>
+                        <p>🍽️ <span class="font-semibold">19:00</span> - Cena al resort.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Giorno 4 -->
+             <div id="day-4" class="day-section mb-4 rounded-none shadow-sm border">
+                <div class="day-header flex justify-between items-center p-4 md:p-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 4 // Mar 14 Ottobre</h2>
+                        <p class="text-gray-400 text-sm font-light">Grotte e Vino</p>
+                    </div>
+                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
+                </div>
+                <div class="day-content">
+                     <div class="activity-item">
+                        <h3 class="font-bold text-lg text-white">Esperienze in Algarve</h3>
+                        <p>🚤 <span class="font-semibold">09:00</span> - Escursione alle Grotte di Benagil. <a href="https://benagilexpress.com/en/benagil-cave-boat-tour/" target="_blank" class="btn-link">PRENOTA</a></p>
+                        <p>🍷 <span class="font-semibold">12:00</span> - Tour con pranzo e degustazione alla <span class="font-semibold">Quinta dos Vales</span>. <a href="https://quintadosvales.pt/en/experiences/" target="_blank" class="btn-link">INFO</a></p>
                     </div>
                 </div>
             </div>
@@ -218,10 +257,10 @@
                      <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Verso Ovest</h3>
                         <p>🚗 <span class="font-semibold">11:00</span> - Check-out e partenza per Sagres (60 km).</p>
-                        <p>🍽️ <span class="font-semibold">12:30</span> - Sosta a Lagos per pranzo. <span class="italic text-gray-400">Consigliato: Casa do Prego.</span></p>
+                        <p>🍽️ <span class="font-semibold">12:30</span> - Sosta a Lagos per pranzo da <span class="italic text-gray-400">Casa do Prego</span>.<a href="https://maps.app.goo.gl/r6L6w3x4iG9Z124i8" target="_blank" class="map-link">MAPS</a></p>
                         <p>🏰 <span class="font-semibold">16:00</span> - Visita alla <span class="font-semibold">Fortaleza de Sagres</span>.</p>
                         <p>🌅 <span class="font-semibold">18:00</span> - Tramonto a <span class="font-semibold">Cabo de São Vicente</span>.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Restaurante Vila Velha</span>.</p>
+                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Restaurante Vila Velha</span>.<a href="https://maps.app.goo.gl/B6T6Yt7xYJ6K8z6F9" target="_blank" class="map-link">MAPS</a></p>
                          <p>🏨 <span class="font-semibold">Pernottamento:</span> Sagres.</p>
                     </div>
                 </div>
@@ -239,10 +278,11 @@
                 <div class="day-content">
                     <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Sulle tracce di Vasco da Gama</h3>
+                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Pastelaria Pão Quente</span> a Sagres.<a href="https://maps.app.goo.gl/uX3QWb4jNq4kM5KHA" target="_blank" class="map-link">MAPS</a></p>
                         <p>🚗 <span class="font-semibold">10:30</span> - Partenza per Sines (90 km).</p>
                         <p>🏰 <span class="font-semibold">12:00</span> - Visita al <span class="font-semibold">Castelo de Sines</span> (ingresso gratuito).</p>
                         <p>🏖️ <span class="font-semibold">15:00</span> - Relax sulla Spiaggia di São Torpes.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Adega de Sines</span>.</p>
+                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Adega de Sines</span>.<a href="https://maps.app.goo.gl/Fk9pYhF6Q6q5Z89j7" target="_blank" class="map-link">MAPS</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Sines.</p>
                     </div>
                 </div>
@@ -260,9 +300,10 @@
                 <div class="day-content">
                     <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Verso le Onde</h3>
+                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">A Sereia</span> a Sines.<a href="https://maps.app.goo.gl/f2gD9V9sJ4u8Vb1v5" target="_blank" class="map-link">MAPS</a></p>
                         <p>🚗 <span class="font-semibold">11:00</span> - Partenza per Ericeira (190 km) con sosta a Vila Nova de Milfontes.</p>
                         <p>🏄‍♂️ <span class="font-semibold">16:00</span> - Esplorazione del borgo e della Praia Ribeira d'Ilhas.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Marisqueira Furnas</span>.</p>
+                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Marisqueira Furnas</span>.<a href="https://maps.app.goo.gl/g6J6iKkL3p4o3Hk16" target="_blank" class="map-link">MAPS</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Ericeira.</p>
                     </div>
                 </div>
@@ -280,11 +321,12 @@
                 <div class="day-content">
                     <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Contrasti Portoghesi</h3>
+                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">O Pãozinho das Marias</span> a Ericeira.<a href="https://maps.app.goo.gl/r59DTRUu7J5CjYyT7" target="_blank" class="map-link">MAPS</a></p>
                         <p>🚗 <span class="font-semibold">10:00</span> - Partenza per Óbidos (130 km).</p>
                         <p>🏰 <span class="font-semibold">11:45</span> - Visita del borgo medievale di Óbidos.</p>
                         <p>🚗 <span class="font-semibold">14:00</span> - Partenza per Nazaré (55 km).</p>
-                        <p>🌊 <span class="font-semibold">15:00</span> - Salita al Sítio con la funicolare e vista dal Miradouro do Suberco.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">A Tasca</span>.</p>
+                        <p>🌊 <span class="font-semibold">15:00</span> - Salita al Sítio e vista dal Miradouro do Suberco.</p>
+                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">A Tasca</span>.<a href="https://maps.app.goo.gl/7R6b28c2J1Vn1qQ57" target="_blank" class="map-link">MAPS</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Nazaré.</p>
                     </div>
                 </div>
@@ -302,9 +344,10 @@
                 <div class="day-content">
                     <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Città Universitaria</h3>
+                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Pastelaria a Lota</span> a Nazaré.<a href="https://maps.app.goo.gl/V34wz85Ww1XkM5b67" target="_blank" class="map-link">MAPS</a></p>
                         <p>🚗 <span class="font-semibold">10:00</span> - Partenza per Coimbra (120 km).</p>
                         <p>🎓 <span class="font-semibold">11:30</span> - Visita all'<span class="font-semibold">Università & Biblioteca Joanina</span>. <a href="https://visit.uc.pt/en/program-list" target="_blank" class="btn-link">PRENOTA</a></p>
-                        <p>🍽️ <span class="font-semibold">Pranzo:</span> <span class="italic text-gray-400">Zé Manel dos Ossos</span>.</p>
+                        <p>🍽️ <span class="font-semibold">Pranzo:</span> <span class="italic text-gray-400">Zé Manel dos Ossos</span>.<a href="https://maps.app.goo.gl/b2w6r2Q3n7jJjD8H7" target="_blank" class="map-link">MAPS</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Coimbra.</p>
                     </div>
                 </div>
@@ -322,10 +365,11 @@
                 <div class="day-content">
                     <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Arrivo a Porto</h3>
+                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Pastelaria Briosa</span> a Coimbra.<a href="https://maps.app.goo.gl/Gq1A2Qx8D4LwFpX46" target="_blank" class="map-link">MAPS</a></p>
                         <p>🚗 <span class="font-semibold">11:00</span> - Partenza per Porto (120 km).</p>
                         <p>🌉 <span class="font-semibold">15:00</span> - Passeggiata nella Ribeira e attraversamento Ponte Dom Luís I.</p>
                         <p>🍷 <span class="font-semibold">17:00</span> - Visita a una cantina di Porto a Vila Nova de Gaia.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Brasão Coliseu</span> (Francesinha).</p>
+                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Brasão Coliseu</span>.<a href="https://maps.app.goo.gl/vM3p8dE75e9f8K428" target="_blank" class="map-link">MAPS</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Porto (1/3).</p>
                     </div>
                 </div>
@@ -343,9 +387,10 @@
                 <div class="day-content">
                     <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Esplorazione della Città</h3>
+                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Majestic Café</span> (storico) o <span class="italic text-gray-400">Manteigaria</span> (per i pastéis de nata).<a href="https://maps.app.goo.gl/w13E2L2LssM6WvPo8" target="_blank" class="map-link">MAJESTIC</a><a href="https://maps.app.goo.gl/6p5T1o3g9Y6Y6E8t5" target="_blank" class="map-link">MANTEIGARIA</a></p>
                         <p>📚 <span class="font-semibold">09:00</span> - <span class="font-semibold">Livraria Lello</span>. <a href="https://www.livrarialello.pt/en/faqs" target="_blank" class="btn-link">PRENOTA</a></p>
                         <p>🗼 <span class="font-semibold">11:00</span> - Salita sulla <span class="font-semibold">Torre dos Clérigos</span>. <a href="https://www.torredosclerigos.pt/en/ticket-office/" target="_blank" class="btn-link">BIGLIETTI</a></p>
-                        <p>🎶 <span class="font-semibold">20:30</span> - Cena con Fado da <span class="italic text-gray-400">Taberna Real do Fado</span>.</p>
+                        <p>🎶 <span class="font-semibold">20:30</span> - Cena con Fado da <span class="italic text-gray-400">Taberna Real do Fado</span>.<a href="https://maps.app.goo.gl/n4rCq3Yx4zVp2eYp8" target="_blank" class="map-link">MAPS</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Porto (2/3).</p>
                     </div>
                 </div>
@@ -365,7 +410,7 @@
                         <h3 class="font-bold text-lg text-white">Escursione in Giornata</h3>
                         <p>🚗 <span class="font-semibold">08:30</span> - Partenza in auto per Pinhão (120 km).</p>
                         <p>🚢 <span class="font-semibold">10:30</span> - Crociera sul fiume Douro.</p>
-                        <p>🍷 <span class="font-semibold">12:30</span> - Degustazione in una Quinta (es. Quinta do Noval).</p>
+                        <p>🍷 <span class="font-semibold">12:30</span> - Degustazione alla <span class="italic text-gray-400">Quinta do Noval</span>. <a href="https://www.quintadonoval.com/en/quinta-do-noval" target="_blank" class="btn-link">INFO</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Porto (3/3).</p>
                     </div>
                 </div>
@@ -386,7 +431,7 @@
                         <p>🚗 <span class="font-semibold">10:00</span> - Partenza per Lisbona (315 km).</p>
                         <p>🏨 <span class="font-semibold">13:30</span> - Arrivo e check-in.</p>
                         <p>🚗 <span class="font-semibold">17:00</span> - Riconsegna auto a noleggio.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="font-semibold">Time Out Market</span>.</p>
+                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="font-semibold">Time Out Market</span>.<a href="https://www.timeoutmarket.com/lisboa/" target="_blank" class="btn-link">SITO</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Lisbona (1/4).</p>
                     </div>
                 </div>
@@ -404,10 +449,10 @@
                 <div class="day-content">
                      <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Età delle Scoperte</h3>
+                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Pastéis de Belém</span>.<a href="https://maps.app.goo.gl/kXz3E3uV6wQ3v8kE8" target="_blank" class="map-link">MAPS</a></p>
                         <p>⛪ <span class="font-semibold">10:00</span> - <span class="font-semibold">Mosteiro dos Jerónimos</span>. <a href="https://www.museusemonumentos.pt/en/pagina/tickets" target="_blank" class="btn-link">BIGLIETTI</a></p>
                         <p>⚠️ <span class="font-semibold">Nota:</span> Torre de Belém chiusa per restauro fino al 2026.</p>
-                        <p>🥮 <span class="font-semibold">Pausa:</span> <span class="font-semibold">Pastéis de Belém</span>.</p>
-                         <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Cervejaria Ramiro</span> (frutti di mare).</p>
+                         <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Cervejaria Ramiro</span>.<a href="https://maps.app.goo.gl/sYqj4qVd4K4M3D5T7" target="_blank" class="map-link">MAPS</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Lisbona (2/4).</p>
                     </div>
                 </div>
@@ -445,7 +490,8 @@
                     <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Alfama e Chiado</h3>
                         <p>🚋 <span class="font-semibold">Mattina</span> - Tour con il Tram 28 ed esplorazione di Alfama.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">A Cevicheria</span> (Chiado).</p>
+                         <p>🍽️ <span class="font-semibold">Pranzo:</span> <span class="italic text-gray-400">Pateo 13</span>.<a href="https://maps.app.goo.gl/3547849sYp3xG4pMA" target="_blank" class="map-link">MAPS</a></p>
+                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">A Cevicheria</span>.<a href="https://maps.app.goo.gl/q3E9W8vQxWz8y5j29" target="_blank" class="map-link">MAPS</a></p>
                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Lisbona (4/4).</p>
                     </div>
                 </div>
@@ -464,6 +510,7 @@
                     <div class="activity-item">
                         <h3 class="font-bold text-lg text-white">Partenza</h3>
                         <p>🛍️ <span class="font-semibold">Mattina</span> - Shopping in Rua Augusta.</p>
+                         <p>🥮 <span class="font-semibold">Pausa:</span> <span class="italic text-gray-400">Confeitaria Nacional</span>.<a href="https://maps.app.goo.gl/Gqg2gXh5J8vD5Q9P9" target="_blank" class="map-link">MAPS</a></p>
                         <p>✈️ <span class="font-semibold">15:00</span> - Trasferimento in aeroporto.</p>
                         <p>🛫 <span class="font-semibold">18:00</span> - Volo di ritorno.</p>
                     </div>
