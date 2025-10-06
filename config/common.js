@@ -11,8 +11,7 @@ module.exports = {
     index: [
       "@babel/polyfill",
       "./src/scripts/index.js"
-    ],
-	  'trip-portogallo': './src/scripts/trip-portogallo.js'
+    ]
   },
   output: {
     path: path.resolve(__root, "dist"),
@@ -76,7 +75,9 @@ module.exports = {
       filename: "privacy-cookie.html",
       template: "./src/privacy-cookie.html"
     }),
-
+new HtmlWebpackPlugin({
+      template: "./src/trip-portogallo.html"
+    }),
     new webpack.ProvidePlugin({
       THREE: "three"
     })
