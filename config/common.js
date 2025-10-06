@@ -77,8 +77,8 @@ module.exports = {
     }),
 	  new HtmlWebpackPlugin({
       // Also generate a test.html
-      filename: "test-portogallo.html",
-      template: "./src/test-portogallo.html"
+      filename: "trip-portogallo",
+      template: "./src/trip-portogallo.html"
     }),
     new webpack.ProvidePlugin({
       THREE: "three"
