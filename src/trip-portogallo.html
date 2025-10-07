@@ -67,506 +67,561 @@
    <style>
         body {
             font-family: 'Roboto Mono', monospace;
-            background-color: #111111;
-            color: #E0E0E0;
+            background-color: #0a0a0a; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
         }
-        h1, h2, h3, .nav-label {
+        h1, h2, h3 {
             font-family: 'Syncopate', sans-serif;
             font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        h1 {
+            margin: 0;
+            margin-bottom: 28px;
+            font-size: 32px;
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1px #00afa6;
+            text-stroke: 1px #00afa6;
             text-transform: uppercase;
+            letter-spacing: 7px;
         }
-        .a5-container {
-            max-width: 42rem;
-            margin: 0 auto;
+        .font-syncopate {
+            font-family: 'Syncopate', sans-serif;
         }
-        .day-header {
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        .font-roboto-mono {
+            font-family: 'Roboto Mono', monospace;
         }
-        .day-header:hover {
-            background-color: #1f1f1f;
-        }
-        .day-content {
+        .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-            padding: 0 1.5rem;
+            transition: max-height 0.5s ease-in-out;
         }
-        .day-content.open {
-            max-height: 5000px;
-            padding: 1.5rem 1.5rem;
+        .accordion-button.active + .accordion-content {
+            max-height: 5000px; /* Adjust as needed */
         }
-        .btn-link, .map-link {
-            background-color: transparent;
-            color: #43b3f0;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0;
-            font-size: 0.8rem;
-            text-decoration: none;
-            transition: all 0.2s;
-            display: inline-block;
-            margin-left: 0.5rem;
-            border: 1px solid #43b3f0;
+        .accordion-button .accordion-icon {
+            transition: transform 0.3s ease;
         }
-        .btn-link:hover, .map-link:hover {
-            background-color: #43b3f0;
-            color: #111111;
+        .accordion-button.active .accordion-icon {
+            transform: rotate(180deg);
         }
-        .activity-item {
-            border-left: 2px solid #4A5568;
-            padding-left: 1rem;
-            margin-bottom: 1.25rem;
+        .link-accent {
+            color: #00afa6; 
+            transition: color 0.3s ease;
         }
-        .nav-select {
-            background-color: #2d2d2d;
-            border-color: #4A5568;
-            color: #E0E0E0;
+        .link-accent:hover {
+            color: #fbbf24; 
         }
-        .day-section {
-            background-color: #1a1a1a;
-            border-color: #2d2d2d;
+        .link-accent-color {
+            color: #00afa6;
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="text-gray-300 font-roboto-mono">
 
-    <div class="a5-container p-4 md:p-8">
+    <!-- Header -->
+    <header class="text-center py-12 md:py-20">
+        <h1 class="text-3xl md:text-6xl font-bold uppercase tracking-widest">
+            Il Nostro Viaggio in Portogallo
+        </h1>
+        <p class="text-lg md:text-xl mt-4 text-gray-400">Una Guida Esclusiva On The Road (11-27 Ottobre 2025)</p>
+    </header>
 
-        <header class="text-center my-12">
-            <h3 class="">PORTOGALLO</h3>
-            <p class="text-gray-400 mt-2 font-light tracking-wider">ON THE ROAD 2025</p>
-        </header>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
 
+        <!-- Intro Section -->
+        <section id="intro" class="mb-12 text-center max-w-4xl mx-auto">
+            
+            <p class="text-xs leading-relaxed">
+                Questo itinerario è pensato per guidarci dalle scogliere assolate dell'Algarve, fino al cuore pulsante di Lisbona. Un'immersione profonda nella cultura, nei sapori e nei paesaggi mozzafiato del Portogallo, intrecciando relax costiero, avventura on the road e scoperte indimenticabili.
+            </p>
+        </section>
 
-        <nav class="sticky top-0 bg-[#111111]/80 backdrop-blur-sm z-10 py-4 mb-8 border-b border-gray-700">
-            <div class="text-center">
-                <label for="day-select" class="nav-label text-sm mr-2 tracking-widest">GIORNO:</label>
-                <select id="day-select" class="nav-select border rounded-md p-1 text-sm font-mono">
-                    <option value="day-1">11 OTT</option>
-                    <option value="day-2">12 OTT</option>
-                    <option value="day-3">13 OTT</option>
-                    <option value="day-4">14 OTT</option>
-                    <option value="day-5">15 OTT</option>
-                    <option value="day-6">16 OTT</option>
-                    <option value="day-7">17 OTT</option>
-                    <option value="day-8">18 OTT</option>
-                    <option value="day-9">19 OTT</option>
-                    <option value="day-10">20 OTT</option>
-                    <option value="day-11">21 OTT</option>
-                    <option value="day-12">22 OTT</option>
-                    <option value="day-13">23 OTT</option>
-                    <option value="day-14">24 OTT</option>
-                    <option value="day-15">25 OTT</option>
-                    <option value="day-16">26 OTT</option>
-                    <option value="day-17">27 OTT</option>
-                </select>
-            </div>
-        </nav>
+        <!-- Itinerary Accordion -->
+        <div id="itinerary" class="space-y-4 max-w-4xl mx-auto">
 
-        <main id="itinerary">
-            <!-- Giorno 1 -->
-            <div id="day-1" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 1 // Sab 11 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Arrivo in Algarve</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Benvenuti!</h3>
-                        <p>✈️ <span class="font-semibold">19:00</span> - Atterraggio a Faro (FAO).</p>
-                        <p>🚗 <span class="font-semibold">Sera</span> - Ritiro auto a noleggio in aeroporto (previsto per le 19:00).</p>
-                        <p>🏨 <span class="font-semibold">Sera</span> - Check-in a Faro. <span class="italic text-gray-400">Opzioni: Hotel Faro & Beach Club o Pousada Palácio de Estoi.</span></p>
-                        <p>🍽️ <span class="font-semibold">21:00</span> - Cena da <span class="italic text-gray-400">Restaurante Faz Gostos</span>.<a href="https://maps.app.goo.gl/3wA2yv8Yn8pM8dvaA" target="_blank" class="map-link">MAPS</a></p>
-                    </div>
-                </div>
-            </div>
-            <!-- Giorno 2 -->
-            <div id="day-2" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 2 // Dom 12 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Relax a Carvoeiro</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Inizio Soggiorno al Tivoli</h3>
-                        <p>🚗 <span class="font-semibold">11:00</span> - Partenza da Faro per Carvoeiro (60 km, 1h).</p>
-                        <p>🏨 <span class="font-semibold">12:00</span> - Check-in al <span class="italic text-gray-400">Tivoli Carvoeiro</span>.</p>
-                        <p>🌊 <span class="font-semibold">14:00</span> - Relax in piscina.</p>
-                        <p>🏖️ <span class="font-semibold">16:00</span> - Discesa alla spiaggia di Vale Covo.</p>
-                        <p>🌅 <span class="font-semibold">18:30</span> - Aperitivo al sunset bar del resort.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Giorno 3 -->
-             <div id="day-3" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 3 // Lun 13 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Trekking e Benessere</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Natura e Relax</h3>
-                        <p>🥐 <span class="font-semibold">Colazione:</span> Provate la <span class="italic text-gray-400">Pastelaria Le Doce</span> a Carvoeiro.<a href="https://maps.app.goo.gl/zWfGfQx4u6m5L5eN6" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🥾 <span class="font-semibold">09:30</span> - Trekking sul sentiero dei <span class="font-semibold">Sete Vales Suspensos</span> (3-4 ore).</p>
-                        <p class="mt-2">ℹ️ Info e mappa del percorso: <a href="https://www.alltrails.com/it/sentiero/portugal/faro/seven-hanging-valleys-trail" target="_blank" class="btn-link">INFO</a><a href="https://maps.app.goo.gl/9wJ2qX5b5H8y5Z4T8" target="_blank" class="map-link">MAPPA</a></p>
-                        <p>💆‍♀️ <span class="font-semibold">15:00</span> - Relax alla Spa del resort.</p>
-                        <p>🍽️ <span class="font-semibold">19:00</span> - Cena al resort.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Giorno 4 -->
-             <div id="day-4" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 4 // Mar 14 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Grotte e Vino</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                     <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Esperienze in Algarve</h3>
-                        <p>🚤 <span class="font-semibold">09:00</span> - Escursione alle Grotte di Benagil. <a href="https://benagilexpress.com/en/benagil-cave-boat-tour/" target="_blank" class="btn-link">PRENOTA</a></p>
-                        <p>🍷 <span class="font-semibold">12:00</span> - Tour con pranzo e degustazione alla <span class="font-semibold">Quinta dos Vales</span>. <a href="https://quintadosvales.pt/en/experiences/" target="_blank" class="btn-link">INFO</a></p>
+            <!-- Giorno 1-4 -->
+            <div class="accordion-item bg-gray-800/30 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorni 1-4: Arrivo in Algarve</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Date:</strong> 11 – 14 Ottobre 2025</p>
+                        <p><strong>Focus:</strong> Arrivo a Faro, relax e acclimatamento a Carvoeiro.</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>✈️ Arrivo all'aeroporto di Faro e trasferimento a Carvoeiro (circa 65 km).</p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove dormire</h3>
+                            <p>🏨 Tivoli Carvoeiro. <a href="https://www.google.com/maps/search/?api=1&query=Tivoli+Carvoeiro" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Attività chiave (14 Ottobre)</h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Escursione Grotte di Benagil:</strong> Un'esperienza imperdibile. Si consiglia un tour su barca piccola per entrare nelle grotte.</li>
+                                <li><strong>Degustazione Quinta dos Vales:</strong> Tour della cantina e degustazione commentata.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Link Utili</h3>
+                            <p>🎫 Escursione Benagil: <a href="https://benagilexpress.com/en/benagil-cave-boat-tour/" target="_blank" class="link-accent">Benagil Express</a></p>
+                            <p>🍷 Degustazione Vini: <a href="https://quintadosvales.pt/en/experiences/" target="_blank" class="link-accent">Quinta dos Vales</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Giorno 5 -->
-            <div id="day-5" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 5 // Mer 15 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">On the Road: Carvoeiro > Sagres</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                     <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Verso Ovest</h3>
-                        <p>🚗 <span class="font-semibold">11:00</span> - Check-out e partenza per Sagres (60 km).</p>
-                        <p>🍽️ <span class="font-semibold">12:30</span> - Sosta a Lagos per pranzo da <span class="italic text-gray-400">Casa do Prego</span>.<a href="https://maps.app.goo.gl/r6L6w3x4iG9Z124i8" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🏰 <span class="font-semibold">16:00</span> - Visita alla <span class="font-semibold">Fortaleza de Sagres</span>.</p>
-                        <p>🌅 <span class="font-semibold">18:00</span> - Tramonto a <span class="font-semibold">Cabo de São Vicente</span>.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Restaurante Vila Velha</span>.<a href="https://maps.app.goo.gl/B6T6Yt7xYJ6K8z6F9" target="_blank" class="map-link">MAPS</a></p>
-                         <p>🏨 <span class="font-semibold">Pernottamento:</span> Sagres.</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 5: Da Carvoeiro a Sagres</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 15 Ottobre 2025</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚗 Da Carvoeiro a Sagres, con sosta a Lagos (circa 60 km).</p>
+                             <a href="https://www.google.com/maps/dir/?api=1&origin=Carvoeiro,Portugal&destination=Sagres,Portugal" target="_blank" class="link-accent">[Indicazioni]</a>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Punti di Interesse</h3>
+                             <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Fortaleza de Sagres:</strong> Ingresso €10.00. Un promontorio fortificato con viste mozzafiato.</li>
+                                <li><strong>Cabo de São Vicente:</strong> Il "fine del mondo", perfetto per il tramonto.</li>
+                            </ul>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p>🥐 <strong>Colazione:</strong> Al resort a Carvoeiro.</p>
+                            <p> pranzo (Lagos): Casa do Prego. <a href="https://www.google.com/maps/search/?api=1&query=Casa+do+Prego,Lagos" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena (Sagres):</strong> Restaurante Vila Velha (consigliato per lingueirão e percebes). <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Vila+Velha,Sagres" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove dormire</h3>
+                            <p>🏨 Alloggio a Sagres.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Giorno 6 -->
-            <div id="day-6" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 6 // Gio 16 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Costa Alentejana: Sagres > Sines</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Sulle tracce di Vasco da Gama</h3>
-                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Pastelaria Pão Quente</span> a Sagres.<a href="https://maps.app.goo.gl/uX3QWb4jNq4kM5KHA" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🚗 <span class="font-semibold">10:30</span> - Partenza per Sines (90 km).</p>
-                        <p>🏰 <span class="font-semibold">12:00</span> - Visita al <span class="font-semibold">Castelo de Sines</span> (ingresso gratuito).</p>
-                        <p>🏖️ <span class="font-semibold">15:00</span> - Relax sulla Spiaggia di São Torpes.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Adega de Sines</span>.<a href="https://maps.app.goo.gl/Fk9pYhF6Q6q5Z89j7" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Sines.</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 6: Verso Sines</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 16 Ottobre 2025</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚗 Da Sagres a Sines (circa 90 km).</p>
+                             <a href="https://www.google.com/maps/dir/?api=1&origin=Sagres,Portugal&destination=Sines,Portugal" target="_blank" class="link-accent">[Indicazioni]</a>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Punti di Interesse</h3>
+                             <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Castelo de Sines:</strong> Ingresso gratuito, con il museo dedicato a Vasco da Gama.</li>
+                                <li><strong>Spiaggia di São Torpes:</strong> Famosa per le sue acque più calde.</li>
+                            </ul>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p>🥐 <strong>Colazione (Sagres):</strong> Pastelaria Marreiros per un'opzione locale.</p>
+                            <p> pranzo (Sines): Restaurante Do Luis, con vista mare. <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Do+Luis,Sines" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena (Sines):</strong> Adega de Sines per caldeirada e pesce fresco. <a href="https://www.google.com/maps/search/?api=1&query=Adega+de+Sines" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove dormire</h3>
+                            <p>🏨 Alloggio a Sines.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Giorno 7 -->
-            <div id="day-7" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 7 // Ven 17 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Capitale del Surf: Sines > Ericeira</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Verso le Onde</h3>
-                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">A Sereia</span> a Sines.<a href="https://maps.app.goo.gl/f2gD9V9sJ4u8Vb1v5" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🚗 <span class="font-semibold">11:00</span> - Partenza per Ericeira (190 km) con sosta a Vila Nova de Milfontes.</p>
-                        <p>🏄‍♂️ <span class="font-semibold">16:00</span> - Esplorazione del borgo e della Praia Ribeira d'Ilhas.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Marisqueira Furnas</span>.<a href="https://maps.app.goo.gl/g6J6iKkL3p4o3Hk16" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Ericeira.</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 7: Arrivo a Ericeira</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 17 Ottobre 2025</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚗 Da Sines a Ericeira (circa 190 km).</p>
+                             <a href="https://www.google.com/maps/dir/?api=1&origin=Sines,Portugal&destination=Ericeira,Portugal" target="_blank" class="link-accent">[Indicazioni]</a>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Punti di Interesse</h3>
+                            <p>Esplorazione del borgo di Ericeira, riserva mondiale di surf. Passeggiata alla Praia Ribeira d'Ilhas.</p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p>🥐 <strong>Colazione (Sines):</strong> Presso l'hotel o in una pastelaria locale.</p>
+                            <p> pranzo (Ericeira): Balagan, con vista sull'oceano. <a href="https://www.google.com/maps/search/?api=1&query=Balagan,Ericeira" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena (Ericeira):</strong> Marisqueira Furnas per percebes e frutti di mare. Prenotazione obbligatoria. <a href="https://www.google.com/maps/search/?api=1&query=Marisqueira+Furnas,Ericeira" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove dormire</h3>
+                            <p>🏨 Alloggio a Ericeira.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Giorno 8 -->
-            <div id="day-8" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 8 // Sab 18 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Borghi e Oceano: Ericeira > Nazaré</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Contrasti Portoghesi</h3>
-                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">O Pãozinho das Marias</span> a Ericeira.<a href="https://maps.app.goo.gl/r59DTRUu7J5CjYyT7" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🚗 <span class="font-semibold">10:00</span> - Partenza per Óbidos (130 km).</p>
-                        <p>🏰 <span class="font-semibold">11:45</span> - Visita del borgo medievale di Óbidos.</p>
-                        <p>🚗 <span class="font-semibold">14:00</span> - Partenza per Nazaré (55 km).</p>
-                        <p>🌊 <span class="font-semibold">15:00</span> - Salita al Sítio e vista dal Miradouro do Suberco.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">A Tasca</span>.<a href="https://maps.app.goo.gl/7R6b28c2J1Vn1qQ57" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Nazaré.</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 8: Óbidos e Nazaré</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 18 Ottobre 2025</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚗 Da Ericeira a Óbidos e poi Nazaré (circa 185 km totali).</p>
+                             <a href="https://www.google.com/maps/dir/?api=1&origin=Ericeira,Portugal&destination=Nazaré,Portugal&waypoints=Óbidos,Portugal" target="_blank" class="link-accent">[Indicazioni]</a>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Punti di Interesse</h3>
+                             <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Óbidos:</strong> Borgo medievale murato. Assaggiare la Ginjinha.</li>
+                                <li><strong>Nazaré:</strong> Funicolare per il Sítio (€4 A/R) e vista dal Miradouro do Suberco.</li>
+                            </ul>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p>🥐 <strong>Colazione (Ericeira):</strong> Pão da Vila o Dear Rose Cafe.</p>
+                            <p> pranzo (Nazaré): Sitiado, nel quartiere del Sítio. <a href="https://www.google.com/maps/search/?api=1&query=Sitiado,Nazaré" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena (Nazaré):</strong> A Tasca, amato dai locali per il pesce alla griglia. <a href="https://www.google.com/maps/search/?api=1&query=A+Tasca,Nazaré" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove dormire</h3>
+                            <p>🏨 Alloggio a Nazaré.</p>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <!-- Giorno 9 -->
-            <div id="day-9" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 9 // Dom 19 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">La Dotta: Nazaré > Coimbra</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Città Universitaria</h3>
-                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Pastelaria a Lota</span> a Nazaré.<a href="https://maps.app.goo.gl/V34wz85Ww1XkM5b67" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🚗 <span class="font-semibold">10:00</span> - Partenza per Coimbra (120 km).</p>
-                        <p>🎓 <span class="font-semibold">11:30</span> - Visita all'<span class="font-semibold">Università & Biblioteca Joanina</span>. <a href="https://visit.uc.pt/en/program-list" target="_blank" class="btn-link">PRENOTA</a></p>
-                        <p>🍽️ <span class="font-semibold">Pranzo:</span> <span class="italic text-gray-400">Zé Manel dos Ossos</span>.<a href="https://maps.app.goo.gl/b2w6r2Q3n7jJjD8H7" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Coimbra.</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 9: La Dotta Coimbra</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 19 Ottobre 2025</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚗 Da Nazaré a Coimbra (circa 120 km).</p>
+                             <a href="https://www.google.com/maps/dir/?api=1&origin=Nazaré,Portugal&destination=Coimbra,Portugal" target="_blank" class="link-accent">[Indicazioni]</a>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Punti di Interesse</h3>
+                             <p><strong>Università di Coimbra & Biblioteca Joanina:</strong> Biglietto completo €16.50. Prenotazione online essenziale.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Link Utili</h3>
+                            <p>🎫 Università di Coimbra: <a href="https://visit.uc.pt/en/program-list" target="_blank" class="link-accent">Sito Ufficiale</a></p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p>🥐 <strong>Colazione (Nazaré):</strong> Village Brunch & Coffee.</p>
+                            <p> pranzo (Coimbra): Zé Manel dos Ossos (molto popolare) o Restaurante Loggia (vista panoramica). <a href="https://www.google.com/maps/search/?api=1&query=Zé+Manel+dos+Ossos,Coimbra" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena (Coimbra):</strong> Tapas nas Costas per petiscos moderni. <a href="https://www.google.com/maps/search/?api=1&query=Tapas+nas+Costas,Coimbra" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove dormire</h3>
+                            <p>🏨 Sapientia Boutique Hotel o Stay Hotel Coimbra Centro. </p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Giorno 10 -->
-            <div id="day-10" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 10 // Lun 20 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Verso Nord: Coimbra > Porto</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Arrivo a Porto</h3>
-                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Pastelaria Briosa</span> a Coimbra.<a href="https://maps.app.goo.gl/Gq1A2Qx8D4LwFpX46" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🚗 <span class="font-semibold">11:00</span> - Partenza per Porto (120 km).</p>
-                        <p>🌉 <span class="font-semibold">15:00</span> - Passeggiata nella Ribeira e attraversamento Ponte Dom Luís I.</p>
-                        <p>🍷 <span class="font-semibold">17:00</span> - Visita a una cantina di Porto a Vila Nova de Gaia.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Brasão Coliseu</span>.<a href="https://maps.app.goo.gl/vM3p8dE75e9f8K428" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Porto (1/3).</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 10: Arrivo a Porto</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 20 Ottobre 2025</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚗 Da Coimbra a Porto (circa 120 km).</p>
+                             <a href="https://www.google.com/maps/dir/?api=1&origin=Coimbra,Portugal&destination=Porto,Portugal" target="_blank" class="link-accent">[Indicazioni]</a>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Punti di Interesse</h3>
+                             <p>Passeggiata nel quartiere Ribeira, Ponte Dom Luís I, visita a una cantina di Porto a Vila Nova de Gaia.</p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p>🥐 <strong>Colazione (Coimbra):</strong> Café Santa Cruz, in una chiesa sconsacrata.</p>
+                            <p> pranzo (Porto): Casa Guedes per il panino con spalla di maiale. <a href="https://www.google.com/maps/search/?api=1&query=Casa+Guedes,Porto" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena (Porto):</strong> Brasão Coliseu per la Francesinha (prenotazione obbligatoria). <a href="https://www.google.com/maps/search/?api=1&query=Brasão+Coliseu,Porto" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove dormire</h3>
+                            <p>🏨 Alloggio a Porto.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Giorno 11 -->
-            <div id="day-11" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 11 // Mar 21 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">L'Anima di Porto</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Esplorazione della Città</h3>
-                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Majestic Café</span> (storico) o <span class="italic text-gray-400">Manteigaria</span> (per i pastéis de nata).<a href="https://maps.app.goo.gl/w13E2L2LssM6WvPo8" target="_blank" class="map-link">MAJESTIC</a><a href="https://maps.app.goo.gl/6p5T1o3g9Y6Y6E8t5" target="_blank" class="map-link">MANTEIGARIA</a></p>
-                        <p>📚 <span class="font-semibold">09:00</span> - <span class="font-semibold">Livraria Lello</span>. <a href="https://www.livrarialello.pt/en/faqs" target="_blank" class="btn-link">PRENOTA</a></p>
-                        <p>🗼 <span class="font-semibold">11:00</span> - Salita sulla <span class="font-semibold">Torre dos Clérigos</span>. <a href="https://www.torredosclerigos.pt/en/ticket-office/" target="_blank" class="btn-link">BIGLIETTI</a></p>
-                        <p>🎶 <span class="font-semibold">20:30</span> - Cena con Fado da <span class="italic text-gray-400">Taberna Real do Fado</span>.<a href="https://maps.app.goo.gl/n4rCq3Yx4zVp2eYp8" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Porto (2/3).</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 11: L'Anima di Porto</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 21 Ottobre 2025</p>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Punti di Interesse</h3>
+                             <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Livraria Lello:</strong> Ticket-Voucher da €10, scontabile su acquisto. Prenotazione online fondamentale.</li>
+                                <li><strong>Torre dos Clérigos:</strong> Biglietto €10. Vista a 360° sulla città.</li>
+                                <li><strong>Stazione di São Bento:</strong> Magnifici azulejos.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Link Utili</h3>
+                            <p>🎫 Livraria Lello: <a href="https://www.livrarialello.pt/en/faqs" target="_blank" class="link-accent">Sito Ufficiale</a></p>
+                            <p>🎫 Torre dos Clérigos: <a href="https://www.torredosclerigos.pt/en/ticket-office/" target="_blank" class="link-accent">Sito Ufficiale</a></p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p>🥐 <strong>Colazione:</strong> Confeitaria do Bolhão, la pasticceria più antica della città.</p>
+                            <p> pranzo: Conga per le bifanas (panini con maiale speziato). <a href="https://www.google.com/maps/search/?api=1&query=Conga,Porto" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena:</strong> Taberna Real do Fado per cena con spettacolo. Prenotazione indispensabile. <a href="https://www.google.com/maps/search/?api=1&query=Taberna+Real+do+Fado,Porto" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Giorno 12 -->
-            <div id="day-12" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 12 // Mer 22 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">La Magia della Valle del Douro</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Escursione in Giornata</h3>
-                        <p>🚗 <span class="font-semibold">08:30</span> - Partenza in auto per Pinhão (120 km).</p>
-                        <p>🚢 <span class="font-semibold">10:30</span> - Crociera sul fiume Douro.</p>
-                        <p>🍷 <span class="font-semibold">12:30</span> - Degustazione alla <span class="italic text-gray-400">Quinta do Noval</span>. <a href="https://www.quintadonoval.com/en/quinta-do-noval" target="_blank" class="btn-link">INFO</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Porto (3/3).</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 12: La Valle del Douro</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 22 Ottobre 2025</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚗 Da Porto a Pinhão e ritorno (circa 240 km A/R).</p>
+                             <a href="https://www.google.com/maps/dir/?api=1&origin=Porto,Portugal&destination=Pinhão,Portugal" target="_blank" class="link-accent">[Indicazioni]</a>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Attività Chiave</h3>
+                             <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Crociera sul Douro:</strong> Tour di 2 ore da Pinhão su barca Rabelo.</li>
+                                <li><strong>Degustazione:</strong> Quinta do Noval (su prenotazione privata) o Quinta Nova.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Link Utili</h3>
+                            <p>🚢 Crociera Douro: <a href="https://www.douro.com.pt/en/cruises/1-day/cruise-pinhao-tua-pinhao" target="_blank" class="link-accent">Info e Prenotazioni</a></p>
+                            <p>🍷 Degustazione Noval: <a href="https://www.winepaths.com/destination/portugal/douro-valley/quinta-do-noval/douro-red-wine-tasting" target="_blank" class="link-accent">Richiesta Prenotazione</a></p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p> pranzo (Douro): Veladouro a Pinhão (tradizionale) o DOC di Rui Paula (lusso).</p>
+                            <p>🍽️ <strong>Cena (Porto):</strong> Taberninha do Manel a Gaia per petiscos con vista. <a href="https://www.google.com/maps/search/?api=1&query=Taberninha+do+Manel,Vila+Nova+de+Gaia" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Giorno 13 -->
-            <div id="day-13" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 13 // Gio 23 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Da Porto a Lisbona</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Verso la Capitale</h3>
-                        <p>🚗 <span class="font-semibold">10:00</span> - Partenza per Lisbona (315 km).</p>
-                        <p>🏨 <span class="font-semibold">13:30</span> - Arrivo e check-in.</p>
-                        <p>🚗 <span class="font-semibold">17:00</span> - Riconsegna auto a noleggio.</p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="font-semibold">Time Out Market</span>.<a href="https://www.timeoutmarket.com/lisboa/" target="_blank" class="btn-link">SITO</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Lisbona (1/4).</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 13: Da Porto a Lisbona</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 23 Ottobre 2025</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚗 Da Porto a Lisbona (circa 315 km). Riconsegna dell'auto a noleggio.</p>
+                             <a href="https://www.google.com/maps/dir/?api=1&origin=Porto,Portugal&destination=Lisbona,Portugal" target="_blank" class="link-accent">[Indicazioni]</a>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Programma</h3>
+                             <p>Arrivo a Lisbona, check-in e prima passeggiata esplorativa nei quartieri Baixa e Chiado.</p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p>🍽️ <strong>Cena (Lisbona):</strong> Time Out Market. Un'ottima introduzione alla scena gastronomica della città. <a href="https://www.google.com/maps/search/?api=1&query=Time+Out+Market,Lisboa" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove dormire</h3>
+                            <p>🏨 Alloggio a Lisbona.</p>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <!-- Giorno 14 -->
-            <div id="day-14" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                     <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 14 // Ven 24 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Lisbona: Belém</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                     <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Età delle Scoperte</h3>
-                        <p>🥐 <span class="font-semibold">Colazione:</span> <span class="italic text-gray-400">Pastéis de Belém</span>.<a href="https://maps.app.goo.gl/kXz3E3uV6wQ3v8kE8" target="_blank" class="map-link">MAPS</a></p>
-                        <p>⛪ <span class="font-semibold">10:00</span> - <span class="font-semibold">Mosteiro dos Jerónimos</span>. <a href="https://www.museusemonumentos.pt/en/pagina/tickets" target="_blank" class="btn-link">BIGLIETTI</a></p>
-                        <p>⚠️ <span class="font-semibold">Nota:</span> Torre de Belém chiusa per restauro fino al 2026.</p>
-                         <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">Cervejaria Ramiro</span>.<a href="https://maps.app.goo.gl/sYqj4qVd4K4M3D5T7" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Lisbona (2/4).</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 14: Esplorando Belém</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 24 Ottobre 2025</p>
+                         <div class="bg-red-900/50 p-4 rounded-lg border border-red-500">
+                             <p class="font-bold text-red-300">⚠️ Aggiornamento Critico:</p>
+                             <p>La Torre de Belém è chiusa per restauro fino alla primavera 2026 e non sarà visitabile.</p>
+                         </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Punti di Interesse (Piano Alternativo)</h3>
+                             <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Mosteiro dos Jerónimos:</strong> Biglietto €18. Acquistare online in anticipo.</li>
+                                <li><strong>Padrão dos Descobrimentos:</strong> Monumento alle Scoperte.</li>
+                                <li><strong>Museu Nacional dos Coches:</strong> Collezione di carrozze storiche.</li>
+                                <li><strong>Pausa obbligatoria da Pastéis de Belém.</strong></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Link Utili</h3>
+                            <p>🎫 Mosteiro dos Jerónimos: <a href="https://www.museusemonumentos.pt/en/pagina/tickets" target="_blank" class="link-accent">Sito Ufficiale</a></p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p>🥐 <strong>Colazione:</strong> Seagull Method Cafe o Heim Cafe.</p>
+                            <p> pranzo (Belém): Pão Pão Queijo Queijo per panini veloci ed economici. <a href="https://www.google.com/maps/search/?api=1&query=Pão+Pão+Queijo+Queijo,Belém+Lisboa" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena:</strong> Cervejaria Ramiro per i percebes. Un'istituzione. <a href="https://www.google.com/maps/search/?api=1&query=Cervejaria+Ramiro,Lisboa" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Giorno 15 -->
-            <div id="day-15" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                     <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 15 // Sab 25 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Gita: Sintra, Cabo da Roca, Cascais</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Triangolo d'Oro</h3>
-                        <p>🚆 <span class="font-semibold">Intera Giornata</span> - Gita in treno e bus.</p>
-                        <p>🏰 <span class="font-semibold">Da vedere:</span> <span class="font-semibold">Palácio da Pena</span> e <span class="font-semibold">Castelo dos Mouros</span>. <a href="https://www.parquesdesintra.pt/en/" target="_blank" class="btn-link">BIGLIETTI</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Lisbona (3/4).</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 15: Sintra, Cabo da Roca, Cascais</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 25 Ottobre 2025</p>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚆 Treno da stazione Rossio (Lisbona) per Sintra. 🚌 Bus 434 a Sintra per i palazzi, bus 403 per Cabo da Roca e Cascais.</p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Punti di Interesse</h3>
+                             <p><strong>Palácio da Pena & Castelo dos Mouros:</strong> Acquistare i biglietti online in anticipo è essenziale. Sconto del 15% online.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Link Utili</h3>
+                            <p>🎫 Palazzi di Sintra: <a href="https://www.parquesdesintra.pt/en/" target="_blank" class="link-accent">Sito Ufficiale</a></p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p> pranzo (Sintra): Tascantiga per petiscos moderni. <a href="https://www.google.com/maps/search/?api=1&query=Tascantiga,Sintra" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena (Cascais):</strong> Mar do Inferno, ristorante di pesce sulle scogliere. <a href="https://www.google.com/maps/search/?api=1&query=Mar+do+Inferno,Cascais" target="_blank" class="link-accent">[Mappa]</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Giorno 16 -->
-            <div id="day-16" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 16 // Dom 26 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">L'Anima di Lisbona</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Alfama e Chiado</h3>
-                        <p>🚋 <span class="font-semibold">Mattina</span> - Tour con il Tram 28 ed esplorazione di Alfama.</p>
-                         <p>🍽️ <span class="font-semibold">Pranzo:</span> <span class="italic text-gray-400">Pateo 13</span>.<a href="https://maps.app.goo.gl/3547849sYp3xG4pMA" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🍽️ <span class="font-semibold">Cena:</span> <span class="italic text-gray-400">A Cevicheria</span>.<a href="https://maps.app.goo.gl/q3E9W8vQxWz8y5j29" target="_blank" class="map-link">MAPS</a></p>
-                        <p>🏨 <span class="font-semibold">Pernottamento:</span> Lisbona (4/4).</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 16: L'Anima di Lisbona</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 26 Ottobre 2025</p>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Programma</h3>
+                             <p>Tour con lo storico <strong>Tram 28</strong>. Esplorazione del <strong>Castelo de São Jorge</strong> e dei vicoli di <strong>Alfama</strong>. Shopping e caffè storici nel quartiere <strong>Chiado</strong>.</p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Dove mangiare</h3>
+                            <p> pranzo (Alfama): Pateo 13, per pesce alla griglia in un cortile. <a href="https://www.google.com/maps/search/?api=1&query=Pateo+13,Lisboa" target="_blank" class="link-accent">[Mappa]</a></p>
+                            <p>🍽️ <strong>Cena (Chiado/Bairro Alto):</strong> Belcanto (2 stelle Michelin, prenotare con mesi di anticipo) o A Cevicheria (trendy, senza prenotazioni).</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Giorno 17 -->
-            <div id="day-17" class="day-section mb-4 rounded-none shadow-sm border">
-                <div class="day-header flex justify-between items-center p-4 md:p-6">
-                    <div>
-                        <h2 class="text-xl font-bold text-white tracking-wider">Giorno 17 // Lun 27 Ottobre</h2>
-                        <p class="text-gray-400 text-sm font-light">Arrivederci, Lisbona</p>
-                    </div>
-                    <span class="arrow text-2xl text-gray-500 transform transition-transform">▼</span>
-                </div>
-                <div class="day-content">
-                    <div class="activity-item">
-                        <h3 class="font-bold text-lg text-white">Partenza</h3>
-                        <p>🛍️ <span class="font-semibold">Mattina</span> - Shopping in Rua Augusta.</p>
-                         <p>🥮 <span class="font-semibold">Pausa:</span> <span class="italic text-gray-400">Confeitaria Nacional</span>.<a href="https://maps.app.goo.gl/Gqg2gXh5J8vD5Q9P9" target="_blank" class="map-link">MAPS</a></p>
-                        <p>✈️ <span class="font-semibold">15:00</span> - Trasferimento in aeroporto.</p>
-                        <p>🛫 <span class="font-semibold">18:00</span> - Volo di ritorno.</p>
+            <div class="accordion-item bg-gray-800/50 rounded-lg shadow-lg">
+                <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                    <span class="text-xl md:text-2xl font-syncopate text-white">Giorno 17: Arrivederci, Lisbona</span>
+                    <svg class="accordion-icon w-6 h-6 link-accent-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-6 border-t border-gray-700 space-y-4">
+                        <p><strong>Data:</strong> 27 Ottobre 2025</p>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Programma</h3>
+                             <p>Ultimi acquisti in Rua Augusta e un ultimo pastel de nata presso la storica Confeitaria Nacional.</p>
+                        </div>
+                         <div>
+                            <h3 class="text-lg font-syncopate link-accent-color mb-2">Spostamenti</h3>
+                            <p>🚇 Metro Vermelha (Linea Rossa) per l'aeroporto. Corsa singola €1.85 su carta Navegante. Durata: 20-25 min.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-        </main>
-    </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="text-center py-8 mt-12 border-t border-gray-800">
+        <small class="text-gray-500">© Pasquale Errico 2014 - <span id="fullYear">2025</span><br><a class="js-cursor" href="/privacy-cookie.html" title="Privacy &amp; Cookie Policy erricopasquale.it" target="_blank">Privacy &amp; Cookie Policy</a></small>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const daySections = document.querySelectorAll('.day-section');
-            const daySelect = document.getElementById('day-select');
+            const accordionButtons = document.querySelectorAll('.accordion-button');
 
-            daySections.forEach(section => {
-                const header = section.querySelector('.day-header');
-                const content = section.querySelector('.day-content');
-                const arrow = section.querySelector('.arrow');
-
-                header.addEventListener('click', () => {
-                    const isOpen = content.classList.contains('open');
-                    
-                    document.querySelectorAll('.day-content').forEach(c => {
-                        c.classList.remove('open');
-                        c.closest('.day-section').querySelector('.arrow').style.transform = 'rotate(0deg)';
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Close all other accordions
+                    accordionButtons.forEach(otherButton => {
+                        if (otherButton !== button) {
+                            otherButton.classList.remove('active');
+                            const content = otherButton.nextElementSibling;
+                            content.style.maxHeight = null;
+                        }
                     });
 
-                    if (!isOpen) {
-                        content.classList.add('open');
-                        arrow.style.transform = 'rotate(180deg)';
+                    // Toggle the clicked accordion
+                    button.classList.toggle('active');
+                    const content = button.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
                     }
                 });
             });
-
-            // Open the first day by default
-            const firstDay = daySections[0];
-            if (firstDay) {
-                firstDay.querySelector('.day-content').classList.add('open');
-                firstDay.querySelector('.arrow').style.transform = 'rotate(180deg)';
-            }
-
-            // Navigation select
-            daySelect.addEventListener('change', (e) => {
-                const targetId = e.target.value;
-                const targetElement = document.getElementById(targetId);
-
-                if (targetElement) {
-                    document.querySelectorAll('.day-content').forEach(c => {
-                        c.classList.remove('open');
-                        c.closest('.day-section').querySelector('.arrow').style.transform = 'rotate(0deg)';
-                    });
-                    
-                    targetElement.querySelector('.day-content').classList.add('open');
-                    targetElement.querySelector('.arrow').style.transform = 'rotate(180deg)';
-
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
         });
     </script>
+
 </body>
 </html>
