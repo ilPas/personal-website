@@ -1397,8 +1397,8 @@
  * Initialize theme toggle functionality
  */
 function initThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
+    let themeToggle = document.getElementById('theme-toggle');
+    let themeIcon = themeToggle.querySelector('.theme-toggle__icon');
     
     // Get current theme from data attribute
     let currentTheme = document.body.getAttribute('data-color-scheme') || 'dark';
@@ -1440,7 +1440,7 @@ function initThemeToggle() {
  */
 function fixExternalLinks() {
     // Get all links that start with http or https
-    const externalLinks = document.querySelectorAll('a[href^="http"]');
+    let externalLinks = document.querySelectorAll('a[href^="http"]');
     
     externalLinks.forEach(link => {
         // Ensure target="_blank" and proper security attributes
@@ -1449,7 +1449,7 @@ function fixExternalLinks() {
         
         // Add visual indicator for external links
         if (!link.querySelector('.external-icon')) {
-            const icon = document.createElement('span');
+            let icon = document.createElement('span');
             icon.className = 'external-icon';
             icon.innerHTML = ' ↗';
             icon.style.opacity = '0.6';
@@ -1461,7 +1461,7 @@ function fixExternalLinks() {
     
     // Also handle any dynamically created links
     document.addEventListener('click', function(e) {
-        const link = e.target.closest('a[href^="http"]');
+        let link = e.target.closest('a[href^="http"]');
         if (link) {
             // Ensure the link has proper attributes
             if (!link.hasAttribute('target') || link.getAttribute('target') !== '_blank') {
@@ -1481,12 +1481,12 @@ function fixExternalLinks() {
  * Initialize accordion functionality
  */
 function initAccordions() {
-    const accordionHeaders = document.querySelectorAll('.accordion__header');
+    let accordionHeaders = document.querySelectorAll('.accordion__header');
     
     accordionHeaders.forEach(header => {
         header.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            const content = this.nextElementSibling;
+            let isExpanded = this.getAttribute('aria-expanded') === 'true';
+            let content = this.nextElementSibling;
             
             // Close all other accordions first
             closeAllAccordions();
@@ -1498,9 +1498,9 @@ function initAccordions() {
                 
                 // Smooth scroll to the opened accordion with offset for sticky nav
                 setTimeout(() => {
-                    const navHeight = document.querySelector('.nav-sticky').offsetHeight;
-                    const headerTop = this.getBoundingClientRect().top + window.pageYOffset;
-                    const scrollPosition = headerTop - navHeight - 20;
+                    let navHeight = document.querySelector('.nav-sticky').offsetHeight;
+                    let headerTop = this.getBoundingClientRect().top + window.pageYOffset;
+                    let scrollPosition = headerTop - navHeight - 20;
                     
                     window.scrollTo({
                         top: scrollPosition,
@@ -1516,8 +1516,8 @@ function initAccordions() {
  * Close all accordions
  */
 function closeAllAccordions() {
-    const accordionHeaders = document.querySelectorAll('.accordion__header');
-    const accordionContents = document.querySelectorAll('.accordion__content');
+    let accordionHeaders = document.querySelectorAll('.accordion__header');
+    let accordionContents = document.querySelectorAll('.accordion__content');
     
     accordionHeaders.forEach(header => {
         header.setAttribute('aria-expanded', 'false');
@@ -1532,12 +1532,12 @@ function closeAllAccordions() {
  * Initialize navigation functionality
  */
 function initNavigation() {
-    const navButtons = document.querySelectorAll('.nav-btn');
+    let navButtons = document.querySelectorAll('.nav-btn');
     
     navButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const targetSection = document.getElementById(targetId);
+            let targetId = this.getAttribute('data-target');
+            let targetSection = document.getElementById(targetId);
             
             if (targetSection) {
                 // Remove active class from all buttons
@@ -1547,9 +1547,9 @@ function initNavigation() {
                 this.classList.add('active');
                 
                 // Get the nav height for offset
-                const navHeight = document.querySelector('.nav-sticky').offsetHeight;
-                const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset;
-                const scrollPosition = targetTop - navHeight - 20;
+                let navHeight = document.querySelector('.nav-sticky').offsetHeight;
+                let targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset;
+                let scrollPosition = targetTop - navHeight - 20;
                 
                 // Smooth scroll to target
                 window.scrollTo({
@@ -1559,7 +1559,7 @@ function initNavigation() {
                 
                 // Open the accordion for the target section
                 setTimeout(() => {
-                    const accordion = targetSection.querySelector('.accordion__header');
+                    let accordion = targetSection.querySelector('.accordion__header');
                     if (accordion && accordion.getAttribute('aria-expanded') !== 'true') {
                         accordion.click();
                     }
@@ -1573,21 +1573,21 @@ function initNavigation() {
  * Initialize scroll spy for active navigation highlighting
  */
 function initScrollSpy() {
-    const sections = document.querySelectorAll('.day-section');
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const navHeight = document.querySelector('.nav-sticky').offsetHeight;
+    let sections = document.querySelectorAll('.day-section');
+    let navButtons = document.querySelectorAll('.nav-btn');
+    let navHeight = document.querySelector('.nav-sticky').offsetHeight;
     
     // Throttled scroll handler for better performance
     let ticking = false;
     
     function updateActiveNav() {
-        const scrollPosition = window.pageYOffset + navHeight + 50;
+        let scrollPosition = window.pageYOffset + navHeight + 50;
         let activeSection = null;
         
         // Find the currently visible section
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
+            let sectionTop = section.offsetTop;
+            let sectionHeight = section.offsetHeight;
             
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                 activeSection = section;
@@ -1596,7 +1596,7 @@ function initScrollSpy() {
         
         // Update active navigation button
         if (activeSection) {
-            const activeId = activeSection.id;
+            let activeId = activeSection.id;
             
             navButtons.forEach(btn => {
                 btn.classList.remove('active');
@@ -1630,11 +1630,11 @@ function initScrollSpy() {
  * Scroll navigation button into view if it's outside the visible area
  */
 function scrollNavButtonIntoView(button) {
-    const navScroll = document.querySelector('.nav-scroll');
-    const buttonLeft = button.offsetLeft;
-    const buttonWidth = button.offsetWidth;
-    const scrollLeft = navScroll.scrollLeft;
-    const scrollWidth = navScroll.clientWidth;
+    let navScroll = document.querySelector('.nav-scroll');
+    let buttonLeft = button.offsetLeft;
+    let buttonWidth = button.offsetWidth;
+    let scrollLeft = navScroll.scrollLeft;
+    let scrollWidth = navScroll.clientWidth;
     
     // Check if button is outside the visible area
     if (buttonLeft < scrollLeft) {
@@ -1660,7 +1660,7 @@ if ('ontouchstart' in window) {
     document.body.classList.add('touch-device');
     
     // Improve button interactions on touch devices
-    const buttons = document.querySelectorAll('.btn, .nav-btn, .accordion__header, .theme-toggle');
+    let buttons = document.querySelectorAll('.btn, .nav-btn, .accordion__header, .theme-toggle');
     
     buttons.forEach(button => {
         button.addEventListener('touchstart', function() {
@@ -1710,7 +1710,7 @@ document.addEventListener('keydown', function(e) {
     
     // 'T' key to toggle theme
     if (e.key === 't' || e.key === 'T') {
-        const activeElement = document.activeElement;
+        let activeElement = document.activeElement;
         // Only if not typing in an input field
         if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
             e.preventDefault();
@@ -1723,13 +1723,13 @@ document.addEventListener('keydown', function(e) {
  * Intersection Observer for better scroll performance and animations
  */
 function initIntersectionObserver() {
-    const observerOptions = {
+    let observerOptions = {
         root: null,
         rootMargin: '-10% 0px -10% 0px',
         threshold: 0
     };
     
-    const observer = new IntersectionObserver((entries) => {
+    let observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
@@ -1738,11 +1738,11 @@ function initIntersectionObserver() {
     }, observerOptions);
     
     // Observe all day sections
-    const sections = document.querySelectorAll('.day-section');
+    let sections = document.querySelectorAll('.day-section');
     sections.forEach(section => observer.observe(section));
     
     // Observe info cards for subtle animations
-    const cards = document.querySelectorAll('.info-card');
+    let cards = document.querySelectorAll('.info-card');
     cards.forEach(card => observer.observe(card));
 }
 
@@ -1767,7 +1767,7 @@ window.addEventListener('resize', function() {
  * Add loading states and error handling for external links
  */
 function enhanceExternalLinks() {
-    const externalLinks = document.querySelectorAll('a[href^="http"]');
+    let externalLinks = document.querySelectorAll('a[href^="http"]');
     
     externalLinks.forEach(link => {
         // Add click tracking for analytics (if needed)
@@ -1785,7 +1785,7 @@ enhanceExternalLinks();
  * Add smooth reveal animations for better UX
  */
 function addRevealAnimations() {
-    const style = document.createElement('style');
+    let style = document.createElement('style');
     style.textContent = `
         .day-section {
             opacity: 0;
@@ -1845,7 +1845,7 @@ function optimizePerformance() {
     // Defer non-critical operations
     setTimeout(() => {
         // Add subtle hover effects
-        const cards = document.querySelectorAll('.info-card');
+        let cards = document.querySelectorAll('.info-card');
         cards.forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-2px)';
@@ -1868,13 +1868,13 @@ optimizePerformance();
  */
 function initMobileOptimizations() {
     // Detect if user is on mobile
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     if (isMobile) {
         document.body.classList.add('mobile-device');
         
         // Optimize accordion animations for mobile
-        const style = document.createElement('style');
+        let style = document.createElement('style');
         style.textContent = `
             .mobile-device .accordion__content {
                 transition: max-height 0.3s ease-out;
@@ -1903,7 +1903,7 @@ initMobileOptimizations();
 function initPWAFeatures() {
     // Add theme color for mobile browsers based on current theme
     function updateThemeColor() {
-        const currentTheme = document.body.getAttribute('data-color-scheme');
+        let currentTheme = document.body.getAttribute('data-color-scheme');
         let themeColor = document.querySelector('meta[name="theme-color"]');
         
         if (!themeColor) {
@@ -1924,7 +1924,7 @@ function initPWAFeatures() {
     updateThemeColor();
     
     // Listen for theme changes
-    const observer = new MutationObserver(function(mutations) {
+    let observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.type === 'attributes' && mutation.attributeName === 'data-color-scheme') {
                 updateThemeColor();
@@ -1939,7 +1939,7 @@ function initPWAFeatures() {
     
     // Add apple-mobile-web-app-capable for iOS
     if (!document.querySelector('meta[name="apple-mobile-web-app-capable"]')) {
-        const appleCapable = document.createElement('meta');
+        let appleCapable = document.createElement('meta');
         appleCapable.name = 'apple-mobile-web-app-capable';
         appleCapable.content = 'yes';
         document.head.appendChild(appleCapable);
@@ -1960,7 +1960,7 @@ function initSearchFunctionality() {
         // Alt + number keys to jump to specific days
         if (e.altKey && e.key >= '1' && e.key <= '9') {
             e.preventDefault();
-            const dayNumber = e.key;
+            let dayNumber = e.key;
             let targetId;
             
             if (dayNumber <= '4') {
@@ -1969,7 +1969,7 @@ function initSearchFunctionality() {
                 targetId = `giorno-${dayNumber}`;
             }
             
-            const targetBtn = document.querySelector(`[data-target="${targetId}"]`);
+            let targetBtn = document.querySelector(`[data-target="${targetId}"]`);
             if (targetBtn) {
                 targetBtn.click();
             }
@@ -1977,7 +1977,7 @@ function initSearchFunctionality() {
         
         // 'h' key to scroll to top (home)
         if (e.key === 'h' && !e.ctrlKey && !e.altKey && !e.metaKey) {
-            const activeElement = document.activeElement;
+            let activeElement = document.activeElement;
             // Only if not typing in an input field
             if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
                 e.preventDefault();
@@ -1998,9 +1998,9 @@ function initPerformanceMonitoring() {
     window.addEventListener('load', function() {
         setTimeout(() => {
             if (performance && performance.getEntriesByType) {
-                const navigationEntries = performance.getEntriesByType('navigation');
+                let navigationEntries = performance.getEntriesByType('navigation');
                 if (navigationEntries.length > 0) {
-                    const navEntry = navigationEntries[0];
+                    let navEntry = navigationEntries[0];
                     console.log('Page load time:', navEntry.loadEventEnd - navEntry.fetchStart, 'ms');
                 }
             }
@@ -2016,7 +2016,7 @@ initPerformanceMonitoring();
  */
 function initContextualHelp() {
     // Add keyboard shortcuts info - simplified version without localStorage
-    const helpStyle = document.createElement('style');
+    let helpStyle = document.createElement('style');
     helpStyle.textContent = `
         .keyboard-help {
             position: fixed;
@@ -2072,7 +2072,7 @@ function initContextualHelp() {
     let helpShown = false;
     if (!helpShown) {
         setTimeout(() => {
-            const helpDiv = document.createElement('div');
+            let helpDiv = document.createElement('div');
             helpDiv.className = 'keyboard-help';
             helpDiv.innerHTML = `
                 <h4>Scorciatoie</h4>
@@ -2119,7 +2119,7 @@ function finalInit() {
     
     // Trigger any final animations
     setTimeout(() => {
-        const sections = document.querySelectorAll('.day-section');
+        let sections = document.querySelectorAll('.day-section');
         sections.forEach((section, index) => {
             setTimeout(() => {
                 section.classList.add('in-view');
