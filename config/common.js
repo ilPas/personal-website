@@ -79,6 +79,10 @@ new HtmlWebpackPlugin({
 	  filename: "trip-portogallo.html",
       template: "./src/trip-portogallo.html"
     }),
+	  new HtmlWebpackPlugin({
+	  filename: "trip-portogallo-2.html",
+      template: "./src/trip-portogallo-2.html"
+    }),
     new webpack.ProvidePlugin({
       THREE: "three"
     })
