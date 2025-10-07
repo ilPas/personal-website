@@ -1,5 +1,5 @@
 import ready from "domready";
-import App from "./Trip";
+import App from "./App";
 import "../css/theme.scss";
 
 ready(() => {
