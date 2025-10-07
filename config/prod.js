@@ -12,9 +12,9 @@ module.exports = merge(common, {
       filename: "theme.css",
     }),
     new WebpackPwaManifest({
-      name: "Pasquale Errico PWA",
+      name: "Pasquale Errico",
       short_name: "ilPasPWA",
-      description: "Pasquale Errico Progressive Web App!",
+      description: "Pasquale Errico Personal Website",
       background_color: "#0a0a0a",
       theme_color: "#0a0a0a",
       crossorigin: "use-credentials", //can be null, use-credentials or anonymous
