@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize theme toggle first
-    initThemeToggle();
+ 
     
     // Fix external links first, before other initializations
     fixExternalLinks();
@@ -15,47 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollSpy();
 });
 
-/**
- * Initialize theme toggle functionality
- */
-function initThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
-    
-    // Get current theme from data attribute
-    let currentTheme = document.body.getAttribute('data-color-scheme') || 'dark';
-    
-    // Set initial icon
-    updateThemeIcon(currentTheme);
-    
-    // Handle theme toggle click
-    themeToggle.addEventListener('click', function() {
-        // Toggle theme
-        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        // Update body data attribute
-        document.body.setAttribute('data-color-scheme', currentTheme);
-        
-        // Update icon
-        updateThemeIcon(currentTheme);
-        
-        // Add smooth transition effect
-        document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-        setTimeout(() => {
-            document.body.style.transition = '';
-        }, 300);
-    });
-    
-    function updateThemeIcon(theme) {
-        if (theme === 'dark') {
-            themeIcon.textContent = '🌙';
-            themeToggle.setAttribute('aria-label', 'Cambia a tema chiaro');
-        } else {
-            themeIcon.textContent = '☀️';
-            themeToggle.setAttribute('aria-label', 'Cambia a tema scuro');
-        }
-    }
-}
+
 
 /**
  * Fix external links to ensure they all open in new tabs
