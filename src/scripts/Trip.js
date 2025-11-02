@@ -1,16 +1,4 @@
-import WebGLView from "./webgl/WebGLView";
-import GUIView from "./gui/GUIView";
-import Zuck from "zuck.js";
-import Cursor from "./gui/cursor";
-import attachBanner from "@beyonk/gdpr-cookie-consent-banner";
-
-export default class App {
-  constructor() {}
-
-  document.addEventListener('DOMContentLoaded', function() {
-    // Initialize theme toggle first
-    initThemeToggle();
-    
+document.addEventListener('DOMContentLoaded', function() {
     // Fix external links first, before other initializations
     fixExternalLinks();
     
@@ -23,48 +11,6 @@ export default class App {
     // Initialize scroll spy for active navigation highlighting
     initScrollSpy();
 });
-
-/**
- * Initialize theme toggle functionality
- */
-function initThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
-    
-    // Get current theme from data attribute
-    let currentTheme = document.body.getAttribute('data-color-scheme') || 'dark';
-    
-    // Set initial icon
-    updateThemeIcon(currentTheme);
-    
-    // Handle theme toggle click
-    themeToggle.addEventListener('click', function() {
-        // Toggle theme
-        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        // Update body data attribute
-        document.body.setAttribute('data-color-scheme', currentTheme);
-        
-        // Update icon
-        updateThemeIcon(currentTheme);
-        
-        // Add smooth transition effect
-        document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-        setTimeout(() => {
-            document.body.style.transition = '';
-        }, 300);
-    });
-    
-    function updateThemeIcon(theme) {
-        if (theme === 'dark') {
-            themeIcon.textContent = '🌙';
-            themeToggle.setAttribute('aria-label', 'Cambia a tema chiaro');
-        } else {
-            themeIcon.textContent = '☀️';
-            themeToggle.setAttribute('aria-label', 'Cambia a tema scuro');
-        }
-    }
-}
 
 /**
  * Fix external links to ensure they all open in new tabs
@@ -120,17 +66,17 @@ function initAccordions() {
             const content = this.nextElementSibling;
             
             // Close all other accordions first
-            closeAllAccordions();
+            // closeAllAccordions(); // Disabilitato per permettere più sezioni aperte
             
             // Toggle current accordion
-            if (!isExpanded) {
+            // if (!isExpanded) { // Permette di chiudere cliccando di nuovo
                 this.setAttribute('aria-expanded', 'true');
                 content.classList.add('expanded');
                 
                 // Smooth scroll to the opened accordion with offset for sticky nav
                 setTimeout(() => {
                     const navHeight = document.querySelector('.nav-sticky').offsetHeight;
-                    const headerTop = this.getBoundingClientRect().top + window.pageYOffset;
+                    const headerTop = this.getBoundingClientRect().top + window.scrollY;
                     const scrollPosition = headerTop - navHeight - 20;
                     
                     window.scrollTo({
@@ -138,7 +84,7 @@ function initAccordions() {
                         behavior: 'smooth'
                     });
                 }, 100);
-            }
+            // }
         });
     });
 }
@@ -179,7 +125,7 @@ function initNavigation() {
                 
                 // Get the nav height for offset
                 const navHeight = document.querySelector('.nav-sticky').offsetHeight;
-                const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset;
+                const targetTop = targetSection.getBoundingClientRect().top + window.scrollY;
                 const scrollPosition = targetTop - navHeight - 20;
                 
                 // Smooth scroll to target
@@ -212,7 +158,7 @@ function initScrollSpy() {
     let ticking = false;
     
     function updateActiveNav() {
-        const scrollPosition = window.pageYOffset + navHeight + 50;
+        const scrollPosition = window.scrollY + navHeight + 50;
         let activeSection = null;
         
         // Find the currently visible section
@@ -349,416 +295,3 @@ document.addEventListener('keydown', function(e) {
         }
     }
 });
-
-/**
- * Intersection Observer for better scroll performance and animations
- */
-function initIntersectionObserver() {
-    const observerOptions = {
-        root: null,
-        rootMargin: '-10% 0px -10% 0px',
-        threshold: 0
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all day sections
-    const sections = document.querySelectorAll('.day-section');
-    sections.forEach(section => observer.observe(section));
-    
-    // Observe info cards for subtle animations
-    const cards = document.querySelectorAll('.info-card');
-    cards.forEach(card => observer.observe(card));
-}
-
-// Initialize intersection observer if supported
-if ('IntersectionObserver' in window) {
-    initIntersectionObserver();
-}
-
-/**
- * Handle window resize events
- */
-let resizeTimeout;
-window.addEventListener('resize', function() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(function() {
-        // Re-initialize scroll spy after resize
-        initScrollSpy();
-    }, 250);
-});
-
-/**
- * Add loading states and error handling for external links
- */
-function enhanceExternalLinks() {
-    const externalLinks = document.querySelectorAll('a[href^="http"]');
-    
-    externalLinks.forEach(link => {
-        // Add click tracking for analytics (if needed)
-        link.addEventListener('click', function(e) {
-            // You can add analytics tracking here if needed
-            console.log('External link clicked:', this.href);
-        });
-    });
-}
-
-// Enhance external links after DOM is loaded
-enhanceExternalLinks();
-
-/**
- * Add smooth reveal animations for better UX
- */
-function addRevealAnimations() {
-    const style = document.createElement('style');
-    style.textContent = `
-        .day-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .day-section.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .info-card {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s ease-out;
-        }
-        
-        .info-card.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .touch-device .btn.touch-active,
-        .touch-device .nav-btn.touch-active,
-        .touch-device .theme-toggle.touch-active {
-            transform: scale(0.98);
-            opacity: 0.8;
-        }
-        
-        .external-icon {
-            display: inline-block;
-            margin-left: 4px;
-            opacity: 0.6;
-            font-size: 0.8em;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            .day-section,
-            .info-card {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// Add reveal animations
-addRevealAnimations();
-
-/**
- * Performance optimization: Lazy load content that's not immediately visible
- */
-function optimizePerformance() {
-    // Defer non-critical operations
-    setTimeout(() => {
-        // Add subtle hover effects
-        const cards = document.querySelectorAll('.info-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
-                this.style.boxShadow = 'var(--shadow-md)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '';
-            });
-        });
-    }, 1000);
-}
-
-// Optimize performance after initial load
-optimizePerformance();
-
-/**
- * Enhanced mobile experience optimizations
- */
-function initMobileOptimizations() {
-    // Detect if user is on mobile
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-        document.body.classList.add('mobile-device');
-        
-        // Optimize accordion animations for mobile
-        const style = document.createElement('style');
-        style.textContent = `
-            .mobile-device .accordion__content {
-                transition: max-height 0.3s ease-out;
-            }
-            
-            .mobile-device .schedule-item {
-                grid-template-columns: 1fr;
-                text-align: left;
-            }
-            
-            .mobile-device .time {
-                margin-bottom: 4px;
-                text-align: left;
-            }
-        `;
-        document.head.appendChild(style);
-    }
-}
-
-// Initialize mobile optimizations
-initMobileOptimizations();
-
-/**
- * Add PWA-like features for better mobile experience
- */
-function initPWAFeatures() {
-    // Add theme color for mobile browsers based on current theme
-    function updateThemeColor() {
-        const currentTheme = document.body.getAttribute('data-color-scheme');
-        let themeColor = document.querySelector('meta[name="theme-color"]');
-        
-        if (!themeColor) {
-            themeColor = document.createElement('meta');
-            themeColor.name = 'theme-color';
-            document.head.appendChild(themeColor);
-        }
-        
-        // Update theme color based on current theme
-        if (currentTheme === 'dark') {
-            themeColor.content = '#1f2121'; // charcoal-700
-        } else {
-            themeColor.content = '#32808d'; // teal-500
-        }
-    }
-    
-    // Initial theme color update
-    updateThemeColor();
-    
-    // Listen for theme changes
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'data-color-scheme') {
-                updateThemeColor();
-            }
-        });
-    });
-    
-    observer.observe(document.body, {
-        attributes: true,
-        attributeFilter: ['data-color-scheme']
-    });
-    
-    // Add apple-mobile-web-app-capable for iOS
-    if (!document.querySelector('meta[name="apple-mobile-web-app-capable"]')) {
-        const appleCapable = document.createElement('meta');
-        appleCapable.name = 'apple-mobile-web-app-capable';
-        appleCapable.content = 'yes';
-        document.head.appendChild(appleCapable);
-    }
-}
-
-// Initialize PWA features
-initPWAFeatures();
-
-/**
- * Add search functionality (basic implementation)
- */
-function initSearchFunctionality() {
-    // This could be expanded to add a search feature
-    // For now, we'll just add keyboard shortcuts for navigation
-    
-    document.addEventListener('keydown', function(e) {
-        // Alt + number keys to jump to specific days
-        if (e.altKey && e.key >= '1' && e.key <= '9') {
-            e.preventDefault();
-            const dayNumber = e.key;
-            let targetId;
-            
-            if (dayNumber <= '4') {
-                targetId = 'giorni-1-4';
-            } else {
-                targetId = `giorno-${dayNumber}`;
-            }
-            
-            const targetBtn = document.querySelector(`[data-target="${targetId}"]`);
-            if (targetBtn) {
-                targetBtn.click();
-            }
-        }
-        
-        // 'h' key to scroll to top (home)
-        if (e.key === 'h' && !e.ctrlKey && !e.altKey && !e.metaKey) {
-            const activeElement = document.activeElement;
-            // Only if not typing in an input field
-            if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-    });
-}
-
-// Initialize search functionality
-initSearchFunctionality();
-
-/**
- * Performance monitoring and optimization
- */
-function initPerformanceMonitoring() {
-    // Basic performance logging
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            if (performance && performance.getEntriesByType) {
-                const navigationEntries = performance.getEntriesByType('navigation');
-                if (navigationEntries.length > 0) {
-                    const navEntry = navigationEntries[0];
-                    console.log('Page load time:', navEntry.loadEventEnd - navEntry.fetchStart, 'ms');
-                }
-            }
-        }, 1000);
-    });
-}
-
-// Initialize performance monitoring
-initPerformanceMonitoring();
-
-/**
- * Add contextual help or tips
- */
-function initContextualHelp() {
-    // Add keyboard shortcuts info - simplified version without localStorage
-    const helpStyle = document.createElement('style');
-    helpStyle.textContent = `
-        .keyboard-help {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-base);
-            padding: var(--space-12);
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            pointer-events: none;
-            z-index: 1000;
-            max-width: 200px;
-        }
-        
-        .keyboard-help.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .keyboard-help h4 {
-            margin: 0 0 8px 0;
-            font-size: var(--font-size-sm);
-            color: var(--color-text);
-        }
-        
-        .keyboard-help ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        
-        .keyboard-help li {
-            margin-bottom: 4px;
-            font-size: var(--font-size-xs);
-        }
-        
-        .keyboard-help kbd {
-            background: var(--color-secondary);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: monospace;
-            font-size: 10px;
-        }
-    `;
-    document.head.appendChild(helpStyle);
-    
-    // Show help on first visit (without localStorage, just show once per session)
-    let helpShown = false;
-    if (!helpShown) {
-        setTimeout(() => {
-            const helpDiv = document.createElement('div');
-            helpDiv.className = 'keyboard-help';
-            helpDiv.innerHTML = `
-                <h4>Scorciatoie</h4>
-                <ul>
-                    <li><kbd>Alt</kbd>+<kbd>1-9</kbd> Vai al giorno</li>
-                    <li><kbd>T</kbd> Cambia tema</li>
-                    <li><kbd>H</kbd> Torna su</li>
-                    <li><kbd>Esc</kbd> Chiudi tutto</li>
-                </ul>
-            `;
-            document.body.appendChild(helpDiv);
-            
-            setTimeout(() => helpDiv.classList.add('show'), 100);
-            
-            setTimeout(() => {
-                helpDiv.classList.remove('show');
-                setTimeout(() => helpDiv.remove(), 300);
-                helpShown = true;
-            }, 4000);
-        }, 2000);
-    }
-}
-
-// Initialize contextual help
-initContextualHelp();
-
-/**
- * Add error handling for failed operations
- */
-window.addEventListener('error', function(e) {
-    console.error('JavaScript error occurred:', e.error);
-    // You could send this to an error reporting service
-});
-
-/**
- * Final initialization and cleanup
- */
-function finalInit() {
-    // Remove loading states if any
-    document.body.classList.remove('loading');
-    
-    // Add loaded class for any CSS that needs it
-    document.body.classList.add('loaded');
-    
-    // Trigger any final animations
-    setTimeout(() => {
-        const sections = document.querySelectorAll('.day-section');
-        sections.forEach((section, index) => {
-            setTimeout(() => {
-                section.classList.add('in-view');
-            }, index * 100);
-        });
-    }, 500);
-}
-
-// Run final initialization
-window.addEventListener('load', finalInit);
-}

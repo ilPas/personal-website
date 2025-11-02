@@ -45,7 +45,6 @@
 		<link rel="shortcut icon" href="images/icon/favicon.png" type="image/x-icon" />
 		<link rel="canonical" href="https://www.erricopasquale.it/trip-portogallo" />
 		
-
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -149,10 +148,10 @@
 </section>
 
     <!-- Sticky Navigation -->
-    <nav class="nav-sticky" id="nav-sticky">
+    <nav class="nav-sticky" id="nav-sticky" aria-label="Navigazione rapida itinerario">
         <div class="container">
             <div class="nav-scroll">
-                <button class="nav-btn" data-target="giorni-1-4">Giorni 1-4</button>
+                <button class="nav-btn" data-target="giorni-1-4" aria-controls="giorni-1-4">Giorni 1-4</button>
                 <button class="nav-btn" data-target="giorno-5">Giorno 5</button>
                 <button class="nav-btn" data-target="giorno-6">Giorno 6</button>
                 <button class="nav-btn" data-target="giorno-7">Giorno 7</button>
@@ -177,19 +176,19 @@
             <!-- Giorni 1-4 -->
             <section class="day-section" id="giorni-1-4">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorni-1-4">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorni 1-4: Arrivo a Faro e Relax a Carvoeiro</h2>
                             <span class="accordion__dates">Sab 11 - Mar 14 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorni-1-4" role="region" aria-labelledby="giorni-1-4">
                         <div class="day-content">
                             <p class="day-description">Primi giorni dedicati al relax e all'acclimatamento presso il Tivoli Carvoeiro.</p>
                             
                             <div class="info-section">
-                                <h3>🏨 Dove Dormire</h3>
+                                <h3><span role="img" aria-label="Hotel">🏨</span> Dove Dormire</h3>
                                 <div class="info-card">
                                     <strong>Tivoli Carvoeiro</strong>
                                     <a href="https://www.tivolihotels.com/en/tivoli-carvoeiro" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Visita Sito</a>
@@ -197,7 +196,7 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🎯 Attività Principali</h3>
+                                <h3><span role="img" aria-label="Obiettivo">🎯</span> Attività Principali</h3>
                                 <div class="activity-list">
                                     <div class="info-card">
                                         <div class="activity-header">
@@ -221,7 +220,7 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🚗 Trasporti</h3>
+                                <h3><span role="img" aria-label="Automobile">🚗</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="km-badge">60 km da Faro a Carvoeiro</span>
                                 </div>
@@ -234,19 +233,19 @@
             <!-- Giorno 5 -->
             <section class="day-section" id="giorno-5">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-5">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 5: Da Carvoeiro a Sagres, il Confine del Mondo</h2>
                             <span class="accordion__dates">Mer 15 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-5" role="region" aria-labelledby="giorno-5">
                         <div class="day-content">
                             <p class="day-description">Viaggio nel punto più sud-occidentale d'Europa, carico di storia e bellezza selvaggia.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">11:00</span>
@@ -276,7 +275,7 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🎯 Attrazioni</h3>
+                                <h3><span role="img" aria-label="Obiettivo">🎯</span> Attrazioni</h3>
                                 <div class="activity-list">
                                     <div class="info-card">
                                         <div class="activity-header">
@@ -296,18 +295,18 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>🥪 Pranzo - Casa do Prego</h4>
+                                        <h4><span role="img" aria-label="Panino">🥪</span> Pranzo - Casa do Prego</h4>
                                         <p>📍 Lagos</p>
                                         <p>Rivisitazione moderna del tradizionale prego</p>
                                         <a href="https://www.google.com/maps/search/Casa+do+Prego+Lagos" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🍽️ Cena - Restaurante Vila Velha</h4>
+                                        <h4><span role="img" aria-label="Piatto">🍽️</span> Cena - Restaurante Vila Velha</h4>
                                         <p>📍 Sagres</p>
-                                        <p>🐚 Specialità: Lingueirão e percebes</p>
+                                        <p><span role="img" aria-label="Conchiglia">🐚</span> Specialità: Lingueirão e percebes</p>
                                         <p>Istituzione dal 1995, cucina tradizionale portoghese</p>
                                         <a href="https://www.google.com/maps/search/Restaurante+Vila+Velha+Sagres" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
@@ -315,7 +314,7 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🚗 Trasporti</h3>
+                                <h3><span role="img" aria-label="Automobile">🚗</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="km-badge">60 km giornalieri</span>
                                 </div>
@@ -328,19 +327,19 @@
             <!-- Giorno 6 -->
             <section class="day-section" id="giorno-6">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-6">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 6: Sulla Rotta di Vasco da Gama, Verso Sines</h2>
                             <span class="accordion__dates">Gio 16 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-6" role="region" aria-labelledby="giorno-6">
                         <div class="day-content">
                             <p class="day-description">Lungo la costa dell'Alentejo, visitando la città natale del grande navigatore.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">09:30</span>
@@ -370,7 +369,7 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🏰 Attrazioni</h3>
+                                <h3><span role="img" aria-label="Castello">🏰</span> Attrazioni</h3>
                                 <div class="info-card">
                                     <div class="activity-header">
                                         <strong>Castelo de Sines</strong>
@@ -383,30 +382,30 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - O Terraço</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - O Terraço</h4>
                                         <p>📍 Martinhal Resort Sagres</p>
                                         <p>Buffet con vista oceano</p>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🥘 Pranzo - Restaurante Do Luis</h4>
+                                        <h4><span role="img" aria-label="Padella">🥘</span> Pranzo - Restaurante Do Luis</h4>
                                         <p>📍 Sines</p>
                                         <p>Vista sul mare, riso con vongole e gamberi all'aglio</p>
                                         <a href="https://www.google.com/maps/search/Restaurante+Do+Luis+Sines" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🍽️ Cena - Adega de Sines</h4>
+                                        <h4><span role="img" aria-label="Piatto">🍽️</span> Cena - Adega de Sines</h4>
                                         <p>📍 Sines</p>
                                         <p>Istituzione locale per pesce freschissimo e caldeirada</p>
                                         <a href="https://www.google.com/maps/search/Adega+de+Sines" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚗 Trasporti</h3>
+                                <h3><span role="img" aria-label="Automobile">🚗</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="km-badge">90 km giornalieri</span>
                                 </div>
@@ -419,19 +418,19 @@
             <!-- Giorno 7 -->
             <section class="day-section" id="giorno-7">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-7">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 7: Ericeira - Capitale del Surf Europeo</h2>
                             <span class="accordion__dates">Ven 17 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-7" role="region" aria-labelledby="giorno-7">
                         <div class="day-content">
                             <p class="day-description">Villaggio di pescatori dalle case bianche e blu, riserva mondiale di surf.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">09:30</span>
@@ -461,32 +460,32 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - Volta do Mar</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - Volta do Mar</h4>
                                         <p>📍 Sines Sea View Hotel</p>
                                         <p>Colazione contemporanea con vista panoramica</p>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🥙 Pranzo - Balagan</h4>
+                                        <h4><span role="img" aria-label="Kebab">🥙</span> Pranzo - Balagan</h4>
                                         <p>📍 Praia do Sul, Ericeira</p>
                                         <p>Cucina mediorientale con vista oceano</p>
                                         <a href="https://www.google.com/maps/search/Balagan+Ericeira" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🦐 Cena - Marisqueira Furnas</h4>
+                                        <h4><span role="img" aria-label="Gambero">🦐</span> Cena - Marisqueira Furnas</h4>
                                         <p>📍 Ericeira</p>
-                                        <p>🐚 Specialità: Percebes</p>
+                                        <p><span role="img" aria-label="Conchiglia">🐚</span> Specialità: Percebes</p>
                                         <p>Punto di riferimento per frutti di mare freschi</p>
-                                        <p>⚠️ Prenotazione quasi obbligatoria</p>
+                                        <p><span role="img" aria-label="Attenzione">⚠️</span> Prenotazione quasi obbligatoria</p>
                                         <a href="https://www.google.com/maps/search/Marisqueira+Furnas+Ericeira" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="info-section">
-                                <h3>🚗 Trasporti</h3>
+                                <h3><span role="img" aria-label="Automobile">🚗</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="km-badge">190 km giornalieri</span>
                                 </div>
@@ -499,19 +498,19 @@
             <!-- Giorno 8 -->
             <section class="day-section" id="giorno-8">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-8">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 8: Óbidos e Nazaré - Borgo Medievale e Onde Giganti</h2>
                             <span class="accordion__dates">Sab 18 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-8" role="region" aria-labelledby="giorno-8">
                         <div class="day-content">
                             <p class="day-description">Dal fascino fiabesco del borgo medievale alla potenza delle onde giganti.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">09:00</span>
@@ -549,7 +548,7 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🎯 Attrazioni</h3>
+                                <h3><span role="img" aria-label="Obiettivo">🎯</span> Attrazioni</h3>
                                 <div class="activity-list">
                                     <div class="info-card">
                                         <strong>Óbidos</strong>
@@ -569,30 +568,30 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - Pão da Vila</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - Pão da Vila</h4>
                                         <p>📍 Ericeira - Piazza principale</p>
                                         <p>Porzioni abbondanti</p>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🍺 Pranzo - Sitiado</h4>
+                                        <h4><span role="img" aria-label="Birra">🍺</span> Pranzo - Sitiado</h4>
                                         <p>📍 Nazaré (Sítio)</p>
                                         <p>Vista mozzafiato, petiscos e birra artigianale</p>
                                         <a href="https://www.google.com/maps/search/Sitiado+Nazaré+Sítio" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🐟 Cena - Taberna d'Adélia</h4>
+                                        <h4><span role="img" aria-label="Pesce">🐟</span> Cena - Taberna d'Adélia</h4>
                                         <p>📍 Nazaré</p>
                                         <p>Alta qualità pesce e frutti di mare</p>
                                         <a href="https://www.google.com/maps/search/Taberna+d'Adélia+Nazaré" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚗 Trasporti</h3>
+                                <h3><span role="img" aria-label="Automobile">🚗</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="km-badge">185 km giornalieri</span>
                                 </div>
@@ -605,19 +604,19 @@
             <!-- Giorno 9 -->
             <section class="day-section" id="giorno-9">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-9">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 9: Coimbra - La Dotta, Culla del Sapere</h2>
                             <span class="accordion__dates">Dom 19 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-9" role="region" aria-labelledby="giorno-9">
                         <div class="day-content">
                             <p class="day-description">Città che unisce storia millenaria a vibrante vita studentesca.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">09:00</span>
@@ -647,14 +646,14 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🎯 Attrazioni</h3>
+                                <h3><span role="img" aria-label="Obiettivo">🎯</span> Attrazioni</h3>
                                 <div class="activity-list">
                                     <div class="info-card">
                                         <div class="activity-header">
                                             <strong>Università di Coimbra & Biblioteca Joanina</strong>
                                             <span class="price">€16.50</span>
                                         </div>
-                                        <p>⚠️ Prenotazione online essenziale</p>
+                                        <p><span role="img" aria-label="Attenzione">⚠️</span> Prenotazione online essenziale</p>
                                         <div class="btn-group">
                                             <a href="https://visit.uc.pt/en/program-list" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Prenota Ticket</a>
                                             <a href="https://www.google.com/maps/search/Università+Coimbra" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
@@ -664,30 +663,30 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - Village Brunch & Coffee</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - Village Brunch & Coffee</h4>
                                         <p>📍 Nazaré</p>
                                         <p>Opzioni vegane, vicino alla spiaggia</p>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🍽️ Pranzo - Zé Manel dos Ossos</h4>
+                                        <h4><span role="img" aria-label="Piatto">🍽️</span> Pranzo - Zé Manel dos Ossos</h4>
                                         <p>📍 Coimbra</p>
                                         <p>Piatti tradizionali</p>
                                         <a href="https://www.google.com/maps/search/Zé+Manel+dos+Ossos+Coimbra" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🍷 Cena - Tapas nas Costas</h4>
+                                        <h4><span role="img" aria-label="Vino">🍷</span> Cena - Tapas nas Costas</h4>
                                         <p>📍 Coimbra</p>
                                         <p>Petiscos moderni</p>
                                         <a href="https://www.google.com/maps/search/Tapas+nas+Costas+Coimbra" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚗 Trasporti</h3>
+                                <h3><span role="img" aria-label="Automobile">🚗</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="km-badge">120 km giornalieri</span>
                                 </div>
@@ -700,19 +699,19 @@
             <!-- Giorno 10 -->
             <section class="day-section" id="giorno-10">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-10">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 10: Verso Porto - La Carismatica Seconda Città</h2>
                             <span class="accordion__dates">Lun 20 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-10" role="region" aria-labelledby="giorno-10">
                         <div class="day-content">
                             <p class="day-description">Dopo una mattinata a Coimbra, viaggio verso la seconda città del Portogallo.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">09:30</span>
@@ -746,30 +745,30 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - Café Santa Cruz</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - Café Santa Cruz</h4>
                                         <p>📍 Coimbra</p>
                                         <p>Atmosfera unica</p>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🥪 Pranzo - Casa Guedes</h4>
+                                        <h4><span role="img" aria-label="Panino">🥪</span> Pranzo - Casa Guedes</h4>
                                         <p>📍 Porto</p>
-                                        <p>🐷 Specialità: Sandes de pernil</p>
+                                        <p><span role="img" aria-label="Maiale">🐷</span> Specialità: Sandes de pernil</p>
                                         <a href="https://www.google.com/maps/search/Casa+Guedes+Porto" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🍽️ Cena - Brasão Coliseu</h4>
+                                        <h4><span role="img" aria-label="Piatto">🍽️</span> Cena - Brasão Coliseu</h4>
                                         <p>📍 Porto</p>
-                                        <p>🍔 Specialità: Francesinha</p>
+                                        <p><span role="img" aria-label="Hamburger">🍔</span> Specialità: Francesinha</p>
                                         <a href="https://www.google.com/maps/search/Brasão+Coliseu+Porto" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚗 Trasporti</h3>
+                                <h3><span role="img" aria-label="Automobile">🚗</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="km-badge">120 km giornalieri</span>
                                 </div>
@@ -782,19 +781,19 @@
             <!-- Giorno 11 -->
             <section class="day-section" id="giorno-11">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-11">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 11: L'Anima di Porto e il Vino di Gaia</h2>
                             <span class="accordion__dates">Mar 21 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-11" role="region" aria-labelledby="giorno-11">
                         <div class="day-content">
                             <p class="day-description">Giornata dedicata ai simboli di Porto e alla sua vibrante cultura.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">09:00</span>
@@ -820,7 +819,7 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🎯 Attrazioni</h3>
+                                <h3><span role="img" aria-label="Obiettivo">🎯</span> Attrazioni</h3>
                                 <div class="activity-list">
                                     <div class="info-card">
                                         <div class="activity-header">
@@ -848,32 +847,32 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - SO Coffee Roasters</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - SO Coffee Roasters</h4>
                                         <p>📍 Porto</p>
                                         <p>Caffè di alta qualità</p>
                                         <a href="https://www.google.com/maps/search/SO+Coffee+Roasters+Porto" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🥪 Pranzo - Conga</h4>
+                                        <h4><span role="img" aria-label="Panino">🥪</span> Pranzo - Conga</h4>
                                         <p>📍 Porto</p>
-                                        <p>🐷 Specialità: Bifanas</p>
+                                        <p><span role="img" aria-label="Maiale">🐷</span> Specialità: Bifanas</p>
                                         <a href="https://www.google.com/maps/search/Conga+Porto+bifanas" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🎵 Cena - Taberna Real do Fado</h4>
+                                        <h4><span role="img" aria-label="Musica">🎵</span> Cena - Taberna Real do Fado</h4>
                                         <p>📍 Porto</p>
-                                        <p>💰 Prezzo: €40-55</p>
+                                        <p><span role="img" aria-label="Soldi">💰</span> Prezzo: €40-55</p>
                                         <p>Cena con spettacolo di Fado tradizionale</p>
                                         <a href="https://www.google.com/maps/search/Taberna+Real+do+Fado+Porto" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚶 Trasporti</h3>
+                                <h3><span role="img" aria-label="Camminata">🚶</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="transport-badge">Giornata a piedi nel centro</span>
                                 </div>
@@ -886,19 +885,19 @@
             <!-- Giorno 12 -->
             <section class="day-section" id="giorno-12">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-12">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 12: La Magia della Valle del Douro</h2>
                             <span class="accordion__dates">Mer 22 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-12" role="region" aria-labelledby="giorno-12">
                         <div class="day-content">
                             <p class="day-description">Paesaggio vinicolo spettacolare, patrimonio UNESCO.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">08:30</span>
@@ -928,7 +927,7 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🎯 Attività</h3>
+                                <h3><span role="img" aria-label="Obiettivo">🎯</span> Attività</h3>
                                 <div class="activity-list">
                                     <div class="info-card">
                                         <div class="activity-header">
@@ -951,31 +950,31 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - Zenith - Brunch & Cocktails</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - Zenith - Brunch & Cocktails</h4>
                                         <p>📍 Porto</p>
                                         <a href="https://www.google.com/maps/search/Zenith+Brunch+Cocktails+Porto" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🍽️ Pranzo - DOC</h4>
+                                        <h4><span role="img" aria-label="Piatto">🍽️</span> Pranzo - DOC</h4>
                                         <p>📍 Folgosa</p>
-                                        <p>👨‍🍳 Chef Rui Paula</p>
+                                        <p><span role="img" aria-label="Chef">👨‍🍳</span> Chef Rui Paula</p>
                                         <p>Ristorante stellato con vista sul Douro</p>
                                         <a href="https://www.google.com/maps/search/DOC+Restaurant+Folgosa+Douro" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🍽️ Cena - Taberninha do Manel</h4>
+                                        <h4><span role="img" aria-label="Piatto">🍽️</span> Cena - Taberninha do Manel</h4>
                                         <p>📍 Vila Nova de Gaia</p>
                                         <p>Cucina casalinga portoghese</p>
                                         <a href="https://www.google.com/maps/search/Taberninha+do+Manel+Gaia" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚗 Trasporti</h3>
+                                <h3><span role="img" aria-label="Automobile">🚗</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="km-badge">240 km giornalieri</span>
                                 </div>
@@ -988,19 +987,19 @@
             <!-- Giorno 13 -->
             <section class="day-section" id="giorno-13">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-13">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 13: Da Porto a Lisbona - Verso il Gran Finale</h2>
                             <span class="accordion__dates">Gio 23 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-13" role="region" aria-labelledby="giorno-13">
                         <div class="day-content">
                             <p class="day-description">Viaggio verso la capitale per il gran finale dell'avventura portoghese.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">10:00</span>
@@ -1026,24 +1025,24 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - Lazy Breakfast Club</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - Lazy Breakfast Club</h4>
                                         <p>📍 Porto</p>
                                         <a href="https://www.google.com/maps/search/Lazy+Breakfast+Club+Porto" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🍽️ Cena - Time Out Market</h4>
+                                        <h4><span role="img" aria-label="Piatto">🍽️</span> Cena - Time Out Market</h4>
                                         <p>📍 Lisbona</p>
                                         <p>Mercado da Ribeira - varietà di chef e cucine</p>
                                         <a href="https://www.google.com/maps/search/Time+Out+Market+Lisbona" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚗 Trasporti</h3>
+                                <h3><span role="img" aria-label="Automobile">🚗</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="km-badge">315 km giornalieri</span>
                                 </div>
@@ -1056,26 +1055,26 @@
             <!-- Giorno 14 -->
             <section class="day-section" id="giorno-14">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-14">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 14: Belém - L'Età delle Scoperte</h2>
                             <span class="accordion__dates">Ven 24 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-14" role="region" aria-labelledby="giorno-14">
                         <div class="day-content">
                             <p class="day-description">Monumenti che celebrano l'epoca delle grandi scoperte marittime.</p>
                             
                             <div class="info-section">
-                                <h3>⚠️ Nota Importante</h3>
+                                <h3><span role="img" aria-label="Attenzione">⚠️</span> Nota Importante</h3>
                                 <div class="alert">
                                     <p>Torre de Belém chiusa per restauro</p>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">10:00</span>
@@ -1109,14 +1108,14 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🏛️ Attrazioni</h3>
+                                <h3><span role="img" aria-label="Edificio Classico">🏛️</span> Attrazioni</h3>
                                 <div class="activity-list">
                                     <div class="info-card">
                                         <div class="activity-header">
                                             <strong>Mosteiro dos Jerónimos</strong>
                                             <span class="price">€18.00</span>
                                         </div>
-                                        <p>⚠️ Prenotazione online fondamentale per evitare code lunghissime</p>
+                                        <p><span role="img" aria-label="Attenzione">⚠️</span> Prenotazione online fondamentale per evitare code lunghissime</p>
                                         <div class="btn-group">
                                             <a href="https://www.museusemonumentos.pt/en/pagina/tickets" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary">Prenota Ticket</a>
                                             <a href="https://www.google.com/maps/search/Mosteiro+dos+Jerónimos" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
@@ -1126,33 +1125,33 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - Seagull Method Cafe</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - Seagull Method Cafe</h4>
                                         <p>📍 Lisbona</p>
                                         <p>Tra i migliori per brunch creativo e delizioso</p>
                                         <a href="https://www.google.com/maps/search/Seagull+Method+Cafe+Lisbona" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🥪 Pranzo - Pão Pão Queijo Queijo</h4>
+                                        <h4><span role="img" aria-label="Panino">🥪</span> Pranzo - Pão Pão Queijo Queijo</h4>
                                         <p>📍 Belém</p>
                                         <p>Panini deliziosi ed economici, amato dai residenti</p>
                                         <a href="https://www.google.com/maps/search/Pão+Pão+Queijo+Queijo+Belém" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🦐 Cena - Cervejaria Ramiro</h4>
+                                        <h4><span role="img" aria-label="Gambero">🦐</span> Cena - Cervejaria Ramiro</h4>
                                         <p>📍 Lisbona</p>
-                                        <p>🐚 Specialità: Percebes</p>
+                                        <p><span role="img" aria-label="Conchiglia">🐚</span> Specialità: Percebes</p>
                                         <p>Istituzione, ristorante di pesce più famoso di Lisbona</p>
-                                        <p>⚠️ Aspettatevi di fare la fila anche con prenotazione</p>
+                                        <p><span role="img" aria-label="Attenzione">⚠️</span> Aspettatevi di fare la fila anche con prenotazione</p>
                                         <a href="https://www.google.com/maps/search/Cervejaria+Ramiro+Lisbona" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚌 Trasporti</h3>
+                                <h3><span role="img" aria-label="Autobus">🚌</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="transport-badge">Giornata a Lisbona con mezzi pubblici</span>
                                 </div>
@@ -1165,19 +1164,19 @@
             <!-- Giorno 15 -->
             <section class="day-section" id="giorno-15">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-15">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 15: Sintra, Cabo da Roca, Cascais</h2>
                             <span class="accordion__dates">Sab 25 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-15" role="region" aria-labelledby="giorno-15">
                         <div class="day-content">
                             <p class="day-description">Palazzi fiabeschi, scogliere selvagge e costa elegante.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">Mattina</span>
@@ -1215,7 +1214,7 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🎯 Attrazioni</h3>
+                                <h3><span role="img" aria-label="Obiettivo">🎯</span> Attrazioni</h3>
                                 <div class="activity-list">
                                     <div class="info-card">
                                         <div class="activity-header">
@@ -1243,25 +1242,25 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>🥘 Pranzo - Tascantiga</h4>
+                                        <h4><span role="img" aria-label="Padella">🥘</span> Pranzo - Tascantiga</h4>
                                         <p>📍 Sintra</p>
                                         <p>Petiscos tradizionali portoghesi</p>
                                         <a href="https://www.google.com/maps/search/Tascantiga+Sintra" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🐟 Cena - Mar do Inferno</h4>
+                                        <h4><span role="img" aria-label="Pesce">🐟</span> Cena - Mar do Inferno</h4>
                                         <p>📍 Cascais</p>
                                         <p>Ristorante di pesce con vista mare</p>
                                         <a href="https://www.google.com/maps/search/Mar+do+Inferno+Cascais" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚌 Trasporti</h3>
+                                <h3><span role="img" aria-label="Autobus">🚌</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="transport-badge">60 km con mezzi pubblici</span>
                                 </div>
@@ -1274,19 +1273,19 @@
             <!-- Giorno 16 -->
             <section class="day-section" id="giorno-16">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-16">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 16: L'Anima di Lisbona - Alfama e Chiado</h2>
                             <span class="accordion__dates">Dom 26 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-16" role="region" aria-labelledby="giorno-16">
                         <div class="day-content">
                             <p class="day-description">Quartieri caratteristici dal labirinto di Alfama all'eleganza del Chiado.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">Mattina</span>
@@ -1320,32 +1319,32 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>🥘 Pranzo - Pateo 13</h4>
+                                        <h4><span role="img" aria-label="Padella">🥘</span> Pranzo - Pateo 13</h4>
                                         <p>📍 Alfama</p>
                                         <p>Ristorante tradizionale nel cuore di Alfama</p>
                                         <a href="https://www.google.com/maps/search/Pateo+13+Alfama+Lisbona" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🌟 Cena Opzione 1 - Belcanto</h4>
+                                        <h4><span role="img" aria-label="Stella">🌟</span> Cena Opzione 1 - Belcanto</h4>
                                         <p>📍 Chiado</p>
-                                        <p>⭐⭐ Ristorante stellato Michelin dello chef José Avillez</p>
-                                        <p>⚠️ Prenotazione obbligatoria con largo anticipo</p>
+                                        <p><span role="img" aria-label="Due stelle">⭐⭐</span> Ristorante stellato Michelin dello chef José Avillez</p>
+                                        <p><span role="img" aria-label="Attenzione">⚠️</span> Prenotazione obbligatoria con largo anticipo</p>
                                         <a href="https://www.google.com/maps/search/Belcanto+Chiado+Lisbona" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                     <div class="info-card">
-                                        <h4>🐟 Cena Opzione 2 - A Cevicheria</h4>
+                                        <h4><span role="img" aria-label="Pesce">🐟</span> Cena Opzione 2 - A Cevicheria</h4>
                                         <p>📍 Bairro Alto</p>
                                         <p>Ceviche fresco e piatti fusion</p>
                                         <a href="https://www.google.com/maps/search/A+Cevicheria+Bairro+Alto+Lisbona" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚊 Trasporti</h3>
+                                <h3><span role="img" aria-label="Tram">🚊</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="transport-badge">Giornata in città con Tram e mezzi pubblici</span>
                                 </div>
@@ -1358,19 +1357,19 @@
             <!-- Giorno 17 -->
             <section class="day-section" id="giorno-17">
                 <div class="accordion">
-                    <button class="accordion__header" aria-expanded="false">
+                    <button class="accordion__header" aria-expanded="false" aria-controls="content-giorno-17">
                         <div class="accordion__title-group">
                             <h2 class="accordion__title">Giorno 17: Arrivederci, Lisbona</h2>
                             <span class="accordion__dates">Lun 27 Ott</span>
                         </div>
                         <span class="accordion__icon">+</span>
                     </button>
-                    <div class="accordion__content">
+                    <div class="accordion__content" id="content-giorno-17" role="region" aria-labelledby="giorno-17">
                         <div class="day-content">
                             <p class="day-description">Ultimo giorno dedicato agli ultimi acquisti e sapori prima della partenza.</p>
                             
                             <div class="info-section">
-                                <h3>⏰ Programma della Giornata</h3>
+                                <h3><span role="img" aria-label="Sveglia">⏰</span> Programma della Giornata</h3>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
                                         <span class="time">Mattina</span>
@@ -1396,19 +1395,19 @@
                             </div>
 
                             <div class="info-section">
-                                <h3>🍽️ Dove Mangiare</h3>
+                                <h3><span role="img" aria-label="Posate">🍽️</span> Dove Mangiare</h3>
                                 <div class="restaurant-list">
                                     <div class="info-card">
-                                        <h4>☕ Colazione - Confeitaria Nacional</h4>
+                                        <h4><span role="img" aria-label="Caffè">☕</span> Colazione - Confeitaria Nacional</h4>
                                         <p>📍 Lisbona</p>
-                                        <p>🥮 I migliori pastel de nata della città dal 1829</p>
+                                        <p><span role="img" aria-label="Pastel de nata">🥮</span> I migliori pastel de nata della città dal 1829</p>
                                         <a href="https://www.google.com/maps/search/Confeitaria+Nacional+Lisbona" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Vedi su Maps</a>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="info-section">
-                                <h3>🚇 Trasporti</h3>
+                                <h3><span role="img" aria-label="Metro">🚇</span> Trasporti</h3>
                                 <div class="travel-info">
                                     <span class="transport-badge">Metro dall'centro all'aeroporto - Linea Rossa €1.85</span>
                                 </div>
@@ -1422,21 +1421,21 @@
     </main>
 
     <!-- Footer -->
-    <div class="footer">
+    <div class="footer" role="complementary">
         <div class="container">
             <div class="footer-content">
                 <h3>Informazioni Utili</h3>
                 <div class="info-grid">
                     <div class="info-card">
-                        <h4>🛣️ Pedaggio</h4>
+                        <h4><span role="img" aria-label="Autostrada">🛣️</span> Pedaggio</h4>
                         <p>Sistema elettronico Via Verde - assicurarsi che l'auto abbia transponder</p>
                     </div>
                     <div class="info-card">
-                        <h4>🚇 Trasporti Lisbona</h4>
+                        <h4><span role="img" aria-label="Metro">🚇</span> Trasporti Lisbona</h4>
                         <p>Carta Navegante ricaricabile per metro, autobus, tram - modalità Zapping per tariffe scontate</p>
                     </div>
                     <div class="info-card">
-                        <h4>💡 Consigli Generali</h4>
+                        <h4><span role="img" aria-label="Lampadina">💡</span> Consigli Generali</h4>
                         <p>Prenotazioni online sempre consigliate per attrazioni principali. Portare contanti per piccoli locali.</p>
                     </div>
                 </div>
@@ -1444,12 +1443,11 @@
         </div>
     </div>
 	<!-- Footer -->
-    <footer class="text-center py-8 mt-12 border-t border-gray-800">
+    <footer class="text-center py-8 mt-12 border-t border-gray-800" role="contentinfo">
         <small class="text-gray-500">© Pasquale Errico 2014 - <span id="fullYear">2025</span><br><a class="js-cursor" href="/privacy-cookie.html" title="Privacy &amp; Cookie Policy erricopasquale.it" target="_blank">Privacy &amp; Cookie Policy</a></small>
     </footer>
 
-<script src="js/vendor/noise.js"></script>
-<script src="js/vendor/cursor.js"></script>
-<script src="js/trip.js"></script>
+    <!-- Main JS -->
+    <script src="scripts/index.js"></script>
 </body>
 </html>

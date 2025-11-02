@@ -20,7 +20,7 @@ export default class App {
     if (typeof storie != "undefined" && storie != null) {
       this.initZuck();
     }
-    this.initCookie();
+    //this.initCookie();
     //this.initGlide();
     //this.initNoise();
     new Cursor();
@@ -28,9 +28,9 @@ export default class App {
     var d = new Date();
     var n = d.getFullYear();
     document.getElementById("fullYear").innerHTML = n;
-    document
-      .getElementsByClassName("cookieConsentToggle")[0]
-      .setAttribute("aria-label", "Cookie consent");
+    //document
+    //  .getElementsByClassName("cookieConsentToggle")[0]
+    //  .setAttribute("aria-label", "Cookie consent");
     document
       .querySelectorAll(".item-link")
       .forEach((element) =>
@@ -94,8 +94,18 @@ export default class App {
             "Utilizzo Google Analytics anonimo per per analizzare le visite al mio sito.",
           value: true,
         },
-        tracking: false,
-        marketing: false,
+        tracking: {
+          label: "Cookie di Tracciamento",
+          description:
+            "Questi cookie ci aiutano a tracciare le interazioni degli utenti.",
+          value: false,
+        },
+        marketing: {
+          label: "Cookie di Marketing",
+          description:
+            "Questi cookie vengono utilizzati per mostrarti annunci pertinenti.",
+          value: false,
+        },
       },
 
       /**
@@ -110,30 +120,26 @@ export default class App {
        * If you are using svelte, you can use events instead - see the Svelte section below.
        **/
       categories: {
-        analytics: function (w, d, s, l, i) {
-          console.log("Google Tag Manager");
+        analytics: function () {
           (function (w, d, s, l, i) {
             w[l] = w[l] || [];
-            w[l].push({
-              "gtm.start": new Date().getTime(),
-              event: "gtm.js",
-            });
+            w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
             var f = d.getElementsByTagName(s)[0],
               j = d.createElement(s),
               dl = l != "dataLayer" ? "&l=" + l : "";
             j.async = true;
             j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
             f.parentNode.insertBefore(j, f);
-          })(window, document, "script", "dataLayer", "GTM-KXQLJ68");
-        },
-        tracking: function () {
-          console.log("No tracking cookies specified");
-        },
-        marketing: function () {
-          console.log("No marketing cookies specified");
+          })(window, document, "script", "dataLayer", "GTM-KXQLJ68"); // GTM ID
         },
         necessary: function () {
           console.log("No necessary cookies specified");
+        },
+        tracking: function () {
+          // console.log("No tracking cookies to run");
+        },
+        marketing: function () {
+          // console.log("No marketing cookies to run");
         },
       },
     };
