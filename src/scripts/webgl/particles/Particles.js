@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { gsap } from "gsap";
 
 import TouchTexture from "./TouchTexture";
 
@@ -17,7 +18,8 @@ export default class Particles {
       this.texture = texture;
       this.texture.minFilter = THREE.LinearFilter;
       this.texture.magFilter = THREE.LinearFilter;
-      this.texture.format = THREE.RGBFormat;
+      this.texture.generateMipmaps = false;
+      
 
       this.width = texture.image.width;
       this.height = texture.image.height;

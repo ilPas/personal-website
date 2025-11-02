@@ -23,7 +23,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "theme.css",
+      filename: "css/theme.css",
     }),
     new WebpackPwaManifest({
       name: "Pasquale Errico PWA",
@@ -54,27 +54,12 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
+        sideEffects: true,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
-      },
-      {
-        test: /\.scss$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: "/dist/css/",
-            },
-          },
-
-          // Translates CSS into CommonJS
-          "css-loader",
-          // Compiles Sass to CSS
-          "sass-loader",
-        ],
       },
     ],
   },

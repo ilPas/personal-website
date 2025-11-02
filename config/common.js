@@ -47,10 +47,9 @@ module.exports = {
           options: {
             emitCss: true,
             hotReload: true,
-            customElement: true,
             compilerOptions: {
-              customElement: true
-            }
+              customElement: true,
+            },
           }
         }
       }
@@ -74,8 +73,8 @@ module.exports = {
     alias: {
       "three-examples": path.join(__root, "./node_modules/three/examples/js")
     },
-    conditionNames: ['svelte', 'browser', 'import', 'require', 'node', 'default'],
-    extensions: ['.mjs', '.js', '.svelte']
+    extensions: ['.mjs', '.js', '.svelte'],
+    conditionNames: ['svelte', 'browser', 'import', 'require', 'node', 'default']
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], { root: __root }),

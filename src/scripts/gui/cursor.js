@@ -1,4 +1,5 @@
 import { gsap } from "gsap";
+import { Back } from "gsap/gsap-core";
 import initPageTransitions from "../utils/initPageTransitions";
 
 class Cursor {
@@ -9,7 +10,6 @@ class Cursor {
   }
 
   initCursor() {
-    const { Back } = window;
     this.outerCursor = document.querySelector(".circle-cursor--outer");
     this.innerCursor = document.querySelector(".circle-cursor--inner");
     this.outerCursorBox = this.outerCursor.getBoundingClientRect();
