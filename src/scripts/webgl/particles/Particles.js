@@ -97,7 +97,7 @@ export default class Particles {
     positions.setXYZ(1, 0.5, 0.5, 0.0);
     positions.setXYZ(2, -0.5, -0.5, 0.0);
     positions.setXYZ(3, 0.5, -0.5, 0.0);
-    geometry.addAttribute("position", positions);
+    geometry.setAttribute("position", positions);
 
     // uvs
     const uvs = new THREE.BufferAttribute(new Float32Array(4 * 2), 2);
@@ -105,7 +105,7 @@ export default class Particles {
     uvs.setXYZ(1, 1.0, 0.0);
     uvs.setXYZ(2, 0.0, 1.0);
     uvs.setXYZ(3, 1.0, 1.0);
-    geometry.addAttribute("uv", uvs);
+    geometry.setAttribute("uv", uvs);
 
     // index
     geometry.setIndex(
@@ -129,15 +129,15 @@ export default class Particles {
       j++;
     }
 
-    geometry.addAttribute(
+    geometry.setAttribute(
       "pindex",
       new THREE.InstancedBufferAttribute(indices, 1, false)
     );
-    geometry.addAttribute(
+    geometry.setAttribute(
       "offset",
       new THREE.InstancedBufferAttribute(offsets, 3, false)
     );
-    geometry.addAttribute(
+    geometry.setAttribute(
       "angle",
       new THREE.InstancedBufferAttribute(angles, 1, false)
     );
@@ -201,17 +201,24 @@ export default class Particles {
 
   show(time = 1.0) {
     // reset
-    TweenLite.fromTo(
+    gsap.fromTo(
       this.object3D.material.uniforms.uSize,
-      time,
-      { value: 0.5 },
+      {
+        value: 0.5,
+        duration: time
+      },
       { value: 1.5 }
     );
-    TweenLite.to(this.object3D.material.uniforms.uRandom, time, { value: 2.0 });
-    TweenLite.fromTo(
+    gsap.to(this.object3D.material.uniforms.uRandom, {
+      duration: time,
+      value: 2.0
+    });
+    gsap.fromTo(
       this.object3D.material.uniforms.uDepth,
-      time * 1.5,
-      { value: 40.0 },
+      {
+        value: 40.0,
+        duration: time * 1.5
+      },
       { value: 4.0 }
     );
 
@@ -220,18 +227,21 @@ export default class Particles {
 
   hide(_destroy, time = 0.8) {
     return new Promise((resolve, reject) => {
-      TweenLite.to(this.object3D.material.uniforms.uRandom, time, {
+      gsap.to(this.object3D.material.uniforms.uRandom, {
+        duration: time,
         value: 5.0,
         onComplete: () => {
           if (_destroy) this.destroy();
           resolve();
         }
       });
-      TweenLite.to(this.object3D.material.uniforms.uDepth, time, {
+      gsap.to(this.object3D.material.uniforms.uDepth, {
+        duration: time,
         value: -20.0,
-        ease: Quad.easeIn
+        ease: "quad.in"
       });
-      TweenLite.to(this.object3D.material.uniforms.uSize, time * 0.8, {
+      gsap.to(this.object3D.material.uniforms.uSize, {
+        duration: time * 0.8,
         value: 0.0
       });
 

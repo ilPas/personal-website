@@ -1,21 +1,16 @@
+@use "scss/bootstrap-grid.min";
+@use "scss/style";
+@use "scss/zuck";
+@use "scss/snapgram";
+@use "scss/cookie";
+
 /* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900|Roboto+Mono:500,700|Syncopate:700&display=swap");
 
-/* Import Grid / Style */
-@import "scss/bootstrap-grid.min";
-@import "scss/style";
-
-/* Import Zuck */
-@import "scss/zuck";
-@import "scss/snapgram";
-//@import "scss/facesnap";
-//@import "scss/snapssenger";
-//@import "scss/vemdezap";
-
-/* Import Glide */
-//@import "scss/glide.core";
-//@import "scss/glide.theme";
-
-/* Import Cookie Box */
-@import "scss/cookie";
+/* Commented out imports */
+//@use "scss/facesnap";
+//@use "scss/snapssenger";
+//@use "scss/vemdezap";
+//@use "scss/glide.core";
+//@use "scss/glide.theme";
 //@import "~cookie-consent-box/dist/cookie-consent-box";

@@ -36,7 +36,7 @@ module.exports = merge(common, {
       ],
     }),
     new CompressionPlugin({
-      filename: "[path].br[query]",
+      filename: "[path][base].br",
       algorithm: "brotliCompress",
       test: /\.(js|css|html|svg)$/,
       compressionOptions: { level: 11 },
@@ -50,14 +50,16 @@ module.exports = merge(common, {
       {
         test: /\.scss$/,
         use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
           {
-            loader: 'file-loader',
+            loader: 'sass-loader',
             options: {
-              name: 'css/[name].css',
+              implementation: require('sass'),
+              sassOptions: {
+                fiber: false
+              }
             }
-          },
-          {
-            loader: 'sass-loader'
           }
         ]
       },

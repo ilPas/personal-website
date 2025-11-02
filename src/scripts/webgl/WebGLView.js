@@ -1,5 +1,5 @@
 import "three";
-import { TweenLite } from "gsap/TweenMax";
+import { gsap } from "gsap";
 
 import InteractiveControls from "./controls/InteractiveControls";
 import Particles from "./particles/Particles";

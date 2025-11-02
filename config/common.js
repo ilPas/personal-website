@@ -15,8 +15,9 @@ module.exports = {
   },
   output: {
     path: path.resolve(__root, "dist"),
-    filename: "scripts/[name].[chunkhash].js",
-    chunkFilename: "scripts/[name].[chunkhash].js"
+    filename: "scripts/[name].[contenthash].js",
+    chunkFilename: "scripts/[name].[contenthash].js",
+    clean: true
   },
   module: {
     rules: [
@@ -38,6 +39,20 @@ module.exports = {
       {
         test: /three\/examples\/js/,
         use: "imports-loader?THREE=three"
+      },
+      {
+        test: /\.(svelte)$/,
+        use: {
+          loader: 'svelte-loader',
+          options: {
+            emitCss: true,
+            hotReload: true,
+            customElement: true,
+            compilerOptions: {
+              customElement: true
+            }
+          }
+        }
       }
       /*
 			{
@@ -58,15 +73,20 @@ module.exports = {
   resolve: {
     alias: {
       "three-examples": path.join(__root, "./node_modules/three/examples/js")
-    }
+    },
+    conditionNames: ['svelte', 'browser', 'import', 'require', 'node', 'default'],
+    extensions: ['.mjs', '.js', '.svelte']
   },
   plugins: [
     new CleanWebpackPlugin(["dist"], { root: __root }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__root, "static")
-      }
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__root, "static"),
+          to: "."
+        }
+      ]
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),

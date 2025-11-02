@@ -1,4 +1,4 @@
-import TweenMax from "gsap/TweenMax";
+import { gsap } from "gsap";
 import initPageTransitions from "../utils/initPageTransitions";
 
 class Cursor {
@@ -20,14 +20,14 @@ class Cursor {
     this.showCursor = false;
 
     const unveilCursor = () => {
-      TweenMax.set(this.innerCursor, {
-        x: this.clientX,
-        y: this.clientY
-      });
-      TweenMax.set(this.outerCursor, {
-        x: this.clientX - this.outerCursorBox.width / 2,
-        y: this.clientY - this.outerCursorBox.height / 2
-      });
+      gsap.set(this.innerCursor, {
+      xPercent: -50,
+      yPercent: -50,
+    });
+      gsap.set(this.outerCursor, {
+      xPercent: -50,
+      yPercent: -50,
+    });
       setTimeout(() => {
         this.outerCursorSpeed = 0.2;
       }, 100);
@@ -41,12 +41,13 @@ class Cursor {
     });
 
     const render = () => {
-      TweenMax.set(this.innerCursor, {
+      gsap.set(this.innerCursor, {
         x: this.clientX,
         y: this.clientY
       });
       if (!this.isStuck) {
-        TweenMax.to(this.outerCursor, this.outerCursorSpeed, {
+        gsap.to(this.outerCursor, {
+          duration: this.outerCursorSpeed,
           x: this.clientX - this.outerCursorBox.width / 2,
           y: this.clientY - this.outerCursorBox.height / 2
         });
@@ -68,7 +69,8 @@ class Cursor {
         width: this.outerCursorBox.width,
         height: this.outerCursorBox.height
       };
-      TweenMax.to(this.outerCursor, 0.2, {
+      gsap.to(this.outerCursor, {
+        duration: 0.2,
         x: box.left,
         y: box.top,
         width: box.width,
@@ -80,7 +82,8 @@ class Cursor {
 
     const handleMouseLeave = () => {
       this.isStuck = false;
-      TweenMax.to(this.outerCursor, 0.2, {
+      gsap.to(this.outerCursor, {
+        duration: 0.2,
         width: this.outerCursorOriginals.width,
         height: this.outerCursorOriginals.height,
         opacity: 0.2,
@@ -100,7 +103,8 @@ class Cursor {
       item.addEventListener("mouseleave", handleMouseLeave);
     });
 
-    const mainNavHoverTween = TweenMax.to(this.outerCursor, 0.3, {
+    const mainNavHoverTween = gsap.to(this.outerCursor, {
+      duration: 0.3,
       backgroundColor: "#ffffff",
       ease: this.easing,
       paused: true
@@ -108,13 +112,13 @@ class Cursor {
 
     const mainNavMouseEnter = () => {
       this.outerCursorSpeed = 0;
-      TweenMax.set(this.innerCursor, { opacity: 0 });
+      gsap.set(this.innerCursor, { opacity: 0 });
       mainNavHoverTween.play();
     };
 
     const mainNavMouseLeave = () => {
       this.outerCursorSpeed = 0.2;
-      TweenMax.set(this.innerCursor, { opacity: 1 });
+      gsap.set(this.innerCursor, { opacity: 1 });
       mainNavHoverTween.reverse();
     };
 

@@ -137,7 +137,7 @@ export default class App {
         },
       },
     };
-    GdprConsent.attachBanner(document.body, options);
+    attachBanner(document.body, options);
   }
 
   initZuck() {

@@ -8,8 +8,18 @@ module.exports = merge(common, {
   mode: "development",
   devtool: "inline-source-map",
   devServer: {
-    contentBase: "./dist",
+    static: {
+      directory: path.join(__dirname, "../dist"),
+      serveIndex: true,
+      watch: true
+    },
     host: "0.0.0.0",
+    compress: true,
+    hot: true,
+    open: true,
+    devMiddleware: {
+      writeToDisk: true
+    }
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -42,6 +52,14 @@ module.exports = merge(common, {
   ],
   module: {
     rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
+      },
       {
         test: /\.scss$/i,
         use: [

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 article,
 aside,
 details,
@@ -1317,7 +1319,7 @@ form .small .status > *:nth-child(2),
 }
 
 .card-front {
-  background: lighten(#0a0a0a, 2%);
+  background: color.adjust(#0a0a0a, $lightness: 2%);
   position: relative;
   z-index: 2;
 }
