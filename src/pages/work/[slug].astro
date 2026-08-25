@@ -1,0 +1,188 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Cover from '../../components/Cover.astro';
+import TagList from '../../components/TagList.astro';
+import LinkList from '../../components/LinkList.astro';
+import { getWork } from '../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const entries = await getWork();
+
+  return entries.map((entry, index) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      prev: entries[index - 1] ?? null,
+      next: entries[index + 1] ?? null,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry, prev, next } = Astro.props;
+const { title, excerpt, year, role, client, tags, cover, links, draft } = entry.data;
+const { Content } = await render(entry);
+
+const meta = [
+  { label: 'Anno', value: String(year) },
+  { label: 'Ruolo', value: role },
+  ...(client ? [{ label: 'Contesto', value: client }] : []),
+];
+---
+
+<Base title={title} description={excerpt} noindex={draft}>
+  <article class="case">
+    <div class="container container--narrow case__intro">
+      <p class="eyebrow">Case study</p>
+      <h1 class="case__title">{title}</h1>
+      <p class="case__excerpt">{excerpt}</p>
+
+      <dl class="case__meta">
+        {
+          meta.map((item) => (
+            <div>
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <TagList tags={tags} label={`Tag di ${title}`} />
+    </div>
+
+    <div class="container case__cover">
+      <Cover cover={cover} ratio="16 / 9" sizes="(min-width: 76rem) 72rem, 100vw" priority />
+    </div>
+
+    <div class="container container--narrow">
+      <div class="prose">
+        <Content />
+      </div>
+
+      {
+        links.length > 0 && (
+          <div class="case__links">
+            <h2 class="eyebrow">Link</h2>
+            <LinkList links={links} label={`Link di ${title}`} />
+          </div>
+        )
+      }
+    </div>
+
+    <nav class="container container--narrow case__nav" aria-label="Altri case study">
+      {
+        prev ? (
+          <a class="case__nav-link" href={`/work/${prev.id}`}>
+            <span class="case__nav-label">Precedente</span>
+            <span>{prev.data.title}</span>
+          </a>
+        ) : (
+          <a class="case__nav-link" href="/#work">
+            <span class="case__nav-label">Indietro</span>
+            <span>Tutti i case study</span>
+          </a>
+        )
+      }
+
+      {
+        next && (
+          <a class="case__nav-link case__nav-link--end" href={`/work/${next.id}`}>
+            <span class="case__nav-label">Successivo</span>
+            <span>{next.data.title}</span>
+          </a>
+        )
+      }
+    </nav>
+  </article>
+</Base>
+
+<style>
+  .case__intro {
+    padding-block-start: var(--space-2xl);
+  }
+
+  .case__title {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--text-3xl);
+  }
+
+  .case__excerpt {
+    max-width: 52ch;
+    margin-block-start: var(--space-m);
+    font-size: var(--text-lg);
+    color: var(--ink-muted);
+  }
+
+  .case__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-l);
+    margin-block: var(--space-l) var(--space-s);
+    padding-block-start: var(--space-s);
+    border-block-start: 1px solid var(--line);
+  }
+
+  .case__meta dt {
+    font-size: var(--text-2xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .case__meta dd {
+    margin: var(--space-3xs) 0 0;
+    font-size: var(--text-sm);
+  }
+
+  .case__cover {
+    margin-block: var(--space-xl);
+  }
+
+  .case__links {
+    margin-block-start: var(--space-xl);
+    padding-block-start: var(--space-s);
+    border-block-start: 1px solid var(--line);
+  }
+
+  .case__links .eyebrow {
+    margin-block-end: var(--space-2xs);
+  }
+
+  .case__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-m);
+    margin-block-start: var(--space-2xl);
+    padding-block-start: var(--space-m);
+    border-block-start: 1px solid var(--line);
+  }
+
+  .case__nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    max-width: 22ch;
+    font-size: var(--text-sm);
+    text-decoration: none;
+  }
+
+  .case__nav-link:hover span:last-child {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .case__nav-link--end {
+    text-align: end;
+    margin-inline-start: auto;
+  }
+
+  .case__nav-label {
+    font-size: var(--text-2xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+</style>

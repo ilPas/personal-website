@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Pagina non trovata" noindex>
+  <div class="container container--narrow not-found">
+    <p class="eyebrow">Errore 404</p>
+    <h1 class="not-found__title">Questa pagina non c'è.</h1>
+    <p class="not-found__text">
+      Il link potrebbe essere vecchio, oppure la pagina è stata spostata. Da qui
+      puoi tornare indietro senza perdere tempo.
+    </p>
+
+    <ul class="not-found__links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/lab">Lab</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .not-found {
+    padding-block: var(--space-3xl);
+  }
+
+  .not-found__title {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--text-3xl);
+  }
+
+  .not-found__text {
+    max-width: 46ch;
+    margin-block-start: var(--space-m);
+    color: var(--ink-muted);
+  }
+
+  .not-found__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-l);
+    margin-block-start: var(--space-l);
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-sm);
+  }
+
+  .not-found__links a {
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.3em;
+  }
+
+  .not-found__links a:hover {
+    text-decoration-color: currentColor;
+  }
+</style>

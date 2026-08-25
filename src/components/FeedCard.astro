@@ -1,0 +1,107 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Cover from './Cover.astro';
+import TagList from './TagList.astro';
+import TypeBadge from './TypeBadge.astro';
+import { formatDate, isoDate } from '../lib/content';
+
+interface Props {
+  entry: CollectionEntry<'feed'>;
+  headingLevel?: 2 | 3;
+}
+
+const { entry, headingLevel = 3 } = Astro.props;
+const { title, excerpt, date, type, tags, cover, draft } = entry.data;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+---
+
+<article class="feed-card">
+  {
+    cover && (
+      <Cover
+        cover={cover}
+        ratio="16 / 9"
+        sizes="(min-width: 60rem) 20rem, (min-width: 40rem) 45vw, 92vw"
+      />
+    )
+  }
+
+  <p class="feed-card__meta">
+    <TypeBadge type={type} />
+    <time datetime={isoDate(date)}>{formatDate(date)}</time>
+    {draft && <span class="feed-card__draft">Bozza</span>}
+  </p>
+
+  <Heading class="feed-card__title">
+    <a class="feed-card__link" href={`/lab/${entry.id}`}>{title}</a>
+  </Heading>
+
+  <p class="feed-card__excerpt">{excerpt}</p>
+
+  <TagList tags={tags} label={`Tag di ${title}`} />
+</article>
+
+<style>
+  .feed-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    height: 100%;
+    padding-block-end: var(--space-s);
+  }
+
+  .feed-card:has(.feed-card__link:focus-visible) {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 6px;
+    border-radius: var(--radius-md);
+  }
+
+  .feed-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
+  }
+
+  .feed-card__draft {
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-sm);
+    padding: 0 0.4em;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-size: var(--text-2xs);
+  }
+
+  .feed-card__title {
+    font-size: var(--text-lg);
+  }
+
+  .feed-card__link {
+    text-decoration: none;
+  }
+
+  .feed-card__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .feed-card__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+  }
+
+  .feed-card__link:focus-visible {
+    outline: none;
+  }
+
+  .feed-card__excerpt {
+    color: var(--ink-muted);
+    font-size: var(--text-sm);
+    max-width: 46ch;
+  }
+</style>

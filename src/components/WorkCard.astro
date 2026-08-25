@@ -1,0 +1,108 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Cover from './Cover.astro';
+import TagList from './TagList.astro';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  /** Livello dell'intestazione, per non rompere la gerarchia della pagina. */
+  headingLevel?: 2 | 3;
+}
+
+const { entry, headingLevel = 3 } = Astro.props;
+const { title, excerpt, year, role, client, tags, cover, draft } = entry.data;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+---
+
+<article class="work-card">
+  <Cover cover={cover} ratio="16 / 10" sizes="(min-width: 60rem) 22rem, (min-width: 40rem) 45vw, 92vw" />
+
+  <div class="work-card__body">
+    <p class="work-card__meta">
+      <span>{year}</span>
+      <span aria-hidden="true">·</span>
+      <span>{role}</span>
+      {client && <><span aria-hidden="true">·</span><span>{client}</span></>}
+      {draft && <span class="work-card__draft">Bozza</span>}
+    </p>
+
+    <Heading class="work-card__title">
+      <a class="work-card__link" href={`/work/${entry.id}`}>{title}</a>
+    </Heading>
+
+    <p class="work-card__excerpt">{excerpt}</p>
+
+    <TagList tags={tags} label={`Tag di ${title}`} />
+  </div>
+</article>
+
+<style>
+  .work-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    height: 100%;
+  }
+
+  /* Il ring appartiene alla card, il link resta l'unico elemento focusabile. */
+  .work-card:has(.work-card__link:focus-visible) {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 6px;
+    border-radius: var(--radius-md);
+  }
+
+  .work-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .work-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4em;
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
+  }
+
+  .work-card__draft {
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-sm);
+    padding: 0 0.4em;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-size: var(--text-2xs);
+  }
+
+  .work-card__title {
+    font-size: var(--text-xl);
+  }
+
+  .work-card__link {
+    text-decoration: none;
+  }
+
+  .work-card__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  /* Tutta la card è cliccabile, ma nel DOM c'è un solo link. */
+  .work-card__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+  }
+
+  .work-card__link:focus-visible {
+    outline: none;
+  }
+
+  .work-card__excerpt {
+    color: var(--ink-muted);
+    max-width: 42ch;
+  }
+</style>

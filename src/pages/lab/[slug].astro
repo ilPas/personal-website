@@ -1,0 +1,177 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Cover from '../../components/Cover.astro';
+import TagList from '../../components/TagList.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import LinkList from '../../components/LinkList.astro';
+import { formatDate, getFeed, isoDate } from '../../lib/content';
+import { FEED_TYPES } from '../../consts';
+
+export const getStaticPaths = (async () => {
+  const entries = await getFeed();
+
+  return entries.map((entry, index) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      newer: entries[index - 1] ?? null,
+      older: entries[index + 1] ?? null,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry, newer, older } = Astro.props;
+const { title, excerpt, date, type, tags, cover, links, draft } = entry.data;
+const { Content } = await render(entry);
+---
+
+<Base title={title} description={excerpt} noindex={draft}>
+  <article class="entry">
+    <div class="container container--narrow">
+      <p class="entry__meta">
+        <TypeBadge type={type} />
+        <time datetime={isoDate(date)}>{formatDate(date)}</time>
+        <span class="entry__type-note">{FEED_TYPES[type].description}</span>
+      </p>
+
+      <h1 class="entry__title">{title}</h1>
+      <p class="entry__excerpt">{excerpt}</p>
+
+      <TagList tags={tags} label={`Tag di ${title}`} />
+
+      {
+        cover && (
+          <div class="entry__cover">
+            <Cover cover={cover} ratio="16 / 9" sizes="(min-width: 52rem) 48rem, 100vw" priority />
+          </div>
+        )
+      }
+
+      <div class="prose entry__body">
+        <Content />
+      </div>
+
+      {
+        links.length > 0 && (
+          <div class="entry__links">
+            <h2 class="eyebrow">Link</h2>
+            <LinkList links={links} label={`Link di ${title}`} />
+          </div>
+        )
+      }
+
+      <nav class="entry__nav" aria-label="Altre entry del lab">
+        {
+          newer ? (
+            <a class="entry__nav-link" href={`/lab/${newer.id}`}>
+              <span class="entry__nav-label">Più recente</span>
+              <span>{newer.data.title}</span>
+            </a>
+          ) : (
+            <a class="entry__nav-link" href="/lab">
+              <span class="entry__nav-label">Indietro</span>
+              <span>Tutto il lab</span>
+            </a>
+          )
+        }
+
+        {
+          older && (
+            <a class="entry__nav-link entry__nav-link--end" href={`/lab/${older.id}`}>
+              <span class="entry__nav-label">Più vecchia</span>
+              <span>{older.data.title}</span>
+            </a>
+          )
+        }
+      </nav>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .entry {
+    padding-block: var(--space-2xl) var(--space-xl);
+  }
+
+  .entry__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs) var(--space-s);
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
+  }
+
+  .entry__type-note {
+    color: var(--ink-faint);
+  }
+
+  .entry__title {
+    max-width: 24ch;
+    margin-block-start: var(--space-s);
+    font-size: var(--text-3xl);
+  }
+
+  .entry__excerpt {
+    max-width: 52ch;
+    margin-block: var(--space-m);
+    font-size: var(--text-lg);
+    color: var(--ink-muted);
+  }
+
+  .entry__cover {
+    margin-block-start: var(--space-xl);
+  }
+
+  .entry__body {
+    margin-block-start: var(--space-xl);
+  }
+
+  .entry__links {
+    margin-block-start: var(--space-xl);
+    padding-block-start: var(--space-s);
+    border-block-start: 1px solid var(--line);
+  }
+
+  .entry__links .eyebrow {
+    margin-block-end: var(--space-2xs);
+  }
+
+  .entry__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-m);
+    margin-block-start: var(--space-2xl);
+    padding-block-start: var(--space-m);
+    border-block-start: 1px solid var(--line);
+  }
+
+  .entry__nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    max-width: 22ch;
+    font-size: var(--text-sm);
+    text-decoration: none;
+  }
+
+  .entry__nav-link:hover span:last-child {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .entry__nav-link--end {
+    text-align: end;
+    margin-inline-start: auto;
+  }
+
+  .entry__nav-label {
+    font-size: var(--text-2xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+</style>

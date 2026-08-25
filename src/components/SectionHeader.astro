@@ -1,0 +1,58 @@
+---
+interface Props {
+  /** Micro-etichetta sopra il titolo. */
+  eyebrow?: string;
+  title: string;
+  /** Id dell'heading, usato come ancora della sezione. */
+  id?: string;
+  /** Link opzionale a destra del titolo. */
+  action?: { href: string; label: string };
+}
+
+const { eyebrow, title, id, action } = Astro.props;
+---
+
+<div class="section-header">
+  <div>
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h2 class="section-header__title" id={id}>{title}</h2>
+  </div>
+
+  {
+    action && (
+      <a class="section-header__action" href={action.href}>
+        {action.label}
+        <span aria-hidden="true">&nbsp;→</span>
+      </a>
+    )
+  }
+</div>
+
+<style>
+  .section-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2xs) var(--space-m);
+    margin-block-end: var(--space-l);
+  }
+
+  .section-header__title {
+    font-size: var(--text-2xl);
+    margin-block-start: var(--space-3xs);
+  }
+
+  .section-header__action {
+    font-size: var(--text-sm);
+    color: var(--ink-muted);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .section-header__action:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+</style>

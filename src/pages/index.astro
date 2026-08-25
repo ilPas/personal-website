@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import AboutSection from '../components/AboutSection.astro';
+import WorkSection from '../components/WorkSection.astro';
+import FeedSection from '../components/FeedSection.astro';
+import { getFeed, getWork } from '../lib/content';
+import { HOME_FEED_LIMIT, HOME_WORK_LIMIT } from '../consts';
+
+const work = (await getWork()).slice(0, HOME_WORK_LIMIT);
+const feed = (await getFeed()).slice(0, HOME_FEED_LIMIT);
+---
+
+<Base>
+  <Hero />
+  <AboutSection />
+  <WorkSection entries={work} />
+  <FeedSection entries={feed} />
+</Base>

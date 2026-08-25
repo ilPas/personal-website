@@ -1,0 +1,57 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  /** Titolo mostrato in pagina, se diverso da quello del <title>. */
+  heading?: string;
+  description?: string;
+  lead?: string;
+  /** Data ultimo aggiornamento, per le pagine di servizio. */
+  updated?: string;
+}
+
+const { title, heading = title, description, lead, updated } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <div class="container container--narrow page">
+    <header class="page__header">
+      <h1 class="page__title">{heading}</h1>
+      {lead && <p class="page__lead">{lead}</p>}
+      {updated && <p class="page__updated">Ultimo aggiornamento: {updated}</p>}
+    </header>
+
+    <div class="prose">
+      <slot />
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding-block: var(--space-2xl) var(--space-xl);
+  }
+
+  .page__header {
+    margin-block-end: var(--space-xl);
+  }
+
+  .page__title {
+    max-width: 20ch;
+    font-size: var(--text-3xl);
+  }
+
+  .page__lead {
+    max-width: 54ch;
+    margin-block-start: var(--space-m);
+    font-size: var(--text-lg);
+    color: var(--ink-muted);
+  }
+
+  .page__updated {
+    margin-block-start: var(--space-s);
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+  }
+</style>

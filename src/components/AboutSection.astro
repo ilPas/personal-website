@@ -1,0 +1,107 @@
+---
+import SectionHeader from './SectionHeader.astro';
+
+/** Sintesi di percorso. Dati volutamente essenziali: il dettaglio sta in /about. */
+const facts = [
+  { label: 'Base', value: 'Biella, Piemonte' },
+  { label: 'Ambito', value: 'Design di prodotto e front-end' },
+  { label: 'Strumenti', value: 'Figma, HTML, CSS, TypeScript' },
+];
+---
+
+<section class="about" aria-labelledby="chi-sono-title">
+  <div class="container about__inner">
+    <div class="about__intro">
+      <SectionHeader eyebrow="Chi sono" title="Progetto e scrivo la stessa cosa." id="chi-sono-title" />
+
+      <div class="about__text">
+        <p>
+          Faccio design di interfacce da abbastanza tempo da aver smesso di
+          considerare il codice un problema di qualcun altro. Il risultato è un
+          modo di lavorare più corto: prototipo direttamente nel browser, uso
+          Figma per decidere e non per illustrare, e tengo insieme accessibilità
+          e performance perché sono la stessa conversazione.
+        </p>
+        <p>
+          Mi interessa il lavoro che regge nel tempo: sistemi di componenti che
+          restano leggibili, pagine che caricano in fretta anche in condizioni
+          scomode, testi che dicono quello che serve.
+        </p>
+        <p>
+          <a href="/about">Il percorso completo</a>
+        </p>
+      </div>
+    </div>
+
+    <dl class="about__facts">
+      {
+        facts.map((fact) => (
+          <div class="about__fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-block: var(--space-2xl);
+    border-block-start: 1px solid var(--line);
+  }
+
+  .about__inner {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 56rem) {
+    .about__inner {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: var(--space-2xl);
+    }
+  }
+
+  .about__text {
+    max-width: var(--measure);
+    color: var(--ink-muted);
+  }
+
+  .about__text > * + * {
+    margin-block-start: var(--space-s);
+  }
+
+  .about__text a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.25em;
+  }
+
+  .about__text a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .about__facts {
+    display: grid;
+    gap: var(--space-s);
+    margin: 0;
+    padding-block-start: var(--space-s);
+    border-block-start: 1px solid var(--line);
+  }
+
+  .about__fact dt {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .about__fact dd {
+    margin: var(--space-3xs) 0 0;
+    font-size: var(--text-sm);
+  }
+</style>

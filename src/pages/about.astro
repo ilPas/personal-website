@@ -1,0 +1,63 @@
+---
+import Page from '../layouts/Page.astro';
+import { SITE, SOCIAL } from '../consts';
+
+const description =
+  'Chi è Pasquale Errico: percorso, modo di lavorare e cose di cui si occupa tra design di interfacce e sviluppo front-end.';
+---
+
+<Page
+  title="About"
+  heading="Design e front-end, senza passaggio di consegne."
+  description={description}
+  lead="Progetto interfacce e le costruisco. Fare entrambe le cose accorcia il ciclo e toglie di mezzo un intero strato di malintesi."
+>
+  <h2>Come lavoro</h2>
+  <p>
+    Parto sempre dal problema, non dallo schermo. Prima capisco cosa deve
+    succedere e per chi, poi cerco la forma più semplice che lo faccia
+    succedere. Di solito significa meno interfaccia di quella che sembrava
+    necessaria all'inizio.
+  </p>
+  <p>
+    Prototipo presto nel browser, perché è lì che le decisioni diventano vere:
+    il testo reale è più lungo del previsto, la connessione è più lenta, lo
+    schermo è più stretto. Figma resta lo strumento per decidere insieme, non
+    per fingere che il prodotto sia già finito.
+  </p>
+
+  <h2>Di cosa mi occupo</h2>
+  <ul>
+    <li>Design di interfacce per prodotti web e applicazioni interne.</li>
+    <li>Design system: componenti, token, documentazione che qualcuno legge davvero.</li>
+    <li>Sviluppo front-end: HTML semantico, CSS moderno, TypeScript quando serve.</li>
+    <li>Accessibilità e performance, trattate come requisiti e non come rifinitura.</li>
+  </ul>
+
+  <h2>Cosa non faccio</h2>
+  <p>
+    Non mi occupo di campagne pubblicitarie, non ricostruisco brand identity da
+    zero e non prendo lavori dove l'accessibilità è considerata un optional.
+    Preferisco dirlo prima.
+  </p>
+
+  <h2>Scrivere e condividere</h2>
+  <p>
+    Quello che imparo finisce nel <a href="/lab">lab</a>: note brevi, esperimenti
+    tecnici, appunti di talk. Non è un blog con una linea editoriale, è un
+    quaderno pubblico.
+  </p>
+
+  <h2>Parliamone</h2>
+  <p>
+    Il modo più rapido è scrivermi a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    Se preferisci vedere prima il codice o gli esperimenti:
+  </p>
+  <ul>
+    {SOCIAL.map((item) => (
+      <li>
+        <a href={item.href} rel="me noopener">{item.label}</a>
+      </li>
+    ))}
+  </ul>
+</Page>

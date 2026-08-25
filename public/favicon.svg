@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="PE">
+  <!-- PLACEHOLDER neutro: segno provvisorio, da sostituire con la direzione visiva. -->
+  <style>
+    .bg { fill: #111111; }
+    .fg { fill: #ffffff; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #f2f2f2; }
+      .fg { fill: #111111; }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="4" />
+  <path class="fg" d="M8 8h7.5a5 5 0 0 1 0 10H11v6H8V8Zm3 3v4h4.5a2 2 0 0 0 0-4H11Z" />
+  <path class="fg" d="M19.5 21h5.5v3h-5.5v-3Z" />
+</svg>

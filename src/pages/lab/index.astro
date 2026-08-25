@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import FilteredFeed from '../../components/FilteredFeed.astro';
+import { getFeed } from '../../lib/content';
+
+const entries = await getFeed();
+
+const description =
+  'Il feed completo: cose costruite, esperimenti tecnici e interventi pubblici, in ordine di data.';
+---
+
+<Base title="Lab" description={description}>
+  <div class="container lab">
+    <header class="lab__header">
+      <p class="eyebrow">Lab</p>
+      <h1 class="lab__title">Tutto quello che passa di qui.</h1>
+      <p class="lab__lead">{description}</p>
+    </header>
+
+    <FilteredFeed entries={entries} />
+  </div>
+</Base>
+
+<style>
+  .lab {
+    padding-block: var(--space-2xl) var(--space-xl);
+  }
+
+  .lab__header {
+    margin-block-end: var(--space-2xl);
+  }
+
+  .lab__title {
+    max-width: 20ch;
+    margin-block-start: var(--space-2xs);
+    font-size: var(--text-3xl);
+  }
+
+  .lab__lead {
+    max-width: 56ch;
+    margin-block-start: var(--space-s);
+    font-size: var(--text-lg);
+    color: var(--ink-muted);
+  }
+</style>

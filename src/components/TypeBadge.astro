@@ -1,0 +1,26 @@
+---
+import { FEED_TYPES, type FeedType } from '../consts';
+
+interface Props {
+  type: FeedType;
+}
+
+const { type } = Astro.props;
+---
+
+<span class="type-badge">{FEED_TYPES[type].label}</span>
+
+<style>
+  .type-badge {
+    display: inline-block;
+    padding: 0.15em 0.55em;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-2xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+</style>

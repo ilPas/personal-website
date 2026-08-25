@@ -1,0 +1,61 @@
+---
+import { SITE } from '../consts';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container">
+    <p class="eyebrow">{SITE.tagline}</p>
+
+    <h1 class="hero__title" id="hero-title">
+      Costruisco interfacce che si spiegano da sole.
+    </h1>
+
+    <p class="hero__lead">
+      Sono {SITE.name}. Lavoro nello spazio stretto tra design e front-end: progetto
+      l'interfaccia e poi la scrivo, così quello che si vede in un mockup è anche
+      quello che finisce in produzione.
+    </p>
+
+    <p class="hero__actions">
+      <a href="#work">Guarda i case study</a>
+      <a href="/lab">Sfoglia il lab</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-2xl) var(--space-3xl);
+  }
+
+  .hero__title {
+    max-width: 18ch;
+    margin-block-start: var(--space-s);
+    font-size: var(--text-4xl);
+  }
+
+  .hero__lead {
+    max-width: 52ch;
+    margin-block-start: var(--space-m);
+    font-size: var(--text-lg);
+    color: var(--ink-muted);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-l);
+    margin-block-start: var(--space-l);
+    font-size: var(--text-sm);
+  }
+
+  .hero__actions a {
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.3em;
+  }
+
+  .hero__actions a:hover {
+    text-decoration-color: currentColor;
+  }
+</style>

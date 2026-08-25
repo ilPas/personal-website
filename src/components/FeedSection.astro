@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SectionHeader from './SectionHeader.astro';
+import FeedCard from './FeedCard.astro';
+
+interface Props {
+  entries: CollectionEntry<'feed'>[];
+}
+
+const { entries } = Astro.props;
+---
+
+<section class="feed-section" aria-labelledby="feed-title" id="feed">
+  <div class="container">
+    <SectionHeader
+      eyebrow="Feed"
+      title="Le ultime cose."
+      id="feed-title"
+      action={{ href: '/lab', label: 'Tutto il lab' }}
+    />
+
+    {
+      entries.length > 0 ? (
+        <ul class="feed-section__list">
+          {entries.map((entry) => (
+            <li>
+              <FeedCard entry={entry} headingLevel={3} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="feed-section__empty">Ancora niente nel feed.</p>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .feed-section {
+    padding-block: var(--space-2xl);
+    border-block-start: 1px solid var(--line);
+    scroll-margin-block-start: var(--space-m);
+  }
+
+  .feed-section__list {
+    display: grid;
+    gap: var(--space-xl) var(--space-l);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .feed-section__empty {
+    color: var(--ink-muted);
+  }
+</style>

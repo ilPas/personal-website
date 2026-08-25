@@ -1,0 +1,74 @@
+---
+import Page from '../layouts/Page.astro';
+import { SITE } from '../consts';
+
+const description =
+  'Come questo sito tratta i dati: nessun cookie, nessun tracciamento, nessun servizio di terze parti.';
+---
+
+<Page
+  title="Privacy e cookie"
+  description={description}
+  lead="Versione breve: questo sito non ti traccia, non usa cookie e non carica niente da domini di terze parti."
+  updated="agosto 2026"
+>
+  <h2>Titolare del trattamento</h2>
+  <p>
+    Il titolare è {SITE.name}. Per qualunque richiesta relativa ai dati personali:
+    <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+  </p>
+
+  <h2>Cookie</h2>
+  <p>
+    Questo sito non installa cookie, né tecnici né di profilazione, e non usa
+    <code>localStorage</code> o tecnologie equivalenti. Per questo non trovi un
+    banner di consenso: non c'è niente da acconsentire.
+  </p>
+
+  <h2>Statistiche e tracciamento</h2>
+  <p>
+    Al momento non è attivo alcuno strumento di analytics. Nessuna piattaforma
+    di misurazione riceve dati sulla tua visita.
+  </p>
+  <p>
+    Se in futuro verrà introdotto uno strumento di statistiche, questa pagina
+    sarà aggiornata prima dell'attivazione, indicando quale strumento, quali
+    dati raccoglie e su quale base giuridica.
+  </p>
+
+  <h2>Servizi di terze parti</h2>
+  <p>
+    Le pagine non caricano font, script, immagini o widget da domini esterni:
+    tutte le risorse sono servite da questo dominio. Di conseguenza nessun
+    fornitore terzo riceve il tuo indirizzo IP durante la navigazione.
+  </p>
+  <p>
+    Fanno eccezione i link in uscita: se scegli di seguirne uno, il sito di
+    destinazione applica le proprie regole, su cui non abbiamo controllo.
+  </p>
+
+  <h2>Log del server</h2>
+  <p>
+    Il fornitore di hosting può registrare dati tecnici di connessione — come
+    indirizzo IP, data e ora della richiesta, pagina richiesta e tipo di browser —
+    per garantire il funzionamento del servizio e la sicurezza dell'infrastruttura.
+    Si tratta di un trattamento basato sul legittimo interesse a mantenere il
+    sito raggiungibile e protetto dagli abusi. Questi log non vengono usati per
+    profilare i visitatori.
+  </p>
+
+  <h2>Email</h2>
+  <p>
+    Se mi scrivi, il contenuto del messaggio e il tuo indirizzo email vengono
+    trattati per il solo scopo di risponderti. Non finiscono in nessuna
+    newsletter e non vengono ceduti a nessuno.
+  </p>
+
+  <h2>I tuoi diritti</h2>
+  <p>
+    Puoi chiedere in qualunque momento accesso, rettifica, cancellazione o
+    limitazione dei dati che ti riguardano, oltre a opporti al trattamento,
+    scrivendo all'indirizzo indicato sopra. Hai inoltre diritto di proporre
+    reclamo al Garante per la protezione dei dati personali.
+  </p>
+</Page>

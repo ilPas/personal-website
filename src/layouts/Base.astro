@@ -1,0 +1,78 @@
+---
+import { SITE } from '../consts';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/global.css';
+
+interface Props {
+  /** Titolo della pagina, senza il nome del sito. */
+  title?: string;
+  /** Descrizione per SEO e Open Graph. */
+  description?: string;
+  /** Esclude la pagina dagli indici (bozze in dev, pagine di servizio). */
+  noindex?: boolean;
+}
+
+const { title, description = SITE.description, noindex = false } = Astro.props;
+
+const pageTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <slot name="head" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#contenuto">Salta al contenuto</a>
+    <SiteHeader />
+    <main id="contenuto" tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>
+
+<style>
+  /* Lo skip link vive fuori schermo e rientra appena riceve il focus. */
+  .skip-link {
+    position: absolute;
+    inset-inline-start: var(--space-s);
+    inset-block-start: var(--space-s);
+    z-index: 10;
+    transform: translateY(calc(-100% - var(--space-l)));
+    padding: var(--space-2xs) var(--space-s);
+    background-color: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    text-decoration: none;
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
+  main:focus {
+    outline: none;
+  }
+</style>

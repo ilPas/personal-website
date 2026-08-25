@@ -1,0 +1,85 @@
+---
+import { NAV, SITE } from '../consts';
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+/** Una voce è corrente se il suo percorso coincide con quello della pagina. */
+const isCurrent = (href: string) => {
+  const target = href.split('#')[0]?.replace(/\/+$/, '') || '/';
+  if (target === '/') return path === '/';
+  return path === target || path.startsWith(`${target}/`);
+};
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__name" href="/">{SITE.name}</a>
+
+    <nav aria-label="Navigazione principale">
+      <ul class="site-header__nav">
+        {
+          NAV.map((item) => (
+            <li>
+              <a
+                class="site-header__link"
+                href={item.href}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-block-end: 1px solid var(--line);
+  }
+
+  /* Nessun menu a scomparsa: sotto i 480px l'header va semplicemente a capo. */
+  .site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2xs) var(--space-m);
+    padding-block: var(--space-s);
+  }
+
+  .site-header__name {
+    font-size: var(--text-base);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    text-decoration: none;
+  }
+
+  .site-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-m);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-header__link {
+    font-size: var(--text-sm);
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  .site-header__link:hover {
+    color: var(--ink);
+  }
+
+  .site-header__link[aria-current='page'] {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.35em;
+  }
+</style>
