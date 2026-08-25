@@ -6,9 +6,6 @@ role: 'Design system e documentazione'
 client: 'Team di prodotto interno'
 tags: ['design system', 'token', 'documentazione']
 order: 2
-links:
-  - label: 'Perché i token di colore semantici invecchiano meglio'
-    url: '/lab/token-semantici'
 draft: false
 ---
 

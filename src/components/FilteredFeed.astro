@@ -64,9 +64,9 @@ const showFilter = availableTypes.length > 1;
 
   {
     entries.length > 0 ? (
-      <ul class="filtered-feed__list">
+      <ul class="feed-list">
         {entries.map((entry) => (
-          <li class="filtered-feed__item" data-type={entry.data.type}>
+          <li class="feed-list__item" data-type={entry.data.type}>
             <FeedCard entry={entry} headingLevel={headingLevel} />
           </li>
         ))}
@@ -81,7 +81,7 @@ const showFilter = availableTypes.length > 1;
   .filtered-feed__filter {
     border: 0;
     padding: 0;
-    margin: 0 0 var(--space-xl);
+    margin: 0 0 var(--space-m);
   }
 
   .filtered-feed__legend {
@@ -150,21 +150,12 @@ const showFilter = availableTypes.length > 1;
     outline-offset: 3px;
   }
 
-  .filtered-feed__list {
-    display: grid;
-    gap: var(--space-xl) var(--space-l);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
   /* --- Il filtro vero e proprio ------------------------------------------
      Un browser senza `:has()` mostra semplicemente tutte le entry:
      nessuna funzione persa, solo il filtro che non filtra. */
-  .filtered-feed:has(#filtro-build:checked) .filtered-feed__item:not([data-type='build']),
-  .filtered-feed:has(#filtro-lab:checked) .filtered-feed__item:not([data-type='lab']),
-  .filtered-feed:has(#filtro-talk:checked) .filtered-feed__item:not([data-type='talk']) {
+  .filtered-feed:has(#filtro-build:checked) .feed-list__item:not([data-type='build']),
+  .filtered-feed:has(#filtro-lab:checked) .feed-list__item:not([data-type='lab']),
+  .filtered-feed:has(#filtro-talk:checked) .feed-list__item:not([data-type='talk']) {
     display: none;
   }
 

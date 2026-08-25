@@ -6,9 +6,6 @@ role: 'Design di prodotto e front-end'
 client: 'Servizio B2B, settore ricettivo'
 tags: ['design system', 'form', 'accessibilità']
 order: 1
-links:
-  - label: 'Nota tecnica sul componente calendario'
-    url: '/lab/calendario-accessibile'
 draft: false
 ---
 

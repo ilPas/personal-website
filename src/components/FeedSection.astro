@@ -21,9 +21,9 @@ const { entries } = Astro.props;
 
     {
       entries.length > 0 ? (
-        <ul class="feed-section__list">
+        <ul class="feed-list">
           {entries.map((entry) => (
-            <li>
+            <li class="feed-list__item">
               <FeedCard entry={entry} headingLevel={3} />
             </li>
           ))}
@@ -40,15 +40,6 @@ const { entries } = Astro.props;
     padding-block: var(--space-2xl);
     border-block-start: 1px solid var(--line);
     scroll-margin-block-start: var(--space-m);
-  }
-
-  .feed-section__list {
-    display: grid;
-    gap: var(--space-xl) var(--space-l);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-    list-style: none;
-    margin: 0;
-    padding: 0;
   }
 
   .feed-section__empty {

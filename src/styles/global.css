@@ -253,6 +253,29 @@ hr {
 }
 
 /* =========================================================================
+   FEED
+   Elenco cronologico a colonna singola, usato sia in home sia in /lab.
+   Il filo separatore sta SOPRA ogni voce, anche la prima: con il filtro in
+   CSS non si sa quale voce sia la prima visibile, e un bordo condizionato
+   lascerebbe righe orfane appena si filtra.
+   ========================================================================= */
+
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  /* Il filo separatore non deve essere più largo della colonna di testo. */
+  max-width: var(--measure);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.feed-list__item {
+  padding-block: var(--space-l);
+  border-block-start: 1px solid var(--line);
+}
+
+/* =========================================================================
    PROSA
    Corpo dei contenuti Markdown (case study, entry del lab, pagine statiche).
    ========================================================================= */

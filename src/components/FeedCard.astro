@@ -15,58 +15,60 @@ const { title, excerpt, date, type, tags, cover, draft } = entry.data;
 const Heading = `h${headingLevel}` as 'h2' | 'h3';
 ---
 
-<article class="feed-card">
-  {
-    cover && (
-      <Cover
-        cover={cover}
-        ratio="16 / 9"
-        sizes="(min-width: 60rem) 20rem, (min-width: 40rem) 45vw, 92vw"
-      />
-    )
-  }
-
-  <p class="feed-card__meta">
-    <TypeBadge type={type} />
+<article class="feed-entry">
+  <p class="feed-entry__meta">
     <time datetime={isoDate(date)}>{formatDate(date)}</time>
-    {draft && <span class="feed-card__draft">Bozza</span>}
+    <span class="feed-entry__sep" aria-hidden="true">·</span>
+    <TypeBadge type={type} />
+    {draft && <span class="feed-entry__draft">Bozza</span>}
   </p>
 
-  <Heading class="feed-card__title">
-    <a class="feed-card__link" href={`/lab/${entry.id}`}>{title}</a>
+  <Heading class="feed-entry__title">
+    <a class="feed-entry__link" href={`/lab/${entry.id}`}>{title}</a>
   </Heading>
 
-  <p class="feed-card__excerpt">{excerpt}</p>
+  <p class="feed-entry__excerpt">{excerpt}</p>
+
+  {
+    /* La copertina compare solo se esiste: niente riquadri vuoti nell'elenco. */
+    cover && (
+      <div class="feed-entry__cover">
+        <Cover cover={cover} ratio="16 / 9" sizes="(min-width: 40rem) 34rem, 92vw" />
+      </div>
+    )
+  }
 
   <TagList tags={tags} label={`Tag di ${title}`} />
 </article>
 
 <style>
-  .feed-card {
+  .feed-entry {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--space-2xs);
-    height: 100%;
-    padding-block-end: var(--space-s);
   }
 
-  .feed-card:has(.feed-card__link:focus-visible) {
+  .feed-entry:has(.feed-entry__link:focus-visible) {
     outline: 2px solid var(--focus-ring);
     outline-offset: 6px;
     border-radius: var(--radius-md);
   }
 
-  .feed-card__meta {
+  .feed-entry__meta {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: baseline;
     gap: var(--space-2xs);
     font-size: var(--text-xs);
     color: var(--ink-muted);
   }
 
-  .feed-card__draft {
+  .feed-entry__sep {
+    color: var(--ink-faint);
+  }
+
+  .feed-entry__draft {
     border: 1px dashed var(--line-strong);
     border-radius: var(--radius-sm);
     padding: 0 0.4em;
@@ -75,33 +77,37 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
     font-size: var(--text-2xs);
   }
 
-  .feed-card__title {
-    font-size: var(--text-lg);
+  .feed-entry__title {
+    font-size: var(--text-xl);
   }
 
-  .feed-card__link {
+  .feed-entry__link {
     text-decoration: none;
   }
 
-  .feed-card__link:hover {
+  .feed-entry__link:hover {
     text-decoration: underline;
     text-underline-offset: 0.25em;
   }
 
-  .feed-card__link::after {
+  /* Tutta la voce è cliccabile, ma nel DOM c'è un solo link. */
+  .feed-entry__link::after {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: var(--radius-md);
   }
 
-  .feed-card__link:focus-visible {
+  .feed-entry__link:focus-visible {
     outline: none;
   }
 
-  .feed-card__excerpt {
+  .feed-entry__excerpt {
     color: var(--ink-muted);
-    font-size: var(--text-sm);
-    max-width: 46ch;
+  }
+
+  .feed-entry__cover {
+    max-width: 34rem;
+    margin-block-start: var(--space-2xs);
   }
 </style>

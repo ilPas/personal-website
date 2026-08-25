@@ -83,8 +83,17 @@ draft: false                        # default false
 ```
 
 I tre tipi e le loro etichette sono definiti in `src/consts.ts`. Le `cover`
-sono opzionali: dove manca l'immagine viene disegnato uno slot neutro che
-tiene il ritmo del layout.
+sono opzionali: nelle voci del feed, se mancano, non lasciano alcun riquadro
+vuoto; nelle card dei case study viene disegnato uno slot neutro che tiene il
+ritmo della griglia.
+
+`/lab` è un elenco cronologico a colonna singola — non una griglia — così regge
+anche con due sole voci. Il filtro per tipo compare solo se nel feed c'è più di
+un tipo.
+
+Il feed è anche il changelog del sito: gli interventi che modificano il sito
+diventano una entry `type: build`. La convenzione, con tono ed esempi, è in
+`CLAUDE.md`.
 
 ### Bozze
 
@@ -127,7 +136,7 @@ invece di nascondersi dietro un menu.
 - **Tema del codice.** `src/styles/code-theme.mjs`, anch'esso in scala di
   grigi, distingue i token con peso e corsivo invece che con la tinta.
 - **Favicon.** `public/favicon.svg` è un segno provvisorio.
-- **Testi e case study.** I contenuti in `src/content/` sono di riempimento.
+- **Case study.** I tre contenuti in `src/content/work/` sono di riempimento.
 - **Email di contatto.** `SITE.email` in `src/consts.ts` è da confermare.
 
 ## Nota sul deploy

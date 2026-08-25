@@ -5,9 +5,6 @@ year: 2023
 role: 'Front-end e performance'
 tags: ['performance', 'html', 'css']
 order: 3
-links:
-  - label: 'Nota: il budget di performance come vincolo di progetto'
-    url: '/lab/budget-performance'
 draft: false
 ---
 
