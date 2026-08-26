@@ -52,9 +52,13 @@ const meta = [
       <TagList tags={tags} label={`Tag di ${title}`} />
     </div>
 
-    <div class="container case__cover">
-      <Cover cover={cover} ratio="16 / 9" sizes="(min-width: 76rem) 72rem, 100vw" priority />
-    </div>
+    {
+      cover && (
+        <div class="container case__cover">
+          <Cover cover={cover} ratio="16 / 9" sizes="(min-width: 76rem) 72rem, 100vw" priority />
+        </div>
+      )
+    }
 
     <div class="container container--narrow">
       <div class="prose">

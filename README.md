@@ -83,9 +83,8 @@ draft: false                        # default false
 ```
 
 I tre tipi e le loro etichette sono definiti in `src/consts.ts`. Le `cover`
-sono opzionali: nelle voci del feed, se mancano, non lasciano alcun riquadro
-vuoto; nelle card dei case study viene disegnato uno slot neutro che tiene il
-ritmo della griglia.
+sono opzionali e, dove mancano, non lasciano alcun riquadro vuoto: né nel feed,
+né nelle card dei case study, né nelle pagine di dettaglio.
 
 `/lab` è un elenco cronologico a colonna singola — non una griglia — così regge
 anche con due sole voci. Il filtro per tipo compare solo se nel feed c'è più di

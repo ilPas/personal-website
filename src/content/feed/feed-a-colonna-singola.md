@@ -18,11 +18,16 @@ cui il sito sappia quale voce sia la prima visibile — un bordo condizionato
 sulla prima lascerebbe righe orfane appena filtri. Metterlo su tutte costa una
 riga in cima all'elenco e non si rompe mai.
 
-Il tipo è diventato un'etichetta discreta accanto alla data, senza riquadro. La
-copertina compare solo se esiste: niente rettangoli grigi al posto delle
-immagini che non ci sono. E con un solo tipo presente nel feed il filtro non
-viene proprio renderizzato, invece di mostrare un controllo con un'unica
-opzione.
+Il tipo è diventato un'etichetta discreta accanto alla data, senza riquadro. E
+con un solo tipo presente nel feed il filtro non viene proprio renderizzato,
+invece di mostrare un controllo con un'unica opzione.
+
+Stessa regola per le copertine, ovunque: se l'immagine non c'è non si disegna
+niente. All'inizio le card dei case study mettevano un rettangolo grigio al
+posto della foto mancante, con l'idea di tenere il ritmo della griglia — ma un
+segnaposto che resta lì per mesi non tiene un ritmo, promette un'immagine che
+non arriva. Ora spariscono anche dalle card in home e dalle pagine dei case
+study.
 
 Ho tolto le nove entry segnaposto e i tre link nei case study che ci
 puntavano — sarebbero diventati 404. Al loro posto sono arrivate due entry
