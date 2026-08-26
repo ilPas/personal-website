@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import FilteredFeed from '../../components/FilteredFeed.astro';
 import { getFeed } from '../../lib/content';
+import { MOOD_BY_SECTION } from '../../consts';
 
 const entries = await getFeed();
 
@@ -9,7 +10,7 @@ const description =
   'Il feed completo: cose costruite, esperimenti tecnici e interventi pubblici, in ordine di data.';
 ---
 
-<Base title="Lab" description={description}>
+<Base title="Lab" description={description} mood={MOOD_BY_SECTION.lab}>
   <div class="container lab">
     <header class="lab__header">
       <p class="eyebrow">Lab</p>

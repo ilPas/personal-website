@@ -1,0 +1,15 @@
+Syne, Space Grotesk e Space Mono sono distribuiti sotto
+SIL Open Font License, Version 1.1.
+
+Syne — Bonjour Monde (Lucas Descroix, Arman Mohtadji)
+  https://github.com/BonjourMonde/syne
+Space Grotesk — Florian Karsten
+  https://github.com/floriankarsten/space-grotesk
+Space Mono — Colophon Foundry per Google
+  https://fonts.google.com/specimen/Space+Mono
+
+Testo completo della licenza: https://openfontlicense.org
+
+I file .woff2 in questa cartella sono i sottoinsiemi latin e latin-ext
+scaricati una volta da Google Fonts e serviti dal nostro dominio: il sito
+non fa nessuna richiesta a fonts.googleapis.com né a fonts.gstatic.com.

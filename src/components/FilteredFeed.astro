@@ -85,6 +85,7 @@ const showFilter = availableTypes.length > 1;
   }
 
   .filtered-feed__legend {
+    font-family: var(--font-mono);
     padding: 0;
     margin-block-end: var(--space-xs);
     font-size: var(--text-xs);
@@ -111,15 +112,19 @@ const showFilter = availableTypes.length > 1;
   }
 
   .filtered-feed__label {
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     display: inline-flex;
     align-items: baseline;
     gap: 0.4em;
     padding: 0.35em 0.75em;
     border: 1px solid var(--line);
     border-radius: var(--radius-md);
-    font-size: var(--text-sm);
+    font-size: var(--text-2xs);
     color: var(--ink-muted);
     cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
   }
 
   .filtered-feed__label:hover {
@@ -134,14 +139,14 @@ const showFilter = availableTypes.length > 1;
   }
 
   .filtered-feed__input:checked + .filtered-feed__label {
-    border-color: var(--ink);
-    background-color: var(--surface);
-    color: var(--ink);
-    font-weight: 600;
+    border-color: var(--accent);
+    background-color: var(--accent-wash);
+    color: var(--accent);
+    font-weight: 700;
   }
 
   .filtered-feed__input:checked + .filtered-feed__label .filtered-feed__count {
-    color: var(--ink-muted);
+    color: inherit;
   }
 
   /* Il focus da tastiera si vede sul controllo, non sull'input nascosto. */

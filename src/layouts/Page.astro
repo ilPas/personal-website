@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import { MOOD_BY_SECTION, type Mood } from '../consts';
 
 interface Props {
   title: string;
@@ -9,12 +10,20 @@ interface Props {
   lead?: string;
   /** Data ultimo aggiornamento, per le pagine di servizio. */
   updated?: string;
+  mood?: Mood;
 }
 
-const { title, heading = title, description, lead, updated } = Astro.props;
+const {
+  title,
+  heading = title,
+  description,
+  lead,
+  updated,
+  mood = MOOD_BY_SECTION.pagina,
+} = Astro.props;
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} mood={mood}>
   <div class="container container--narrow page">
     <header class="page__header">
       <h1 class="page__title">{heading}</h1>

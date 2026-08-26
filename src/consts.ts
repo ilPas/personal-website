@@ -43,3 +43,22 @@ export type FeedType = keyof typeof FEED_TYPES;
 /** Quante voci mostrare nelle sezioni della home. */
 export const HOME_WORK_LIMIT = 3;
 export const HOME_FEED_LIMIT = 6;
+
+/**
+ * I quattro mood.
+ *
+ * Sono quattro qualità di luce sulla stessa scena: cambiano il colore
+ * d'accento e la temperatura della sorgente, mai il layout. I valori
+ * cromatici vivono in `global.css`, in quattro blocchi di custom property;
+ * qui c'è solo l'assegnazione mood → sezione del sito.
+ */
+export const MOODS = ['abisso', 'secca', 'deriva', 'fosforo'] as const;
+
+export type Mood = (typeof MOODS)[number];
+
+export const MOOD_BY_SECTION = {
+  home: 'abisso',
+  work: 'secca',
+  lab: 'fosforo',
+  pagina: 'deriva',
+} as const satisfies Record<string, Mood>;

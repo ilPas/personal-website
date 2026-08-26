@@ -1,11 +1,13 @@
-# Font
+# (cartella storica)
 
-I file dei font vanno qui, **non** in `public/`: durante la build Astro copia
-`public/` così com'è, quindi i font finirebbero duplicati nell'output.
+I font del sito **non** stanno più qui. Sono in `public/fonts/`, con i loro
+`@font-face` scritti a mano in `src/styles/fonts.css`.
 
-Da qui vengono referenziati nel blocco `fonts` di `astro.config.mjs`, che
-genera `@font-face`, preload e fallback metrici servendo tutto dal nostro
-dominio. Nessun CDN di terze parti.
+La scelta è dovuta ai sottoinsiemi: ogni famiglia ha un file `latin` e uno
+`latin-ext` con `unicode-range` diversi, e il blocco `fonts` di
+`astro.config.mjs` gestisce varianti di peso e stile, non sottoinsiemi dello
+stesso volto. Scrivere le regole a mano costa dieci righe e le tiene tutte
+leggibili in un punto solo.
 
-Al momento la cartella è vuota: la tipografia è un placeholder di sistema in
-attesa della direzione visiva.
+Resta valido il vincolo: nessuna richiesta esce dal dominio. I file sono
+scaricati una volta da Google Fonts e serviti da qui.

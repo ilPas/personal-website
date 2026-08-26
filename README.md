@@ -1,7 +1,7 @@
 # erricopasquale.it
 
 Sito personale di Pasquale Errico, costruito con [Astro](https://astro.build).
-Sito statico, senza JavaScript di framework nel bundle.
+Sito statico. Una sola isola JavaScript in tutto il sito, ed è la scena.
 
 ## Comandi
 
@@ -102,19 +102,19 @@ sitemap.
 
 ## Scelte tecniche
 
-**Zero JavaScript.** Il sito buildato non contiene un solo file `.js` e nessun
-tag `<script>`. Il filtro per tipo del lab, che sarebbe il candidato naturale a
-diventare un'isola, è fatto di radio nativi e `:has()` in CSS: funziona al
-primo paint e si naviga con le frecce come qualunque radiogroup. Le isole
-restano disponibili per quando serviranno davvero.
+**Una sola isola.** La build contiene un solo file `.js`, 2,6 KB compressi:
+lo shader della scena. Tutto il resto è HTML e CSS — il filtro per tipo del
+lab, che sarebbe il candidato naturale a diventare un'isola, è fatto di radio
+nativi e `:has()`. L'eccezione è arrivata con la direzione visiva e le regole
+che la tengono onesta sono in `CLAUDE.md`: niente librerie, decorativa,
+degradabile, ferma con «riduci movimento».
 
 **Niente terze parti.** Nessuna richiesta esce dal dominio: font, stili e
 immagini sono tutti serviti da qui.
 
-**Font self-hosted.** In attesa della direzione visiva la tipografia è uno
-stack di sistema, che non costa nemmeno una richiesta. Lo slot per i font veri
-è già predisposto in `astro.config.mjs` (blocco `fonts`, commentato) e in
-`src/assets/fonts/`.
+**Font self-hosted.** Syne per il display, Space Grotesk per il testo, Space
+Mono per micro-testo e codice: 172 KB in `public/fonts/`, scaricati una volta
+da Google Fonts e serviti da qui. Nessuna richiesta a `fonts.googleapis.com`.
 
 **Nessun analytics.** Voluto. Quando verrà aggiunto va aggiornata anche
 `/privacy`, che oggi dichiara l'assenza di tracciamento.
@@ -128,13 +128,21 @@ l'anello viene spostato sul contenitore giusto.
 scala tipografica ha i minimi calibrati su viewport strette. L'header va a capo
 invece di nascondersi dietro un menu.
 
-## Cosa è ancora placeholder
+## Direzione visiva
 
-- **Tipografia e colore.** `src/styles/global.css` usa una scala di grigi e un
-  font di sistema: sono segnaposto neutri, non una direzione visiva.
-- **Tema del codice.** `src/styles/code-theme.mjs`, anch'esso in scala di
-  grigi, distingue i token con peso e corsivo invece che con la tinta.
-- **Favicon.** `public/favicon.svg` è un segno provvisorio.
+Una scena sola — nero quasi puro, una sorgente, nebbia, acqua con caustiche —
+e quattro mood che ne cambiano accento e temperatura senza toccare il layout:
+`abisso` in home, `secca` sui case study, `fosforo` nel lab, `deriva` sulle
+pagine di testo. Stanno in `global.css` come custom property e si applicano
+con `data-mood` su `<html>`. Il dettaglio è in `CLAUDE.md`.
+
+## Cosa è ancora aperto
+
+- **I quattro accenti sono una proposta.** Derivati dal materiale, non dal
+  brief di riferimento, che non è arrivato. Si sostituiscono i quattro
+  blocchi in `global.css` e basta.
+- **Favicon.** `public/favicon.svg` è ancora il segno provvisorio in scala di
+  grigi: non ha ancora incontrato la direzione.
 - **Case study.** I tre contenuti in `src/content/work/` sono di riempimento.
 - **Email di contatto.** `SITE.email` in `src/consts.ts` è da confermare.
 

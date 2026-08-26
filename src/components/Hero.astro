@@ -3,17 +3,21 @@ import { SITE } from '../consts';
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <div class="container">
-    <p class="eyebrow">{SITE.tagline}</p>
+  <div class="container hero__inner">
+    <p class="eyebrow hero__eyebrow">{SITE.tagline}</p>
 
-    <h1 class="hero__title" id="hero-title">
-      Costruisco interfacce che si spiegano da sole.
+    <h1 class="headline hero__headline" id="hero-title">
+      <span class="headline__line" style="--shift: 1.2ch">Costruisco</span>
+      <span class="headline__line" style="--shift: 3.6ch">interfacce che si</span>
+      <span class="headline__line" style="--shift: 0">
+        spiegano da <span class="headline__accent">sole</span>.
+      </span>
     </h1>
 
     <p class="hero__lead">
-      Sono {SITE.name}. Lavoro nello spazio stretto tra design e front-end: progetto
-      l'interfaccia e poi la scrivo, così quello che si vede in un mockup è anche
-      quello che finisce in produzione.
+      Sono {SITE.name}. Lavoro nello spazio stretto tra design e front-end:
+      progetto l'interfaccia e poi la scrivo, così quello che si vede in un
+      mockup è anche quello che finisce in produzione.
     </p>
 
     <p class="hero__actions">
@@ -21,22 +25,68 @@ import { SITE } from '../consts';
       <a href="/lab">Sfoglia il lab</a>
     </p>
   </div>
+
+  <div class="container hero__foot">
+    <p class="microtext">
+      Acqua, luce e nebbia calcolate nel browser da un solo shader, senza
+      librerie. Con «riduci movimento» la scena resta, ferma.
+    </p>
+  </div>
 </section>
 
 <style>
   .hero {
-    padding-block: var(--space-2xl) var(--space-3xl);
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-content: center;
+    min-block-size: min(calc(100svh - 4.5rem), 50rem);
+    padding-block: var(--space-2xl) var(--space-l);
+    /* Il velo dietro il testo sborda di proposito: qui viene tagliato,
+       o allarga il documento e compare una barra di scorrimento. */
+    overflow: hidden;
   }
 
-  .hero__title {
-    max-width: 18ch;
-    margin-block-start: var(--space-s);
-    font-size: var(--text-4xl);
+  /* Il contenuto sta sopra la scena, che è il primo figlio. */
+  .hero__inner,
+  .hero__foot {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__inner {
+    align-self: center;
+  }
+
+  .hero__inner::before {
+    content: '';
+    position: absolute;
+    inset: -8% -12% -10% -50%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      70% 60% at 34% 50%,
+      var(--void) 0%,
+      color-mix(in srgb, var(--void) 88%, transparent) 42%,
+      color-mix(in srgb, var(--void) 45%, transparent) 68%,
+      transparent 88%
+    );
+  }
+
+  /* Off-grid: l'occhiello non condivide l'asse del titolo. */
+  .hero__eyebrow {
+    margin-inline-start: 3.6ch;
+    margin-block-end: var(--space-m);
+  }
+
+  .hero__headline {
+    max-width: 15ch;
   }
 
   .hero__lead {
-    max-width: 52ch;
-    margin-block-start: var(--space-m);
+    max-width: 46ch;
+    margin-block-start: var(--space-l);
+    margin-inline-start: 1.2ch;
     font-size: var(--text-lg);
     color: var(--ink-muted);
   }
@@ -46,16 +96,63 @@ import { SITE } from '../consts';
     flex-wrap: wrap;
     gap: var(--space-s) var(--space-l);
     margin-block-start: var(--space-l);
-    font-size: var(--text-sm);
+    margin-inline-start: 3.6ch;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .hero__actions a {
-    text-decoration: underline;
-    text-decoration-color: var(--line-strong);
-    text-underline-offset: 0.3em;
+    text-decoration: none;
+    border-block-end: 1px solid var(--accent-dim);
+    padding-block-end: 0.35em;
+    transition: border-color 0.25s ease, color 0.25s ease;
   }
 
   .hero__actions a:hover {
-    text-decoration-color: currentColor;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .hero__foot {
+    align-self: end;
+    padding-block-start: var(--space-2xl);
+  }
+
+  /* Sotto i 48rem lo scarto off-grid sparisce: in colonna stretta non è
+     una scelta compositiva, è solo testo che non si allinea. */
+  @media (max-width: 55.999rem) {
+    /* Il velo locale non ha più un lato su cui stare: copre tutto. */
+    /* Un radiale sfuma proprio ai bordi, e in colonna stretta l'occhiello
+       sta sul bordo alto — dove la sorgente scende. Qui serve copertura
+       piena in cima, che si apre andando verso il basso. */
+    .hero__inner::before {
+      inset: -18% -20% -6%;
+      background: linear-gradient(
+        to bottom,
+        var(--void) 0%,
+        var(--void) 72%,
+        color-mix(in srgb, var(--void) 80%, transparent) 88%,
+        color-mix(in srgb, var(--void) 40%, transparent) 97%,
+        transparent 100%
+      );
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .hero__headline .headline__line {
+      margin-inline-start: 0;
+    }
+
+    .hero__eyebrow,
+    .hero__lead,
+    .hero__actions {
+      margin-inline-start: 0;
+    }
+
+    .hero__headline {
+      max-width: 100%;
+    }
   }
 </style>

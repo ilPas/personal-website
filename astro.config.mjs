@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { codeThemeDark, codeThemeLight } from './src/styles/code-theme.mjs';
+import { codeTheme } from './src/styles/code-theme.mjs';
 
 /**
  * URL canonico del sito.
@@ -23,9 +23,8 @@ export default defineConfig({
 
   markdown: {
     shikiConfig: {
-      // Temi doppi in scala di grigi: il passaggio light/dark è gestito
-      // via CSS in global.css.
-      themes: { light: codeThemeLight, dark: codeThemeDark },
+      // Il sito ha una sola scena, quindi un solo tema.
+      theme: codeTheme,
       wrap: true,
     },
   },

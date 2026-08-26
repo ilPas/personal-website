@@ -19,14 +19,34 @@ devono passare puliti.
 Questi non sono preferenze. Se un intervento li viola, la soluzione è
 sbagliata, non il vincolo.
 
-1. **Zero JavaScript nel bundle.** La build non deve contenere file `.js` né
-   tag `<script>`. Verifica: `find dist -name "*.js"` deve essere vuoto.
-   Le isole Astro restano disponibili, ma servono un motivo reale: se la cosa
-   si può fare in CSS o in HTML, si fa in CSS o in HTML. Il filtro per tipo di
-   `/lab` è l'esempio del criterio — radio nativi più `:has()`.
+1. **Una sola isola JavaScript, ed è la scena.** Tutto il resto del sito è
+   HTML e CSS: se una cosa si può fare in CSS o in HTML, si fa lì. Il filtro
+   per tipo di `/lab` è l'esempio del criterio — radio nativi più `:has()`.
+
+   L'eccezione è `WaterScene.astro`, lo shader di acqua, luce e nebbia. È
+   arrivata con la direzione visiva: le caustiche vere richiedono un
+   frammento shader, e un gradiente animato non è la stessa cosa — è
+   esattamente il default contro cui la direzione mette in guardia. Il
+   vincolo è stato emendato di proposito, non aggirato.
+
+   Le regole che tengono onesta l'eccezione, e che valgono per qualunque
+   isola futura:
+   - **una sola.** `find dist -name "*.js"` deve restituire un file solo.
+     Se ne compare un secondo, la risposta di partenza è no;
+   - **niente librerie.** WebGL2 nudo. Oggi l'isola pesa 2,6 KB compressi:
+     è il tetto, non il punto di partenza;
+   - **decorativa.** `aria-hidden`, nessun evento, nessun contenuto dentro.
+     Nulla di leggibile o cliccabile può vivere nel canvas;
+   - **degradabile.** Senza JavaScript, senza WebGL2 o con lo shader che non
+     compila resta il fondo dipinto in CSS, che è già la scena giusta —
+     buio e una sorgente — solo ferma;
+   - **rispettosa.** Con `prefers-reduced-motion` disegna un fotogramma e si
+     ferma. In pausa fuori dallo schermo e a scheda nascosta. DPR tagliato
+     a 1.5.
 2. **Niente terze parti.** Nessuna richiesta deve uscire dal dominio: font,
-   stili, script, immagini. I font stanno in `src/assets/fonts/` e passano dal
-   blocco `fonts` di `astro.config.mjs`.
+   stili, script, immagini. I font sono in `public/fonts/` con i loro
+   `@font-face` scritti a mano in `src/styles/fonts.css`: scaricati una volta
+   da Google Fonts e serviti da qui, mai linkati.
 3. **Niente analytics.** Se un giorno si aggiunge, va aggiornata `/privacy`
    nello stesso intervento: oggi quella pagina dichiara l'assenza di
    tracciamento e deve restare vera.
@@ -36,11 +56,56 @@ sbagliata, non il vincolo.
    l'anello va spostato sul contenitore giusto, non tolto.
 5. **Responsive fino a 360px**, senza scroll orizzontale.
 
-## Aspetto
+## Direzione visiva
 
-Tipografia e colore sono ancora segnaposto neutri: scala di grigi e font di
-sistema, tema del codice compreso. Non introdurre palette, font o effetti di
-atmosfera finché non arriva la direzione visiva.
+Una scena sola per tutto il sito: fondo nero quasi puro, una sorgente
+luminosa, nebbia intorno, acqua sotto con caustiche. Quello che cambia da una
+sezione all'altra è il **mood** — colore d'accento e temperatura della luce.
+**Mai il layout.**
+
+I quattro mood stanno in `global.css` come blocchi di custom property
+(`abisso`, `secca`, `deriva`, `fosforo`) e si applicano con `data-mood` su
+`<html>`; l'assegnazione mood → sezione è in `src/consts.ts`. Lo shader legge
+`--light-core`, `--light-halo` e `--accent` da lì: tipografia e luce cambiano
+insieme, da un punto solo.
+
+⚠️ **I quattro accenti sono una proposta, non il brief.** Sono derivati dal
+materiale — luce che attraversa l'acqua a profondità e temperature diverse —
+perché il brief di riferimento non è mai arrivato. Quando arriva, si
+sostituiscono i quattro blocchi in `global.css` e basta: nient'altro nel sito
+nomina un colore d'accento.
+
+**Regole di composizione**, prese dai riferimenti e da rispettare:
+
+- occhiello in accento sopra il titolo;
+- **una sola** parola del titolo in accento. Una;
+- micro-testo in basso a sinistra, con filetto d'accento sopra;
+- la sorgente luminosa sta fuori dalla colonna di testo. La sua x è una
+  frazione della **mezza-larghezza**, non dell'altezza, o su una banda bassa
+  e larga finisce in mezzo al titolo.
+
+**Tipografia off-grid.** Syne per il display, Space Grotesk per il testo,
+Space Mono per micro-testo e codice — tutti in `public/fonts/`, serviti dal
+dominio. L'off-grid è dichiarativo: `--shift` sposta ogni riga del titolo di
+una quantità **irregolare**, e occhiello, testo e comandi vivono su assi
+diversi fra loro. Due vincoli da non perdere:
+
+1. lo scarto non porta mai il testo fuori dal contenitore. Fuori dal
+   contenitore non è composizione, è un difetto: la riga più a sinistra è
+   quella a scarto zero, le altre rientrano;
+2. sotto i 48rem gli scarti vanno a zero. In colonna stretta non è una
+   scelta compositiva, è solo testo che non si allinea.
+
+**Da non replicare** dai riferimenti: preloader-gate, navigazione a
+trascinamento, registro da agency.
+
+**Come si verifica il contrasto.** Il testo sta sopra una scena che si muove,
+quindi il contrasto va misurato, non stimato. Il metodo che funziona:
+rendere trasparenti i **glifi** (non nascondere gli elementi, o sparisce
+anche il velo che li protegge), catturare la scena, e misurare la luminanza
+peggiore sotto i rettangoli dei **nodi di testo** — non il box dell'elemento,
+che per un titolo è largo quanto la colonna anche dove non c'è inchiostro.
+Misurato male, questo controllo dà numeri falsi in entrambe le direzioni.
 
 ## Contenuti
 

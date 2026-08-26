@@ -1,6 +1,7 @@
 ---
-import { SITE } from '../consts';
+import { SITE, type Mood } from '../consts';
 import SiteHeader from '../components/SiteHeader.astro';
+import WaterScene from '../components/WaterScene.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/global.css';
 
@@ -11,16 +12,29 @@ interface Props {
   description?: string;
   /** Esclude la pagina dagli indici (bozze in dev, pagine di servizio). */
   noindex?: boolean;
+  /** Qualità di luce della pagina. Cambia accento e sorgente, mai il layout. */
+  mood?: Mood;
+  /**
+   * Quanta scena. `piena` per la home, `banda` per tutte le altre: stessa
+   * acqua, stessa luce, solo inquadrata più stretta dietro la testata.
+   */
+  scene?: 'piena' | 'banda';
 }
 
-const { title, description = SITE.description, noindex = false } = Astro.props;
+const {
+  title,
+  description = SITE.description,
+  noindex = false,
+  mood = 'deriva',
+  scene = 'banda',
+} = Astro.props;
 
 const pageTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
 const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
 ---
 
 <!doctype html>
-<html lang={SITE.lang}>
+<html lang={SITE.lang} data-mood={mood}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,6 +42,7 @@ const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.si
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#050507" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
@@ -45,9 +60,14 @@ const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.si
   <body>
     <a class="skip-link" href="#contenuto">Salta al contenuto</a>
     <SiteHeader />
-    <main id="contenuto" tabindex="-1">
-      <slot />
-    </main>
+    <div class="shell">
+      <div class:list={['shell__scene', `shell__scene--${scene}`]}>
+        <WaterScene />
+      </div>
+      <main id="contenuto" tabindex="-1">
+        <slot />
+      </main>
+    </div>
     <SiteFooter />
   </body>
 </html>
@@ -74,5 +94,66 @@ const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.si
 
   main:focus {
     outline: none;
+  }
+
+  /* La scena è il fondo: sta dietro, non occupa spazio, non sposta nulla. */
+  .shell {
+    position: relative;
+  }
+
+  .shell__scene {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .shell__scene--piena {
+    block-size: min(calc(100svh - 4.5rem), 50rem);
+  }
+
+  .shell__scene--banda {
+    block-size: clamp(18rem, 46svh, 30rem);
+  }
+
+  /* Dietro una testata la scena è fondo, non palcoscenico: sul lato del
+     testo passa attenuata, a destra resta piena. */
+  .shell__scene--banda::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      /* La banda si spegne nel nero invece di finire di taglio: senza,
+         il bordo inferiore è una riga netta e il testo che ci cade
+         sopra resta illuminato a metà. */
+      linear-gradient(to bottom, transparent 42%, var(--void) 97%),
+      linear-gradient(
+        96deg,
+        var(--void) 8%,
+        color-mix(in srgb, var(--void) 88%, transparent) 44%,
+        color-mix(in srgb, var(--void) 55%, transparent) 68%,
+        color-mix(in srgb, var(--void) 20%, transparent) 88%
+      );
+  }
+
+  @media (max-width: 55.999rem) {
+    /* In colonna stretta la banda si accorcia: resta dietro occhiello e
+       titolo, e finisce prima del testo corrente, che sotto ha solo nero. */
+    .shell__scene--banda {
+      block-size: clamp(11rem, 30svh, 16rem);
+    }
+
+    .shell__scene--banda::after {
+      background:
+        linear-gradient(to bottom, transparent 18%, var(--void) 82%),
+        color-mix(in srgb, var(--void) 80%, transparent);
+    }
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
   }
 </style>

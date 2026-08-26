@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import { MOOD_BY_SECTION } from '../consts';
 ---
 
-<Base title="Pagina non trovata" noindex>
+<Base title="Pagina non trovata" noindex mood={MOOD_BY_SECTION.pagina}>
   <div class="container container--narrow not-found">
     <p class="eyebrow">Errore 404</p>
     <h1 class="not-found__title">Questa pagina non c'è.</h1>

@@ -6,6 +6,7 @@ import Cover from '../../components/Cover.astro';
 import TagList from '../../components/TagList.astro';
 import LinkList from '../../components/LinkList.astro';
 import { getWork } from '../../lib/content';
+import { MOOD_BY_SECTION } from '../../consts';
 
 export const getStaticPaths = (async () => {
   const entries = await getWork();
@@ -31,7 +32,7 @@ const meta = [
 ];
 ---
 
-<Base title={title} description={excerpt} noindex={draft}>
+<Base title={title} description={excerpt} noindex={draft} mood={MOOD_BY_SECTION.work}>
   <article class="case">
     <div class="container container--narrow case__intro">
       <p class="eyebrow">Case study</p>
