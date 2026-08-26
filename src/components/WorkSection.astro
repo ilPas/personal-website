@@ -24,7 +24,11 @@ const { entries } = Astro.props;
           ))}
         </ul>
       ) : (
-        <p class="work-section__empty">I case study stanno arrivando.</p>
+        <p class="work-section__empty">
+          Non c'è ancora niente qui: i case study arrivano quando ho qualcosa da
+          raccontare per esteso. Nel frattempo il lavoro in corso passa dal
+          <a href="/lab">lab</a>.
+        </p>
       )
     }
   </div>
@@ -53,6 +57,20 @@ const { entries } = Astro.props;
   }
 
   .work-section__empty {
+    max-width: var(--measure);
+    padding-block-start: var(--space-l);
+    border-block-start: 1px solid var(--line);
     color: var(--ink-muted);
+  }
+
+  .work-section__empty a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-dim);
+    text-underline-offset: 0.2em;
+  }
+
+  .work-section__empty a:hover {
+    text-decoration-color: currentColor;
   }
 </style>
