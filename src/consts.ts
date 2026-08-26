@@ -7,10 +7,10 @@ export const SITE = {
   /** Nome usato nei <title> e nell'header. */
   name: 'Pasquale Errico',
   /** Sottotitolo breve, usato come fallback di descrizione. */
-  tagline: 'Designer e sviluppatore front-end',
+  tagline: 'Martech e CRO',
   /** Descrizione di default per SEO e Open Graph. */
   description:
-    'Sito personale di Pasquale Errico: case study, appunti di lavoro ed esperimenti su interfacce, front-end e design di prodotto.',
+    'Sito personale di Pasquale Errico: martech, CRO ed esperimenti in pubblico. Appunti su misurazione, test e decisioni prese sui dati invece che sulle opinioni.',
   lang: 'it',
   locale: 'it_IT',
   /** Email di contatto pubblica. PLACEHOLDER: da confermare. */
@@ -34,7 +34,7 @@ export const SOCIAL = [
 /** Tipi ammessi per le entry del feed, con etichetta leggibile. */
 export const FEED_TYPES = {
   build: { label: 'Build', description: 'Cose costruite e spedite' },
-  lab: { label: 'Lab', description: 'Esperimenti e prove tecniche' },
+  lab: { label: 'Lab', description: 'Esperimenti, test e prove' },
   talk: { label: 'Talk', description: 'Interventi, scritti e conversazioni' },
 } as const;
 

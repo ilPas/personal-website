@@ -3,55 +3,84 @@ import Page from '../layouts/Page.astro';
 import { SITE, SOCIAL } from '../consts';
 
 const description =
-  'Chi è Pasquale Errico: percorso, modo di lavorare e cose di cui si occupa tra design di interfacce e sviluppo front-end.';
+  'Chi è Pasquale Errico: il percorso dallo sviluppo al design al marketing, e come si finisce a occuparsi di martech e CRO.';
 ---
 
 <Page
   title="About"
-  heading="Design e front-end, senza passaggio di consegne."
+  heading="Ci sono arrivato dal lato sbagliato."
   description={description}
-  lead="Progetto interfacce e le costruisco. Fare entrambe le cose accorcia il ciclo e toglie di mezzo un intero strato di malintesi."
+  lead="Al martech non sono arrivato dall'analytics, ma dal costruire le cose che poi qualcuno doveva misurare. È il motivo per cui lavoro come lavoro."
 >
-  <h2>Come lavoro</h2>
+  <h2>Il percorso</h2>
   <p>
-    Parto sempre dal problema, non dallo schermo. Prima capisco cosa deve
-    succedere e per chi, poi cerco la forma più semplice che lo faccia
-    succedere. Di solito significa meno interfaccia di quella che sembrava
-    necessaria all'inizio.
+    Sono nato su una costa della Calabria e cresciuto in provincia di Biella, e
+    ho passato l'infanzia davanti a una console e a un computer che usava la
+    televisione come monitor. Il web è arrivato subito dopo e non se n'è più
+    andato.
   </p>
   <p>
-    Prototipo presto nel browser, perché è lì che le decisioni diventano vere:
-    il testo reale è più lungo del previsto, la connessione è più lenta, lo
-    schermo è più stretto. Figma resta lo strumento per decidere insieme, non
-    per fingere che il prodotto sia già finito.
+    Ho fatto questo mestiere abbastanza a lungo da averlo attraversato quasi
+    tutto: sviluppo, web design, direzione artistica su progetti web, web
+    marketing, fino alla crescita di un prodotto fintech. Ho anche insegnato
+    per un periodo in un centro di formazione, e ho contribuito a fondare una
+    community digitale.
+  </p>
+  <p>
+    Guardandolo da fuori sembra un percorso disordinato. Da dentro è una sola
+    domanda che cambia forma: <em>questa cosa sta funzionando?</em> Prima me la
+    facevo sul codice, poi sull'interfaccia, poi sul messaggio. A un certo
+    punto è diventata il lavoro.
+  </p>
+
+  <h2>Come lavoro</h2>
+  <p>
+    Scrivo l'ipotesi prima di guardare i numeri. È una regola noiosa e serve a
+    una cosa sola: impedirmi di trovare nei dati la conferma di quello che
+    pensavo già. Se l'ipotesi non è scritta, qualunque risultato diventa una
+    vittoria.
+  </p>
+  <p>
+    Prima di ottimizzare qualsiasi cosa, controllo che la misurazione regga. La
+    maggior parte dei programmi di test che ho visto fallire non fallivano sui
+    test: fallivano perché il dato sotto era sbagliato, e nessuno l'aveva
+    verificato prima di costruirci sopra sei mesi di decisioni.
+  </p>
+  <p>
+    E disegno gli esperimenti in modo che possano smentirmi. Un test che può
+    solo darmi ragione non è un test.
   </p>
 
   <h2>Di cosa mi occupo</h2>
   <ul>
-    <li>Design di interfacce per prodotti web e applicazioni interne.</li>
-    <li>Design system: componenti, token, documentazione che qualcuno legge davvero.</li>
-    <li>Sviluppo front-end: HTML semantico, CSS moderno, TypeScript quando serve.</li>
-    <li>Accessibilità e performance, trattate come requisiti e non come rifinitura.</li>
+    <li>Misurazione: tracciamenti che dicono la verità, e la dicono nello stesso modo il mese dopo.</li>
+    <li>Sperimentazione: ipotesi, disegno del test, lettura dei risultati — compresi quelli che non piacciono.</li>
+    <li>Ottimizzazione della conversione lungo percorsi reali, non su singole pagine isolate dal loro contesto.</li>
+    <li>Il pezzo tecnico in mezzo: quello che serve perché una cosa decisa sia anche implementabile.</li>
   </ul>
 
   <h2>Cosa non faccio</h2>
   <p>
-    Non mi occupo di campagne pubblicitarie, non ricostruisco brand identity da
-    zero e non prendo lavori dove l'accessibilità è considerata un optional.
-    Preferisco dirlo prima.
+    Non porto <em>best practice</em> da applicare senza verificarle: quasi
+    sempre sono il risultato del test di qualcun altro, su un pubblico che non
+    è il tuo. Non lavoro dove il risultato del test è già stato deciso in
+    riunione. E non prometto percentuali prima di aver visto i dati — chi lo fa
+    sta vendendo, non misurando.
   </p>
 
-  <h2>Scrivere e condividere</h2>
+  <h2>Il lab</h2>
   <p>
-    Quello che imparo finisce nel <a href="/lab">lab</a>: note brevi, esperimenti
-    tecnici, appunti di talk. Non è un blog con una linea editoriale, è un
-    quaderno pubblico.
+    Questo sito è anche un banco di prova pubblico: quello che imparo, provo o
+    sbaglio finisce nel <a href="/lab">lab</a>. Non è un blog con una linea
+    editoriale, è un quaderno aperto — e include gli esperimenti che non hanno
+    funzionato, che di solito sono quelli che insegnano di più.
   </p>
 
-  <h2>Parliamone</h2>
+  <h2>Scrivimi</h2>
   <p>
-    Il modo più rapido è scrivermi a <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
-    Se preferisci vedere prima il codice o gli esperimenti:
+    Il modo più rapido è <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Non
+    c'è un modulo da compilare e non c'è niente da scaricare: è un sito
+    personale, non un imbuto.
   </p>
   <ul>
     {SOCIAL.map((item) => (

@@ -4,28 +4,34 @@ import SectionHeader from './SectionHeader.astro';
 /** Sintesi di percorso. Dati volutamente essenziali: il dettaglio sta in /about. */
 const facts = [
   { label: 'Base', value: 'Biella, Piemonte' },
-  { label: 'Ambito', value: 'Design di prodotto e front-end' },
-  { label: 'Strumenti', value: 'Figma, HTML, CSS, TypeScript' },
+  { label: 'Ambito', value: 'Martech, CRO, misurazione' },
+  { label: 'Prima', value: 'Sviluppo, design, web marketing' },
 ];
 ---
 
 <section class="about" aria-labelledby="chi-sono-title">
   <div class="container about__inner">
     <div class="about__intro">
-      <SectionHeader eyebrow="Chi sono" title="Progetto e scrivo la stessa cosa." id="chi-sono-title" />
+      <SectionHeader eyebrow="Chi sono" title="Ci sono arrivato dal lato sbagliato." id="chi-sono-title" />
 
       <div class="about__text">
         <p>
-          Faccio design di interfacce da abbastanza tempo da aver smesso di
-          considerare il codice un problema di qualcun altro. Il risultato è un
-          modo di lavorare più corto: prototipo direttamente nel browser, uso
-          Figma per decidere e non per illustrare, e tengo insieme accessibilità
-          e performance perché sono la stessa conversazione.
+          Al martech non ci sono arrivato dall'analytics. Ho cominciato
+          costruendo siti, poi disegnandoli, poi occupandomi di farli crescere.
+          È lì che ho scoperto che la parte difficile non era il codice né il
+          layout: era capire se una cosa funzionava davvero, e distinguerlo
+          dall'averlo sperato.
         </p>
         <p>
-          Mi interessa il lavoro che regge nel tempo: sistemi di componenti che
-          restano leggibili, pagine che caricano in fretta anche in condizioni
-          scomode, testi che dicono quello che serve.
+          Da allora faccio soprattutto quello. Tracciamenti che raccontano la
+          verità anche quando è scomoda, ipotesi scritte prima di guardare i
+          numeri, esperimenti disegnati in modo da poter fallire — perché un
+          test che non può smentirti non è un test, è una cerimonia.
+        </p>
+        <p>
+          Il vantaggio di essere passato dal lato del design e del codice è che
+          so ancora cosa costa implementare quello che propongo. Non chiedo cose
+          che poi qualcun altro deve smontare.
         </p>
         <p>
           <a href="/about">Il percorso completo</a>
