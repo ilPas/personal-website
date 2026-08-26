@@ -16,9 +16,9 @@ const { entries } = Astro.props;
 
     {
       entries.length > 0 ? (
-        <ul class="work-section__list">
+        <ul class="work-list">
           {entries.map((entry) => (
-            <li>
+            <li class="work-list__item">
               <WorkCard entry={entry} headingLevel={3} />
             </li>
           ))}
@@ -34,17 +34,22 @@ const { entries } = Astro.props;
   .work-section {
     padding-block: var(--space-2xl);
     border-block-start: 1px solid var(--line);
-    /* Compensa l'header quando si arriva da un'ancora. */
     scroll-margin-block-start: var(--space-m);
   }
 
-  .work-section__list {
-    display: grid;
-    gap: var(--space-2xl) var(--space-l);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  /* Stesso principio del feed: il filo sta sopra ogni voce, prima
+     compresa, così l'elenco regge con due voci come con dieci. */
+  .work-list {
+    display: flex;
+    flex-direction: column;
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  .work-list__item {
+    padding-block: var(--space-l);
+    border-block-start: 1px solid var(--line);
   }
 
   .work-section__empty {

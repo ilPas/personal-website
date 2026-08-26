@@ -5,7 +5,6 @@ import TagList from './TagList.astro';
 
 interface Props {
   entry: CollectionEntry<'work'>;
-  /** Livello dell'intestazione, per non rompere la gerarchia della pagina. */
   headingLevel?: 2 | 3;
 }
 
@@ -14,95 +13,134 @@ const { title, excerpt, year, role, client, tags, cover, draft } = entry.data;
 const Heading = `h${headingLevel}` as 'h2' | 'h3';
 ---
 
-<article class="work-card">
-  <Cover cover={cover} ratio="16 / 10" sizes="(min-width: 60rem) 22rem, (min-width: 40rem) 45vw, 92vw" />
+{/*
+  Riga di indice, non card. Il resto della home è a colonna singola e
+  rigata: una griglia di tre card era l'unica eccezione, e con titoli che
+  vanno a capo tre volte per colonna non reggeva. Qui i dati stanno in una
+  colonna stretta a sinistra e il case study occupa la misura di lettura.
+*/}
+<article class="work-row">
+  <div class="work-row__meta">
+    <span class="work-row__year">{year}</span>
+    <span class="work-row__role">{role}</span>
+    {client && <span class="work-row__client">{client}</span>}
+    {draft && <span class="work-row__draft">Bozza</span>}
+  </div>
 
-  <div class="work-card__body">
-    <p class="work-card__meta">
-      <span>{year}</span>
-      <span aria-hidden="true">·</span>
-      <span>{role}</span>
-      {client && <><span aria-hidden="true">·</span><span>{client}</span></>}
-      {draft && <span class="work-card__draft">Bozza</span>}
-    </p>
-
-    <Heading class="work-card__title">
-      <a class="work-card__link" href={`/work/${entry.id}`}>{title}</a>
+  <div class="work-row__body">
+    <Heading class="work-row__title">
+      <a class="work-row__link" href={`/work/${entry.id}`}>{title}</a>
     </Heading>
 
-    <p class="work-card__excerpt">{excerpt}</p>
+    <p class="work-row__excerpt">{excerpt}</p>
 
     <TagList tags={tags} label={`Tag di ${title}`} />
   </div>
+
+  {
+    /* La copertina compare solo se esiste: nessun riquadro in attesa. */
+    cover && (
+      <div class="work-row__cover">
+        <Cover cover={cover} ratio="4 / 3" sizes="(min-width: 64rem) 14rem, 40vw" />
+      </div>
+    )
+  }
 </article>
 
 <style>
-  .work-card {
+  .work-row {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-s);
-    height: 100%;
+    display: grid;
+    gap: var(--space-2xs) var(--space-l);
   }
 
-  /* Il ring appartiene alla card, il link resta l'unico elemento focusabile. */
-  .work-card:has(.work-card__link:focus-visible) {
+  .work-row:has(.work-row__link:focus-visible) {
     outline: 2px solid var(--focus-ring);
-    outline-offset: 6px;
+    outline-offset: 8px;
     border-radius: var(--radius-md);
   }
 
-  .work-card__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2xs);
+  /* Sopra i 64rem l'indice si apre: i dati a sinistra, il progetto a
+     destra. Sotto, tutto in colonna — che è la stessa cosa, più stretta. */
+  @media (min-width: 64rem) {
+    .work-row {
+      grid-template-columns: 11rem minmax(0, 1fr) auto;
+      align-items: start;
+    }
   }
 
-  .work-card__meta {
+  .work-row__meta {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4em;
-    font-size: var(--text-xs);
-    color: var(--ink-muted);
+    gap: var(--space-3xs) var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
   }
 
-  .work-card__draft {
+  @media (min-width: 64rem) {
+    .work-row__meta {
+      flex-direction: column;
+      gap: var(--space-3xs);
+      padding-block-start: 0.5em;
+    }
+  }
+
+  .work-row__year {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .work-row__draft {
     border: 1px dashed var(--line-strong);
     border-radius: var(--radius-sm);
     padding: 0 0.4em;
     text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
-    font-size: var(--text-2xs);
   }
 
-  .work-card__title {
-    font-size: var(--text-xl);
+  .work-row__body {
+    max-width: var(--measure);
   }
 
-  .work-card__link {
+  .work-row__title {
+    /* Più grande delle voci del feed: è la gerarchia a dire che un case
+       study pesa più di una nota. */
+    font-size: var(--text-2xl);
+  }
+
+  .work-row__link {
     text-decoration: none;
   }
 
-  .work-card__link:hover {
+  .work-row__link:hover {
     text-decoration: underline;
-    text-underline-offset: 0.25em;
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
   }
 
-  /* Tutta la card è cliccabile, ma nel DOM c'è un solo link. */
-  .work-card__link::after {
+  /* Tutta la riga è cliccabile, ma nel DOM c'è un solo link. */
+  .work-row__link::after {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: var(--radius-md);
   }
 
-  .work-card__link:focus-visible {
+  .work-row__link:focus-visible {
     outline: none;
   }
 
-  .work-card__excerpt {
+  .work-row__excerpt {
+    margin-block-start: var(--space-xs);
     color: var(--ink-muted);
-    max-width: 42ch;
+  }
+
+  .work-row__body :global(.tag-list) {
+    margin-block-start: var(--space-s);
+  }
+
+  .work-row__cover {
+    inline-size: min(100%, 14rem);
   }
 </style>
