@@ -39,8 +39,18 @@ const isCurrent = (href: string) => {
 </header>
 
 <style>
+  /* La scena parte dal bordo alto della finestra e passa dietro l'header:
+     un filetto qui taglierebbe l'immagine in due. Al suo posto una
+     velatura, che tiene leggibile la navigazione su qualunque fotogramma. */
   .site-header {
-    border-block-end: 1px solid var(--line);
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      var(--void) 0%,
+      color-mix(in srgb, var(--void) 72%, transparent) 62%,
+      transparent 100%
+    );
   }
 
   /* Nessun menu a scomparsa: sotto i 480px l'header va semplicemente a capo. */

@@ -6,12 +6,18 @@ import { SITE } from '../consts';
   <div class="container hero__inner">
     <p class="eyebrow hero__eyebrow">{SITE.tagline}</p>
 
+    {/*
+      Le righe sono span INLINE separati da <br>, non blocchi. Con dei
+      blocchi ogni riga è un candidato LCP a sé e nessuna arriva a essere
+      l'elemento più grande della pagina: l'LCP finiva sul paragrafo sotto.
+      Inline dentro un solo <h1>, il candidato è il titolo intero.
+    */}
     <h1 class="headline hero__headline" id="hero-title">
-      <span class="headline__line" style="--shift: 1.2ch">Costruisco</span>
-      <span class="headline__line" style="--shift: 3.6ch">interfacce che si</span>
-      <span class="headline__line" style="--shift: 0">
-        spiegano da <span class="headline__accent">sole</span>.
-      </span>
+      <span class="headline__line" style="--shift: 0.62em">Costruisco</span><br />
+      <span class="headline__line" style="--shift: 1.86em">interfacce che si</span><br />
+      <span class="headline__line" style="--shift: 0"
+        >spiegano da <span class="headline__accent">sole</span>.</span
+      >
     </h1>
 
     <p class="hero__lead">
@@ -28,8 +34,9 @@ import { SITE } from '../consts';
 
   <div class="container hero__foot">
     <p class="microtext">
-      Acqua, luce e nebbia calcolate nel browser da un solo shader, senza
-      librerie. Con «riduci movimento» la scena resta, ferma.
+      Acqua, luce e nebbia calcolate nel browser mentre leggi. Quello che
+      vedi prima è un fotogramma della stessa scena. Con «riduci
+      movimento» resta solo quello.
     </p>
   </div>
 </section>
@@ -40,7 +47,7 @@ import { SITE } from '../consts';
     display: grid;
     grid-template-rows: 1fr auto;
     align-content: center;
-    min-block-size: min(calc(100svh - 4.5rem), 50rem);
+    min-block-size: min(calc(100svh - 4.6rem), calc(54rem - 4.6rem));
     padding-block: var(--space-2xl) var(--space-l);
     /* Il velo dietro il testo sborda di proposito: qui viene tagliato,
        o allarga il documento e compare una barra di scorrimento. */
@@ -61,21 +68,31 @@ import { SITE } from '../consts';
   .hero__inner::before {
     content: '';
     position: absolute;
-    inset: -8% -12% -10% -50%;
+    /* Riquadro e raggio vanno letti insieme: allargando il riquadro il
+       centro percentuale si sposta, e il velo perde il lato destro —
+       che è esattamente dove finisce l'ultima riga del titolo. Qui il
+       centro sta al 35% della colonna di testo e lo stop trasparente
+       cade dentro il riquadro, così il bordo non si vede. */
+    inset: -45% -30% -45% -30%;
     z-index: -1;
     pointer-events: none;
     background: radial-gradient(
-      70% 60% at 34% 50%,
+      60% 40% at 41% 50%,
       var(--void) 0%,
-      color-mix(in srgb, var(--void) 88%, transparent) 42%,
-      color-mix(in srgb, var(--void) 45%, transparent) 68%,
+      color-mix(in srgb, var(--void) 93%, transparent) 44%,
+      color-mix(in srgb, var(--void) 58%, transparent) 68%,
       transparent 88%
     );
   }
 
-  /* Off-grid: l'occhiello non condivide l'asse del titolo. */
+  /* Off-grid: l'occhiello non condivide l'asse del titolo.
+
+     Gli scarti sono in `em`, non in `ch`: `ch` dipende dall'avanzamento
+     del carattere «0», quindi cambia quando il font vero sostituisce il
+     ripiego e trascina ogni riga di lato. Era 0,106 di CLS, tutto
+     orizzontale e invisibile finché non l'ho misurato asse per asse. */
   .hero__eyebrow {
-    margin-inline-start: 3.6ch;
+    margin-inline-start: 2.16em;
     margin-block-end: var(--space-m);
   }
 
@@ -86,7 +103,7 @@ import { SITE } from '../consts';
   .hero__lead {
     max-width: 46ch;
     margin-block-start: var(--space-l);
-    margin-inline-start: 1.2ch;
+    margin-inline-start: 0.66em;
     font-size: var(--text-lg);
     color: var(--ink-muted);
   }
@@ -96,7 +113,7 @@ import { SITE } from '../consts';
     flex-wrap: wrap;
     gap: var(--space-s) var(--space-l);
     margin-block-start: var(--space-l);
-    margin-inline-start: 3.6ch;
+    margin-inline-start: 2.16em;
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     letter-spacing: 0.06em;
@@ -116,13 +133,43 @@ import { SITE } from '../consts';
   }
 
   .hero__foot {
+    position: relative;
     align-self: end;
     padding-block-start: var(--space-2xl);
+  }
+
+  /* Anche il piede ha il suo velo: la micro-riga sta in basso a sinistra,
+     dove la scena ha il sentiero di luce sull'acqua. */
+  .hero__foot::before {
+    content: '';
+    position: absolute;
+    inset: -30% -40% -140% -60%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      40% 34% at 28% 62%,
+      var(--void) 0%,
+      color-mix(in srgb, var(--void) 90%, transparent) 44%,
+      color-mix(in srgb, var(--void) 45%, transparent) 68%,
+      transparent 88%
+    );
   }
 
   /* Sotto i 48rem lo scarto off-grid sparisce: in colonna stretta non è
      una scelta compositiva, è solo testo che non si allinea. */
   @media (max-width: 55.999rem) {
+    /* In colonna stretta anche il piede ha il testo sopra la scena. */
+    .hero__foot::before {
+      inset: 18% -20% -40% -20%;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        color-mix(in srgb, var(--void) 80%, transparent) 20%,
+        var(--void) 44%,
+        var(--void) 100%
+      );
+    }
+
     /* Il velo locale non ha più un lato su cui stare: copre tutto. */
     /* Un radiale sfuma proprio ai bordi, e in colonna stretta l'occhiello
        sta sul bordo alto — dove la sorgente scende. Qui serve copertura

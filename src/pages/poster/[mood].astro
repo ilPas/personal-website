@@ -1,0 +1,59 @@
+---
+/**
+ * Rotta di servizio per generare i poster: mostra la sola scena, a tutto
+ * schermo, con il mood richiesto. Esiste SOLO in `astro dev` — in
+ * produzione getStaticPaths non restituisce nulla e la pagina non viene
+ * costruita.
+ *
+ * Uso: `npm run dev`, poi `node scripts/build-posters.mjs`.
+ */
+import type { GetStaticPaths } from 'astro';
+import HeroScene from '../../components/HeroScene.astro';
+import { MOODS, SITE } from '../../consts';
+import '../../styles/global.css';
+
+export const getStaticPaths = (() =>
+  import.meta.env.DEV ? MOODS.map((mood) => ({ params: { mood }, props: { mood } })) : []) satisfies GetStaticPaths;
+
+const { mood } = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.lang} data-mood={mood}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Poster {mood}</title>
+  </head>
+  <body>
+    <div class="stage">
+      <HeroScene mood={mood} />
+    </div>
+
+    <style is:global>
+      html,
+      body {
+        margin: 0;
+        block-size: 100%;
+        background: var(--void);
+      }
+
+      /* Nessun velo: il poster deve essere la scena nuda. I veli li mette
+         chi lo usa, sopra. */
+      .stage {
+        position: relative;
+        inline-size: 100vw;
+        block-size: 100vh;
+      }
+
+      .stage :global(.hero-scene__scrim) {
+        display: none;
+      }
+
+      .stage :global(.hero-scene__poster) {
+        display: none;
+      }
+    </style>
+  </body>
+</html>

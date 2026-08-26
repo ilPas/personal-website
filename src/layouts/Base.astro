@@ -1,7 +1,8 @@
 ---
 import { SITE, type Mood } from '../consts';
 import SiteHeader from '../components/SiteHeader.astro';
-import WaterScene from '../components/WaterScene.astro';
+import HeroScene from '../components/HeroScene.astro';
+import ScenePoster from '../components/ScenePoster.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/global.css';
 
@@ -42,7 +43,24 @@ const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.si
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!--
+      I tre sottoinsiemi latini servono al primo paint: l'LCP è l'headline,
+      e l'headline è testo. Preload + font-display: optional significa che
+      il font c'è già quando si dipinge, senza scambi successivi.
+    -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/syne-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-mono-400-latin.woff2" crossorigin />
     <meta name="theme-color" content="#050507" />
+
+    <!--
+      Il poster è sfondo del <body>, non di un elemento: Chrome esclude i
+      background di body/html dai candidati LCP, quindi l'headline resta
+      l'elemento più grande nel DOM. È anche l'unico modo di avere il
+      poster senza JavaScript.
+    -->
+    <style is:inline set:html={`body{background-image:url(/poster/${mood}.webp)}`}></style>
     <link rel="sitemap" href="/sitemap-index.xml" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
@@ -57,17 +75,17 @@ const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.si
     <slot name="head" />
   </head>
 
-  <body>
+  <body data-scene={scene}>
     <a class="skip-link" href="#contenuto">Salta al contenuto</a>
-    <SiteHeader />
-    <div class="shell">
-      <div class:list={['shell__scene', `shell__scene--${scene}`]}>
-        <WaterScene />
-      </div>
-      <main id="contenuto" tabindex="-1">
-        <slot />
-      </main>
+
+    <div class="scene-layer">
+      {scene === 'piena' ? <HeroScene /> : <ScenePoster />}
     </div>
+
+    <SiteHeader />
+    <main id="contenuto" tabindex="-1">
+      <slot />
+    </main>
     <SiteFooter />
   </body>
 </html>
@@ -96,60 +114,36 @@ const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.si
     outline: none;
   }
 
-  /* La scena è il fondo: sta dietro, non occupa spazio, non sposta nulla. */
-  .shell {
-    position: relative;
+  /* L'altezza della scena vive qui perché la usano due cose che devono
+     combaciare: il livello del canvas e il background-size del poster. */
+  body {
+    --scene-h: clamp(19rem, 48svh, 32rem);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% var(--scene-h);
   }
 
-  .shell__scene {
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .shell__scene--piena {
-    block-size: min(calc(100svh - 4.5rem), 50rem);
-  }
-
-  .shell__scene--banda {
-    block-size: clamp(18rem, 46svh, 30rem);
-  }
-
-  /* Dietro una testata la scena è fondo, non palcoscenico: sul lato del
-     testo passa attenuata, a destra resta piena. */
-  .shell__scene--banda::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      /* La banda si spegne nel nero invece di finire di taglio: senza,
-         il bordo inferiore è una riga netta e il testo che ci cade
-         sopra resta illuminato a metà. */
-      linear-gradient(to bottom, transparent 42%, var(--void) 97%),
-      linear-gradient(
-        96deg,
-        var(--void) 8%,
-        color-mix(in srgb, var(--void) 88%, transparent) 44%,
-        color-mix(in srgb, var(--void) 55%, transparent) 68%,
-        color-mix(in srgb, var(--void) 20%, transparent) 88%
-      );
+  body[data-scene='piena'] {
+    --scene-h: min(100svh, 54rem);
   }
 
   @media (max-width: 55.999rem) {
-    /* In colonna stretta la banda si accorcia: resta dietro occhiello e
-       titolo, e finisce prima del testo corrente, che sotto ha solo nero. */
-    .shell__scene--banda {
-      block-size: clamp(11rem, 30svh, 16rem);
+    body {
+      --scene-h: clamp(13rem, 34svh, 18rem);
     }
+  }
 
-    .shell__scene--banda::after {
-      background:
-        linear-gradient(to bottom, transparent 18%, var(--void) 82%),
-        color-mix(in srgb, var(--void) 80%, transparent);
-    }
+  /* La scena è il fondo della pagina: parte dal bordo alto della finestra,
+     copre anche l'header, e non occupa spazio nel flusso. Il canvas che la
+     sostituisce vive esattamente nello stesso rettangolo del poster, così
+     al cambio non c'è nessuno scarto di inquadratura. */
+  .scene-layer {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    block-size: var(--scene-h);
+    z-index: 0;
+    pointer-events: none;
   }
 
   main {

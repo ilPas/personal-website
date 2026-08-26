@@ -1,0 +1,186 @@
+---
+/*
+  Il poster non sta qui: è il background del <body>, per non rubare l'LCP
+  all'headline. Questo componente porta solo il canvas che lo sostituisce
+  dopo l'hydration, e il velo che tiene leggibile il testo sopra.
+*/
+---
+
+<div class="hero-scene" aria-hidden="true" data-hero-scene>
+  <div class="hero-scene__scrim"></div>
+</div>
+
+<style>
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .hero-scene :global(canvas) {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    display: block;
+  }
+
+  /* Il canvas nasce trasparente e prende il posto del poster quando è
+     pronto. Nessun salto, nessuna attesa: se non arriva, resta il poster. */
+  .hero-scene :global(canvas) {
+    opacity: 0;
+    transition: opacity 600ms ease;
+  }
+
+  .hero-scene :global(canvas[data-ready]) {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scene :global(canvas) {
+      transition: none;
+    }
+  }
+
+  .hero-scene__scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        100deg,
+        var(--void) 4%,
+        color-mix(in srgb, var(--void) 88%, transparent) 30%,
+        color-mix(in srgb, var(--void) 48%, transparent) 56%,
+        transparent 80%
+      ),
+      linear-gradient(to top, var(--void) 6%, transparent 38%);
+  }
+
+  @media (max-width: 55.999rem) {
+    .hero-scene__scrim {
+      background:
+        color-mix(in srgb, var(--void) 90%, transparent),
+        linear-gradient(to top, var(--void) 2%, transparent 34%);
+    }
+  }
+</style>
+
+<script>
+  /**
+   * Orchestrazione dell'isola. Questo è tutto quello che finisce nel bundle
+   * iniziale: nessun three.js, nessuno shader. Decide se caricare la scena
+   * e, in caso, la importa dinamicamente.
+   */
+  type Handle = import('../scenes/hero-scene').SceneHandle;
+
+  function readColor(styles: CSSStyleDeclaration, name: string, fallback: [number, number, number]) {
+    const raw = styles.getPropertyValue(name).trim();
+    const hex = raw.match(/^#([0-9a-f]{6})$/i);
+    if (hex) {
+      const n = parseInt(hex[1], 16);
+      return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255] as [number, number, number];
+    }
+    const nums = raw.match(/[\d.]+/g);
+    if (nums && nums.length >= 3) {
+      return nums.slice(0, 3).map((v) => Number(v) / 255) as [number, number, number];
+    }
+    return fallback;
+  }
+
+  function boot(host: HTMLElement) {
+    const lessMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+    let handle: Handle | null = null;
+    let loading = false;
+    let inView = false;
+
+    const styles = getComputedStyle(document.documentElement);
+    const colors = {
+      core: readColor(styles, '--light-core', [0.87, 0.97, 1]),
+      halo: readColor(styles, '--light-halo', [0.44, 0.85, 0.91]),
+      accent: readColor(styles, '--accent', [0.18, 0.88, 0.77]),
+    };
+
+    function shouldRun() {
+      return !lessMotion.matches && inView && !document.hidden;
+    }
+
+    async function ensureLoaded() {
+      // Meno movimento: nessun canvas, nemmeno creato. Resta il poster.
+      if (lessMotion.matches || handle || loading) return;
+      loading = true;
+
+      const canvas = document.createElement('canvas');
+      host.appendChild(canvas);
+
+      try {
+        const { createScene } = await import('../scenes/hero-scene');
+        handle = await createScene(canvas, colors, { fps: 40, maxDpr: 1.5, renderScale: 0.85 });
+      } catch {
+        handle = null;
+      }
+
+      if (!handle) {
+        // WebGL assente o shader che non compila: via il canvas, resta il poster.
+        canvas.remove();
+        loading = false;
+        return;
+      }
+
+      canvas.setAttribute('data-ready', '');
+      (window as unknown as { __heroScene?: Handle }).__heroScene = handle;
+      loading = false;
+      sync();
+    }
+
+    function sync() {
+      if (!handle) return;
+      if (shouldRun()) handle.play();
+      else handle.pause();
+    }
+
+    /**
+     * Il 3D non parte prima che la pagina abbia finito il suo percorso
+     * critico. Misurato: lanciando l'import all'intersezione, il primo
+     * chunk di three.js partiva a 96ms e l'LCP arrivava a 264ms — cioè
+     * il 3D si contendeva la banda con i font dell'headline.
+     */
+    function whenIdle(fn: () => void) {
+      const go = () => ('requestIdleCallback' in window
+        ? requestIdleCallback(fn, { timeout: 2000 })
+        : setTimeout(fn, 200));
+      if (document.readyState === 'complete') go();
+      else addEventListener('load', go, { once: true });
+    }
+
+    new IntersectionObserver(
+      (entries) => {
+        inView = entries.some((e) => e.isIntersecting);
+        if (inView) whenIdle(ensureLoaded);
+        sync();
+      },
+      { rootMargin: '128px' },
+    ).observe(host);
+
+    document.addEventListener('visibilitychange', sync);
+
+    lessMotion.addEventListener('change', () => {
+      if (lessMotion.matches && handle) {
+        handle.dispose();
+        handle = null;
+        host.querySelector('canvas')?.remove();
+        return;
+      }
+      if (!lessMotion.matches) ensureLoaded();
+    });
+
+    let resizeTimer = 0;
+    addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => handle?.resize(), 150);
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-hero-scene]').forEach(boot);
+</script>

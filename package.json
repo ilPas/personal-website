@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "private": true,
   "type": "module",
-  "description": "Sito personale di Pasquale Errico — erricopasquale.it",
+  "description": "Sito personale di Pasquale Errico \u2014 erricopasquale.it",
   "author": {
     "name": "Pasquale Errico",
     "url": "https://www.erricopasquale.it"
@@ -15,14 +15,18 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "sync": "astro sync"
+    "sync": "astro sync",
+    "posters": "node scripts/build-posters.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.2.6"
+    "@types/three": "^0.185.4",
+    "astro": "^7.2.6",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "playwright": "^1.62.1",
     "typescript": "^6.0.3"
   }
 }

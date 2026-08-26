@@ -19,30 +19,36 @@ devono passare puliti.
 Questi non sono preferenze. Se un intervento li viola, la soluzione è
 sbagliata, non il vincolo.
 
-1. **Una sola isola JavaScript, ed è la scena.** Tutto il resto del sito è
-   HTML e CSS: se una cosa si può fare in CSS o in HTML, si fa lì. Il filtro
-   per tipo di `/lab` è l'esempio del criterio — radio nativi più `:has()`.
+1. **Una sola isola JavaScript, ed è la scena dell'hero.** Tutto il resto del
+   sito è HTML e CSS: se una cosa si può fare in CSS o in HTML, si fa lì. Il
+   filtro per tipo di `/lab` è l'esempio del criterio — radio nativi più
+   `:has()`. Le pagine interne non caricano un solo byte di JavaScript.
 
-   L'eccezione è `WaterScene.astro`, lo shader di acqua, luce e nebbia. È
-   arrivata con la direzione visiva: le caustiche vere richiedono un
-   frammento shader, e un gradiente animato non è la stessa cosa — è
-   esattamente il default contro cui la direzione mette in guardia. Il
-   vincolo è stato emendato di proposito, non aggirato.
+   L'isola usa three.js. È una scelta esplicita: la scena è un raymarch con
+   nebbia volumetrica, riflessione e bloom, e il costo della libreria è stato
+   accettato in cambio della resa. Le regole che la tengono onesta:
 
-   Le regole che tengono onesta l'eccezione, e che valgono per qualunque
-   isola futura:
-   - **una sola.** `find dist -name "*.js"` deve restituire un file solo.
-     Se ne compare un secondo, la risposta di partenza è no;
-   - **niente librerie.** WebGL2 nudo. Oggi l'isola pesa 2,6 KB compressi:
-     è il tetto, non il punto di partenza;
-   - **decorativa.** `aria-hidden`, nessun evento, nessun contenuto dentro.
-     Nulla di leggibile o cliccabile può vivere nel canvas;
-   - **degradabile.** Senza JavaScript, senza WebGL2 o con lo shader che non
-     compila resta il fondo dipinto in CSS, che è già la scena giusta —
-     buio e una sorgente — solo ferma;
-   - **rispettosa.** Con `prefers-reduced-motion` disegna un fotogramma e si
-     ferma. In pausa fuori dallo schermo e a scheda nascosta. DPR tagliato
-     a 1.5.
+   - **fuori dal percorso critico.** L'LCP è l'headline, che è testo nel DOM.
+     I chunk 3D partono dopo l'evento `load`, in tempo morto. Verifica: nella
+     timeline delle risorse `three.module` deve iniziare **dopo**
+     `loadEventEnd`. Se parte prima, si contende la banda con i font;
+   - **un solo script nel bundle iniziale**, l'orchestratore dell'isola:
+     ~1,5 KB compressi. Tutto il resto è codice 3D e arriva dopo;
+   - **poster prima, canvas poi.** Lo sfondo è un render vero della scena
+     (`public/poster/<mood>.webp`, generato da `scripts/build-posters.mjs`).
+     Il poster è il background del **`<body>`**, non di un elemento: Chrome
+     esclude i background di body/html dai candidati LCP, e questo è l'unico
+     modo di avere sia il poster al primo paint sia l'headline come LCP.
+     Se lo shader cambia, i poster vanno rigenerati;
+   - **nessun gate.** Il contenuto non aspetta mai il 3D. Senza WebGL, con
+     lo shader che non compila o senza JavaScript resta il poster;
+   - **decorativa.** `aria-hidden`, nessun evento, nessun contenuto dentro;
+   - **rispettosa.** Con `prefers-reduced-motion` il canvas non viene creato
+     e i chunk 3D non vengono nemmeno scaricati: resta il poster. In pausa
+     fuori dallo schermo e a scheda nascosta. DPR tagliato a 1.5, scala
+     interna 0.85, frame rate a 40. Se il passo reale resta oltre il doppio
+     del tetto, la scena abbassa da sola la risoluzione, due gradini.
+
 2. **Niente terze parti.** Nessuna richiesta deve uscire dal dominio: font,
    stili, script, immagini. I font sono in `public/fonts/` con i loro
    `@font-face` scritti a mano in `src/styles/fonts.css`: scaricati una volta

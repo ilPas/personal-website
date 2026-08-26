@@ -1,7 +1,7 @@
 # erricopasquale.it
 
 Sito personale di Pasquale Errico, costruito con [Astro](https://astro.build).
-Sito statico. Una sola isola JavaScript in tutto il sito, ed è la scena.
+Sito statico. Una sola isola JavaScript in tutto il sito, ed è la scena dell'hero.
 
 ## Comandi
 
@@ -12,6 +12,7 @@ Sito statico. Una sola isola JavaScript in tutto il sito, ed è la scena.
 | `npm run build`   | Build statica in `dist/`                       |
 | `npm run preview` | Serve la build locale                          |
 | `npm run check`   | Controllo dei tipi su `.astro` e `.ts`         |
+| `npm run posters` | Rigenera i poster della scena (serve `npm run dev` acceso) |
 
 ## Struttura
 
@@ -102,12 +103,17 @@ sitemap.
 
 ## Scelte tecniche
 
-**Una sola isola.** La build contiene un solo file `.js`, 2,6 KB compressi:
-lo shader della scena. Tutto il resto è HTML e CSS — il filtro per tipo del
-lab, che sarebbe il candidato naturale a diventare un'isola, è fatto di radio
-nativi e `:has()`. L'eccezione è arrivata con la direzione visiva e le regole
-che la tengono onesta sono in `CLAUDE.md`: niente librerie, decorativa,
-degradabile, ferma con «riduci movimento».
+**Una sola isola.** Il bundle iniziale della home è un solo script da 1,5 KB
+compressi: l'orchestratore. La scena — raymarch con nebbia volumetrica,
+riflessione e bloom, su three.js — sta in chunk separati che partono dopo
+`load`, e solo se l'hero è in viewport e il visitatore non ha chiesto meno
+movimento. Le pagine interne non caricano un byte di JavaScript. Le regole
+complete sono in `CLAUDE.md`.
+
+**Poster prima, canvas poi.** Lo sfondo è un render vero della scena, uno per
+mood, generato da `scripts/build-posters.mjs`. È il background del `<body>`,
+non di un elemento: così l'LCP resta l'headline. Senza JavaScript, senza
+WebGL o con «riduci movimento» il poster è tutta la scena.
 
 **Niente terze parti.** Nessuna richiesta esce dal dominio: font, stili e
 immagini sono tutti serviti da qui.

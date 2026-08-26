@@ -7,6 +7,20 @@
                    i pesi: è la faccia che regge la tipografia off-grid.
    Space Grotesk — testo corrente. Tecnico ma leggibile in colonna lunga.
    Space Mono    — micro-testo, tag, codice.
+
+   `font-display: optional` più il preload in <head>: il font o arriva in
+   tempo per il primo paint, o non viene usato per quella visita. Nessuno
+   scambio a metà strada, quindi nessuno spostamento di layout — che con
+   `swap` valeva 0,28 di CLS, perché i `max-width` in `ch` cambiavano il
+   punto di andata a capo del titolo.
+
+   In coda ci sono i ripieghi con metriche corrette. Servono a una cosa
+   sola: senza, quando il font vero arriva le righe si spostano di due o
+   tre pixel e il CLS misurato era 0,053. Gli override fanno occupare al
+   ripiego esattamente lo spazio del font definitivo, quindi lo scambio
+   non muove niente. I valori non sono a occhio: misurati con
+   `measureText` confrontando avanzamento, ascendente e discendente di
+   ogni famiglia contro Arial. Se si cambia un font, vanno rimisurati.
    ========================================================================= */
 
 @font-face {
@@ -14,7 +28,7 @@
   src: url('/fonts/syne-latin.woff2') format('woff2');
   font-weight: 400 800;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -25,7 +39,7 @@
   src: url('/fonts/syne-latin-ext.woff2') format('woff2');
   font-weight: 400 800;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -36,7 +50,7 @@
   src: url('/fonts/space-grotesk-latin.woff2') format('woff2');
   font-weight: 300 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -47,7 +61,7 @@
   src: url('/fonts/space-grotesk-latin-ext.woff2') format('woff2');
   font-weight: 300 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -58,7 +72,7 @@
   src: url('/fonts/space-mono-400-latin.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -69,7 +83,7 @@
   src: url('/fonts/space-mono-400-latin-ext.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -80,7 +94,7 @@
   src: url('/fonts/space-mono-700-latin.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -91,8 +105,40 @@
   src: url('/fonts/space-mono-700-latin-ext.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---------------------------------------------------------------------------
+   Ripieghi con metriche allineate. `size-adjust` pareggia l'avanzamento,
+   `ascent-override` e `descent-override` pareggiano l'altezza della riga.
+   --------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Syne ripiego';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 95.5%;
+  ascent-override: 97.38%;
+  descent-override: 29.32%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Space Grotesk ripiego';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 108.97%;
+  ascent-override: 89.93%;
+  descent-override: 26.61%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Space Mono ripiego';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 131.86%;
+  ascent-override: 84.94%;
+  descent-override: 27.3%;
+  line-gap-override: 0%;
 }

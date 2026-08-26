@@ -88,9 +88,9 @@
    ========================================================================= */
 
 :root {
-  --font-display: 'Syne', 'Trebuchet MS', system-ui, sans-serif;
-  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: 'Syne', 'Syne ripiego', 'Trebuchet MS', system-ui, sans-serif;
+  --font-sans: 'Space Grotesk', 'Space Grotesk ripiego', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Space Mono ripiego', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --text-2xs: 0.6875rem;
   --text-xs: 0.75rem;
@@ -295,7 +295,9 @@ hr {
 }
 
 .headline__line {
-  display: block;
+  /* Inline, non block: vedi il commento in Hero.astro — con dei blocchi
+     ogni riga diventa un candidato LCP separato. */
+  display: inline;
   margin-inline-start: var(--shift, 0);
 }
 

@@ -1,0 +1,43 @@
+---
+/*
+  Le pagine interne non hanno canvas: il poster (sfondo del <body>) è tutta
+  la scena, e qui resta solo il velo che tiene leggibile il testo sopra.
+  Zero JavaScript, zero three.js, zero costo di frame su una pagina fatta
+  per essere letta.
+*/
+---
+
+<div class="scene-poster" aria-hidden="true">
+  <div class="scene-poster__scrim"></div>
+</div>
+
+<style>
+  .scene-poster {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .scene-poster__scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(to bottom, transparent 42%, var(--void) 97%),
+      linear-gradient(
+        96deg,
+        var(--void) 8%,
+        color-mix(in srgb, var(--void) 88%, transparent) 44%,
+        color-mix(in srgb, var(--void) 55%, transparent) 68%,
+        color-mix(in srgb, var(--void) 20%, transparent) 88%
+      );
+  }
+
+  @media (max-width: 55.999rem) {
+    .scene-poster__scrim {
+      background:
+        linear-gradient(to bottom, transparent 18%, var(--void) 82%),
+        color-mix(in srgb, var(--void) 80%, transparent);
+    }
+  }
+</style>
